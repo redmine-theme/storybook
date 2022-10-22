@@ -1,0 +1,26 @@
+{
+  "name": "@redmine-theme/storybook",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/addon-viewport": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/html": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5"
+  },
+  "dependencies": {}
+}
