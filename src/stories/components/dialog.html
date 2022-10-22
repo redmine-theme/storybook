@@ -1,0 +1,34 @@
+<div tabindex="-1" role="dialog" style="position:static; height: auto; width: 350px;" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front modal ui-draggable" aria-describedby="csv-export-options" aria-labelledby="ui-id-1">
+    <div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle">
+        <span id="ui-id-1" class="ui-dialog-title">CSV エクスポート設定</span>
+        <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close">
+            <span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close
+        </button>
+    </div>
+    <div id="csv-export-options" style="width: auto; min-height: 96.0156px; max-height: none; height: auto;" class="ui-dialog-content ui-widget-content">
+        <h3 class="title">CSV エクスポート設定</h3>
+        <form id="csv-export-form" action="/projects/test1/issues.csv" accept-charset="UTF-8" name="csv-export-form-f8b76682" method="get">
+            <input name="utf8" type="hidden" value="✓" autocomplete="off">
+            <input type="hidden" name="set_filter" value="1" autocomplete="off"><input type="hidden" name="f[]" value="status_id" autocomplete="off"><input type="hidden" name="op[status_id]" value="o" autocomplete="off"><input type="hidden" name="v[status_id][]" value="" autocomplete="off"><input type="hidden" name="c[]" value="id" autocomplete="off"><input type="hidden" name="c[]" value="tracker" autocomplete="off"><input type="hidden" name="c[]" value="status" autocomplete="off"><input type="hidden" name="c[]" value="priority" autocomplete="off"><input type="hidden" name="c[]" value="subject" autocomplete="off"><input type="hidden" name="c[]" value="assigned_to" autocomplete="off"><input type="hidden" name="c[]" value="updated_on" autocomplete="off"><input type="hidden" name="sort" value="id:desc" autocomplete="off">
+            <p>
+                <label><input type="radio" name="c[]" id="c__" value="" checked="checked"> 選択された項目</label><br>
+                <label><input type="radio" name="c[]" id="c__all_inline" value="all_inline"> すべての項目</label>
+            </p>
+            <fieldset id="csv-export-block-columns">
+                <legend>
+                    <a href="#" onclick="toggleCheckboxesBySelector('#csv-export-block-columns input[type=checkbox]'); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>
+                </legend>
+                <label><input type="checkbox" name="c[]" value="description"> 説明</label>
+                <label><input type="checkbox" name="c[]" value="last_notes"> 最新のコメント</label>
+            </fieldset>
+            <p><label>エンコーディング <select name="encoding" id="encoding">
+                <option selected="selected" value="CP932">CP932</option>
+                <option value="UTF-8">UTF-8</option>
+            </select></label></p>
+            <p class="buttons">
+                <input type="submit" value="エクスポート" onclick="hideModal(this);">
+                <a href="#" onclick="hideModal(this);; return false;">キャンセル</a>
+            </p>
+        </form>
+    </div>
+</div>

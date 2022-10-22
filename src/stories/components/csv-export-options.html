@@ -1,0 +1,23 @@
+<div id="csv-export-options">
+    <h3 class="title">CSV エクスポート設定</h3>
+    <form id="csv-export-form" action="/projects/test1/issues.csv" accept-charset="UTF-8" name="csv-export-form-f8b76682" method="get"><input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+        <input type="hidden" name="set_filter" value="1" autocomplete="off" /><input type="hidden" name="f[]" value="status_id" autocomplete="off" /><input type="hidden" name="op[status_id]" value="o" autocomplete="off" /><input type="hidden" name="v[status_id][]" value="" autocomplete="off" /><input type="hidden" name="c[]" value="id" autocomplete="off" /><input type="hidden" name="c[]" value="tracker" autocomplete="off" /><input type="hidden" name="c[]" value="status" autocomplete="off" /><input type="hidden" name="c[]" value="priority" autocomplete="off" /><input type="hidden" name="c[]" value="subject" autocomplete="off" /><input type="hidden" name="c[]" value="assigned_to" autocomplete="off" /><input type="hidden" name="c[]" value="updated_on" autocomplete="off" /><input type="hidden" name="sort" value="id:desc" autocomplete="off" />
+        <p>
+            <label><input type="radio" name="c[]" id="c__" value="" checked="checked" /> 選択された項目</label><br />
+            <label><input type="radio" name="c[]" id="c__all_inline" value="all_inline" /> すべての項目</label>
+        </p>
+        <fieldset id="csv-export-block-columns">
+            <legend>
+                <a href="#" onclick="toggleCheckboxesBySelector(&#39;#csv-export-block-columns input[type=checkbox]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>
+            </legend>
+            <label><input type="checkbox" name="c[]" value="description" /> 説明</label>
+            <label><input type="checkbox" name="c[]" value="last_notes" /> 最新のコメント</label>
+        </fieldset>
+        <p><label>エンコーディング <select name="encoding" id="encoding"><option selected="selected" value="CP932">CP932</option>
+            <option value="UTF-8">UTF-8</option></select></label></p>
+        <p class="buttons">
+            <input type="submit" value="エクスポート" onclick="hideModal(this);" />
+            <a href="#" onclick="hideModal(this);; return false;">キャンセル</a>
+        </p>
+    </form>
+</div>

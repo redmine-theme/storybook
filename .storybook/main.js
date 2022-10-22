@@ -9,5 +9,11 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/addon-viewport"
   ],
-  "framework": "@storybook/html"
+  staticDirs: [
+    '../src/public'
+  ],
+  "framework": "@storybook/html",
+  "core": {
+    "builder": "@storybook/builder-webpack5"
+  },
 }
