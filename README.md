@@ -13,8 +13,8 @@ $ npm run storybook
 
 GNU General Public License v2.0
 
-This Storybook.
+This Storybook.  
 (C) Tsuyoshi Tsurushima.
 
-Redmine
+Redmine  
 (C) 2006-2014 Jean-Philippe Lang.
