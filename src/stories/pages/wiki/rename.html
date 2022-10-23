@@ -1,0 +1,36 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">    </div>
+
+    <div id="content">
+        <h2>Wiki</h2>
+
+        <form class="edit_wiki_page" id="edit_wiki_page" action="#" accept-charset="UTF-8" name="edit_wiki_page-3732d9e3" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <div class="box tabular">
+                <p><label for="wiki_page_title">タイトル<span class="required"> *</span></label><input size="100" type="text" value="Wiki" name="wiki_page[title]" id="wiki_page_title" /></p>
+                <p><label for="wiki_page_is_start_page">メインページ</label><input name="wiki_page[is_start_page]" disabled="disabled" type="hidden" value="0" autocomplete="off" /><input disabled="disabled" type="checkbox" value="1" checked="checked" name="wiki_page[is_start_page]" id="wiki_page_is_start_page" /></p>
+                <p><label for="wiki_page_redirect_existing_links">既存のリンクをリダイレクトする</label><input name="wiki_page[redirect_existing_links]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" checked="checked" name="wiki_page[redirect_existing_links]" id="wiki_page_redirect_existing_links" /></p>
+                <p><label for="wiki_page_wiki_id">プロジェクト</label><select name="wiki_page[wiki_id]" id="wiki_page_wiki_id"><option value="1" selected="selected">test1</option><option value="6">&nbsp;&nbsp;&#187; test1-1</option><option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&#187; test1-1-1</option><option value="7">&nbsp;&nbsp;&#187; test1-2</option><option value="13">test10</option><option value="2">test2</option><option value="14">&nbsp;&nbsp;&#187; test2-1</option><option value="3">test3</option><option value="15">&nbsp;&nbsp;&#187; test3-1</option><option value="4">test4</option><option value="5">test5</option><option value="9">test6</option><option value="10">test7</option><option value="11">test8</option><option value="12">test9</option></select></p>
+                <p><label for="wiki_page_parent_id">親ページ</label><select name="wiki_page[parent_id]" id="wiki_page_parent_id"><option value=""></option><option value="5">Sidebar</option></select></p>
+
+            </div>
+            <input type="submit" name="commit" value="名前変更" data-disable-with="名前変更" />
+        </form>
+        <script>
+          //<![CDATA[
+
+          $('#wiki_page_wiki_id').change(function() {
+            $.ajax({
+              url: '/projects/1/wiki/Wiki/rename.js',
+              type: 'get',
+              data: { 'wiki_page[wiki_id]': $('#wiki_page_wiki_id').val() }
+            });
+          });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

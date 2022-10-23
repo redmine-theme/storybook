@@ -1,0 +1,91 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>作業時間</h2>
+
+        <form class="new_time_entry" id="new_time_entry" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="new_time_entry-0ad1ba53" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+
+            <input type="hidden" name="back_url" value="" autocomplete="off" />
+
+            <div class="box tabular">
+                <input type="hidden" name="project_id" id="project_id" value="test1" autocomplete="off" />
+
+                <p>
+                    <label for="time_entry_issue_id">チケット</label><input size="6" type="text" name="time_entry[issue_id]" id="time_entry_issue_id" />
+                    <span id="time_entry_issue"></span>
+                </p>
+
+                <p><label for="time_entry_user_id">ユーザー<span class="required"> *</span></label><select name="time_entry[user_id]" id="time_entry_user_id"><option value="1">&lt;&lt; 自分 &gt;&gt;</option><option value="1">Redmine Admin</option><option value="5">user1 user1</option><option value="6">user2 user2</option><option value="7">user3 user3</option><option value="8">user4 user4</option><option value="9">user5 user5</option></select></p>
+                <p><label for="time_entry_spent_on">日付<span class="required"> *</span></label><input size="10" value="2022-10-23" type="date" name="time_entry[spent_on]" id="time_entry_spent_on" /><script>
+                  //<![CDATA[
+                  $(function() { $('#time_entry_spent_on').addClass('date').datepickerFallback(datepickerOptions); });
+                  //]]>
+                </script></p>
+                <p><label for="time_entry_hours">時間<span class="required"> *</span></label><input size="6" value="" type="text" name="time_entry[hours]" id="time_entry_hours" /></p>
+                <p><label for="time_entry_comments">コメント</label><input size="100" maxlength="1024" type="text" name="time_entry[comments]" id="time_entry_comments" /></p>
+                <p><label for="time_entry_activity_id">作業分類<span class="required"> *</span></label><select name="time_entry[activity_id]" id="time_entry_activity_id"><option selected="selected" value="">--- 選んでください ---</option>
+                    <option value="8">設計作業</option>
+                    <option value="9">開発作業</option></select></p>
+
+            </div>
+
+            <script>
+              //<![CDATA[
+
+              $(document).ready(function(){
+                $('#time_entry_project_id').change(function(){
+                  $('#time_entry_issue_id').val('');
+                });
+                $('#time_entry_project_id, #time_entry_issue_id').change(function(){
+                  $.ajax({
+                    url: '/time_entries/new.js',
+                    type: 'post',
+                    data: $(this).closest('form').serialize()
+                  });
+                });
+              });
+
+              observeAutocompleteField('time_entry_issue_id',
+                function(request, callback) {
+                  var url = '/issues/auto_complete';
+                  var data = {
+                    term: request.term
+                  };
+                  var project_id;
+                  project_id = '1';
+                  if(project_id){
+                    data['project_id'] = project_id;
+                  } else {
+                    data['scope'] = 'all';
+                  }
+
+                  $.get(url, data, null, 'json')
+                    .done(function(data){
+                      callback(data);
+                    })
+                    .fail(function(jqXHR, status, error){
+                      callback([]);
+                    });
+                },
+                {
+                  select: function(event, ui) {
+                    $('#time_entry_issue').text('');
+                    $('#time_entry_issue_id').val(ui.item.value).change();
+                  }
+                }
+              );
+
+              //]]>
+            </script>
+            <input type="submit" name="commit" value="作成" data-disable-with="作成" />
+            <input type="submit" name="continue" value="連続作成" data-disable-with="連続作成" />
+            <a href="#">キャンセル</a>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>
