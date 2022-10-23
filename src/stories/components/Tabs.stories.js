@@ -2,9 +2,11 @@ import html from './tabs.html';
 
 export default {
   title: "Components/Tabs",
-  parameters: {
-    layout: 'centered'
-  },
+  decorators: [
+    (Story) => (
+      `<div id="content">${Story()}</div>`
+    ),
+  ],
 };
 
 export const Tabs = () => html;
