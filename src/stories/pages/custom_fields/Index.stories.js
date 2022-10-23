@@ -1,7 +1,7 @@
 import html from "./index.html";
 
 export default {
-  title: "Pages/CustomCields/Index",
+  title: "Pages/CustomFields/Index",
   parameters: {
     layout: 'fullscreen',
   },

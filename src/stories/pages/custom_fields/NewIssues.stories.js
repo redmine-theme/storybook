@@ -1,7 +1,7 @@
-import html from './new.html';
+import html from './new_issues.html';
 
 export default {
-  title: "Pages/CustomFields/New",
+  title: "Pages/CustomFields/NewIssues",
   parameters: {
     layout: 'fullscreen',
   },
@@ -12,4 +12,4 @@ export default {
   ],
 };
 
-export const New = () => html;
+export const NewIssues = () => html;
