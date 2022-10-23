@@ -1,4 +1,4 @@
-import header from './header.html';
+import html from './header.html';
 
 export default {
   title: "Components/Header",
@@ -7,4 +7,4 @@ export default {
   },
 };
 
-export const Header = () => header;
+export const Header = () => html;

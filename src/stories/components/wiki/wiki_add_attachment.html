@@ -1,0 +1,17 @@
+<div id="wiki_add_attachment">
+    <form id="add_attachment_form" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="add_attachment_form-f8625c85" method="post">
+        <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/><input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+        <div class="box">
+            <p>
+                <span class="attachments_form">
+                    <span class="attachments_fields"></span>
+                    <span class="add_attachment" style="">
+                        <input type="file" name="attachments[dummy][file]" class="file_selector filedrop" multiple="multiple" onchange="addInputFiles(this);" data-max-number-of-files-message="このファイルはアップロードできません。同時にアップロードできるファイル数の上限(10)を超えています。" data-max-file-size="5242880" data-max-file-size-message="このファイルはアップロードできません。添付ファイルサイズの上限(5 MB)を超えています。" data-max-concurrent-uploads="2" data-upload-path="/uploads.js" data-param="attachments" data-description="true" data-description-placeholder="説明 (任意)"/>
+                        (サイズの上限: 5 MB)
+                    </span>
+                </span>
+            </p>
+        </div>
+        <input type="submit" name="commit" value="追加" data-disable-with="追加"/>
+    </form>
+</div>
