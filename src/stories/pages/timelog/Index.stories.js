@@ -12,4 +12,4 @@ export default {
   ],
 };
 
-export const IndexStories = () => html;
+export const Index = () => html;

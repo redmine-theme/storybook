@@ -1,0 +1,108 @@
+<div id="wrapper">
+    <div class="flyout-menu js-flyout-menu">
+        <div class="flyout-menu__search">
+            <form action="#" accept-charset="UTF-8" name="form-9989ae21" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+
+                <label class="search-magnifier search-magnifier--flyout" for="flyout-search">&#9906;</label>
+                <input type="text" name="q" id="flyout-search" class="small js-search-input" placeholder="検索"/>
+            </form>
+        </div>
+
+        <div class="flyout-menu__avatar ">
+            <a href="#"><img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=160&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=80&amp;default=retro"/></a>
+            <a class="user active" href="#">admin</a>
+        </div>
+
+        <h3>プロジェクト</h3>
+        <span class="js-project-menu"></span>
+
+        <h3>全般</h3>
+        <span class="js-general-menu"></span>
+
+        <span class="js-sidebar flyout-menu__sidebar"></span>
+
+        <h3>プロフィール</h3>
+        <span class="js-profile-menu"></span>
+    </div>
+
+    <div id="top-menu">
+        <div id="account">
+            <ul>
+                <li><a class="my-account" href="#">個人設定</a></li>
+                <li><a class="logout" rel="nofollow" data-method="post" href="#">ログアウト</a></li>
+            </ul>
+        </div>
+        <div id="loggedas">ログイン中： <a class="user active" href="#">admin</a></div>
+        <ul>
+            <li><a class="home" href="#">ホーム</a></li>
+            <li><a class="my-page" href="#">マイページ</a></li>
+            <li><a class="projects" href="#">プロジェクト</a></li>
+            <li><a class="administration" href="#">管理</a></li>
+            <li><a class="help" href="#">ヘルプ</a></li>
+        </ul>
+    </div>
+
+    <div id="header">
+        <a href="#" class="mobile-toggle-button js-flyout-menu-toggle-button"></a>
+
+        <div id="quick-search">
+            <form action="#" accept-charset="UTF-8" name="form-86780080" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="scope" autocomplete="off"/>
+
+                <label for='q'>
+                    <a accesskey="4" href="#">検索</a>:
+                </label>
+                <input type="text" name="q" id="q" size="20" class="small" accesskey="f" data-auto-complete="true"/>
+            </form>
+            <div id="project-jump" class="drdn"><span class="drdn-trigger">プロジェクトへ移動...</span>
+                <div class="drdn-content">
+                    <div class="quick-search">
+                        <input type="text" name="q" id="projects-quick-search" value="" class="autocomplete" data-automcomplete-url="#" autocomplete="off"/>
+                    </div>
+                    <div class="drdn-items projects selection">
+                        <strong>ブックマーク</strong><a title="test1" href="#"><span style="padding-left:0px;">test1</span></a><a title="test5" href="#"><span style="padding-left:0px;">test5</span></a><strong>最近使用したもの</strong><a title="test3" href="#"><span style="padding-left:0px;">test3</span></a><a title="test3-1" href="#"><span style="padding-left:0px;">test3-1</span></a><a title="test10" href="#"><span style="padding-left:0px;">test10</span></a><strong>全プロジェクト</strong><a title="test1" href="#"><span style="padding-left:0px;">test1</span></a><a title="test3" href="#"><span style="padding-left:0px;">test3</span></a>
+                    </div>
+                    <div class="drdn-items all-projects selection">
+                        <a class="selected" href="#">全プロジェクト</a></div>
+                </div>
+            </div>
+        </div>
+
+        <h1>Redmine</h1>
+
+        <div id="main-menu" class="tabs">
+            <ul>
+                <li><a class="projects" href="#">プロジェクト</a></li>
+                <li><a class="activity selected" href="#">活動</a></li>
+                <li><a class="issues" href="#">チケット</a></li>
+                <li><a class="time-entries" href="#">作業時間</a></li>
+                <li><a class="gantt" href="#">ガントチャート</a></li>
+                <li><a class="calendar" href="#">カレンダー</a></li>
+                <li><a class="news" href="#">ニュース</a></li>
+            </ul>
+            <div class="tabs-buttons" style="display:none;">
+                <button class="tab-left" onclick="moveTabLeft(this); return false;"></button>
+                <button class="tab-right" onclick="moveTabRight(this); return false;"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="sidebar">
+            <p>#sidebar</p>
+        </div>
+
+        <div id="content">
+            <p>#content</p>
+        </div>
+    </div>
+
+    <div id="footer">
+        Powered by <a href="https://www.redmine.org/">Redmine</a> &copy; 2006-2022 Jean-Philippe Lang
+    </div>
+
+    <div id="ajax-indicator" style="display:none;"><span>ロード中...</span></div>
+    <div id="ajax-modal" style="display:none;"></div>
+</div>

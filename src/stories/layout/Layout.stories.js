@@ -1,5 +1,5 @@
 import layout from './layout.html';
-import layout2 from './layout2.html';
+import layoutLogout from './layout_logout.html';
 
 export default {
   title: "Layout/Layout",
@@ -9,4 +9,4 @@ export default {
 };
 
 export const Layout = () => layout;
-export const LayoutWithMainMenu = () => layout2;
+export const LayoutLogout = () => layoutLogout;

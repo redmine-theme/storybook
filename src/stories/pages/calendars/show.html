@@ -1,0 +1,600 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>カスタムクエリ</h3>
+        <ul class="queries">
+            <li><a class="query" href="#">ウォッチしているチケット</a></li>
+            <li><a class="query" href="#">報告したチケット</a></li>
+            <li><a class="query" href="#">担当しているチケット</a></li>
+            <li><a class="query" href="#">更新したチケット</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <h2>カレンダー</h2>
+
+        <form id="query_form" action="#" accept-charset="UTF-8" name="query_form-90d2c25c" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="set_filter" id="set_filter" value="1" autocomplete="off"/>
+            <input type="hidden" name="calendar" id="calendar" value="1" autocomplete="off"/>
+
+            <div id="query_form_with_buttons" class="hide-when-print">
+                <div id="query_form_content">
+                    <fieldset id="filters" class="collapsible ">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-expanded">フィルタ</legend>
+                        <div style="">
+                            <script>
+                              //<![CDATA[
+
+                              var operatorLabels = {
+                                "=": "等しい",
+                                "!": "等しくない",
+                                "o": "未完了",
+                                "c": "完了",
+                                "!*": "なし",
+                                "*": "すべて",
+                                "\u003e=": "以上",
+                                "\u003c=": "以下",
+                                "\u003e\u003c": "次の範囲内",
+                                "\u003ct+": "N日後以前",
+                                "\u003et+": "N日後以降",
+                                "\u003e\u003ct+": "今後N日",
+                                "t+": "N日後",
+                                "nd": "明日",
+                                "t": "今日",
+                                "ld": "昨日",
+                                "nw": "来週",
+                                "w": "今週",
+                                "lw": "先週",
+                                "l2w": "直近2週間",
+                                "nm": "来月",
+                                "m": "今月",
+                                "lm": "先月",
+                                "y": "今年",
+                                "\u003et-": "N日前以降",
+                                "\u003ct-": "N日前以前",
+                                "\u003e\u003ct-": "過去N日",
+                                "t-": "N日前",
+                                "~": "含む",
+                                "!~": "含まない",
+                                "^": "前方一致",
+                                "$": "後方一致",
+                                "=p": "次のプロジェクト内のチケット",
+                                "=!p": "次のプロジェクト外のチケット",
+                                "!p": "次のプロジェクト内のチケットを除く",
+                                "*o": "未完了のチケット",
+                                "!o": "なし または完了したチケット"
+                              };
+                              var operatorByType = {
+                                "list": ["=", "!"],
+                                "list_status": ["o", "=", "!", "c", "*"],
+                                "list_optional": ["=", "!", "!*", "*"],
+                                "list_subprojects": ["*", "!*", "=", "!"],
+                                "date": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003ct+", "\u003et+", "\u003e\u003ct+", "t+", "nd", "t", "ld", "nw", "w", "lw", "l2w", "nm", "m", "lm", "y", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "!*", "*"],
+                                "date_past": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "t", "ld", "w", "lw", "l2w", "m", "lm", "y", "!*", "*"],
+                                "string": ["~", "=", "!~", "!", "^", "$", "!*", "*"],
+                                "text": ["~", "!~", "^", "$", "!*", "*"],
+                                "integer": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "float": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "relation": ["=", "!", "=p", "=!p", "!p", "*o", "!o", "!*", "*"],
+                                "tree": ["=", "~", "!*", "*"]
+                              };
+                              var availableFilters = {
+                                "status_id": {
+                                  "type": "list_status",
+                                  "name": "ステータス",
+                                  "remote": true,
+                                  "values": [["新規", "1"], ["進行中", "2"], ["解決", "3"], ["フィードバック", "4"], ["終了", "5"], ["却下", "6"]]
+                                },
+                                "tracker_id": {
+                                  "type": "list",
+                                  "name": "トラッカー",
+                                  "values": [["バグ", "1"], ["機能", "2"], ["サポート", "3"]]
+                                },
+                                "priority_id": {
+                                  "type": "list",
+                                  "name": "優先度",
+                                  "values": [["低め", "1"], ["通常", "2"], ["高め", "3"], ["急いで", "4"], ["今すぐ", "5"]]
+                                },
+                                "author_id": {"type": "list", "name": "作成者", "remote": true},
+                                "assigned_to_id": {"type": "list_optional", "name": "担当者", "remote": true},
+                                "member_of_group": {"type": "list_optional", "name": "担当者のグループ", "remote": true},
+                                "assigned_to_role": {"type": "list_optional", "name": "担当者のロール", "remote": true},
+                                "fixed_version_id": {"type": "list_optional", "name": "対象バージョン", "remote": true},
+                                "fixed_version.due_date": {"type": "date", "name": "対象バージョンの 期日", "values": null},
+                                "fixed_version.status": {
+                                  "type": "list",
+                                  "name": "対象バージョンの ステータス",
+                                  "values": [["進行中", "open"], ["ロック中", "locked"], ["終了", "closed"]]
+                                },
+                                "category_id": {"type": "list_optional", "name": "カテゴリ", "remote": true},
+                                "subject": {"type": "text", "name": "題名", "values": null},
+                                "description": {"type": "text", "name": "説明", "values": null},
+                                "notes": {"type": "text", "name": "コメント", "values": null},
+                                "created_on": {"type": "date_past", "name": "作成日", "values": null},
+                                "updated_on": {"type": "date_past", "name": "更新日", "values": null},
+                                "closed_on": {"type": "date_past", "name": "終了日", "values": null},
+                                "start_date": {"type": "date", "name": "開始日", "values": null},
+                                "due_date": {"type": "date", "name": "期日", "values": null},
+                                "estimated_hours": {"type": "float", "name": "予定工数", "values": null},
+                                "spent_time": {"type": "float", "name": "作業時間", "values": null},
+                                "done_ratio": {"type": "integer", "name": "進捗率", "values": null},
+                                "is_private": {"type": "list", "name": "プライベート", "values": [["はい", "1"], ["いいえ", "0"]]},
+                                "attachment": {"type": "text", "name": "ファイル", "values": null},
+                                "attachment_description": {"type": "text", "name": "ファイルの説明", "values": null},
+                                "watcher_id": {"type": "list", "name": "ウォッチャー", "remote": true},
+                                "updated_by": {"type": "list", "name": "更新者", "remote": true},
+                                "last_updated_by": {"type": "list", "name": "最終更新者", "remote": true},
+                                "relates": {"type": "relation", "name": "関連している", "remote": true},
+                                "duplicates": {"type": "relation", "name": "次のチケットと重複", "remote": true},
+                                "duplicated": {"type": "relation", "name": "次のチケットが重複", "remote": true},
+                                "blocks": {"type": "relation", "name": "ブロック先", "remote": true},
+                                "blocked": {"type": "relation", "name": "ブロック元", "remote": true},
+                                "precedes": {"type": "relation", "name": "次のチケットに先行", "remote": true},
+                                "follows": {"type": "relation", "name": "次のチケットに後続", "remote": true},
+                                "copied_to": {"type": "relation", "name": "コピー先", "remote": true},
+                                "copied_from": {"type": "relation", "name": "コピー元", "remote": true},
+                                "parent_id": {"type": "tree", "name": "親チケット", "values": null},
+                                "child_id": {"type": "tree", "name": "子チケット", "values": null},
+                                "issue_id": {"type": "integer", "name": "チケット", "values": null}
+                              };
+                              var labelDayPlural = "日";
+
+                              var filtersUrl = "\/queries\/filter?project_id=8\u0026type=IssueQuery";
+
+                              $(document).ready(function () {
+                                initFilters();
+                                addFilter("status_id", "o", [""]);
+                              });
+
+                              //]]>
+                            </script>
+                            <table id="filters-table">
+                            </table>
+
+                            <div class="add-filter">
+                                <label for="add_filter_select">フィルタ追加</label>
+                                <select id="add_filter_select">
+                                    <option value="">&nbsp;</option>
+                                    <option value="status_id">ステータス</option>
+                                    <option value="tracker_id">トラッカー</option>
+                                    <option value="priority_id">優先度</option>
+                                    <option value="author_id">作成者</option>
+                                    <option value="assigned_to_id">担当者</option>
+                                    <option value="fixed_version_id">対象バージョン</option>
+                                    <option value="category_id">カテゴリ</option>
+                                    <option value="subject">題名</option>
+                                    <option value="description">説明</option>
+                                    <option value="notes">コメント</option>
+                                    <option value="done_ratio">進捗率</option>
+                                    <option value="is_private">プライベート</option>
+                                    <option value="watcher_id">ウォッチャー</option>
+                                    <option value="updated_by">更新者</option>
+                                    <option value="last_updated_by">最終更新者</option>
+                                    <option value="issue_id">チケット</option>
+                                    <optgroup label="担当者">
+                                        <option value="member_of_group">担当者のグループ</option>
+                                        <option value="assigned_to_role">担当者のロール</option>
+                                    </optgroup>
+                                    <optgroup label="対象バージョン">
+                                        <option value="fixed_version.due_date">対象バージョンの 期日</option>
+                                        <option value="fixed_version.status">対象バージョンの ステータス</option>
+                                    </optgroup>
+                                    <optgroup label="日付">
+                                        <option value="created_on">作成日</option>
+                                        <option value="updated_on">更新日</option>
+                                        <option value="closed_on">終了日</option>
+                                        <option value="start_date">開始日</option>
+                                        <option value="due_date">期日</option>
+                                    </optgroup>
+                                    <optgroup label="時間管理">
+                                        <option value="estimated_hours">予定工数</option>
+                                        <option value="spent_time">作業時間</option>
+                                    </optgroup>
+                                    <optgroup label="ファイル">
+                                        <option value="attachment">ファイル</option>
+                                        <option value="attachment_description">ファイルの説明</option>
+                                    </optgroup>
+                                    <optgroup label="関係">
+                                        <option value="relates">関連している</option>
+                                        <option value="duplicates">次のチケットと重複</option>
+                                        <option value="duplicated">次のチケットが重複</option>
+                                        <option value="blocks">ブロック先</option>
+                                        <option value="blocked">ブロック元</option>
+                                        <option value="precedes">次のチケットに先行</option>
+                                        <option value="follows">次のチケットに後続</option>
+                                        <option value="copied_to">コピー先</option>
+                                        <option value="copied_from">コピー元</option>
+                                        <option value="parent_id">親チケット</option>
+                                        <option value="child_id">子チケット</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="f[]" id="f_" value="" autocomplete="off"/>
+
+                        </div>
+                    </fieldset>
+                </div>
+
+                <p class="contextual">
+                    <a accesskey="p" href="#">« 9月</a> |
+                    <a accesskey="n" href="#">11月 »</a>
+                </p>
+
+                <p class="buttons">
+                    <label for="month">月</label>
+                    <select id="month" name="month">
+                        <option value="1">1月</option>
+                        <option value="2">2月</option>
+                        <option value="3">3月</option>
+                        <option value="4">4月</option>
+                        <option value="5">5月</option>
+                        <option value="6">6月</option>
+                        <option value="7">7月</option>
+                        <option value="8">8月</option>
+                        <option value="9">9月</option>
+                        <option value="10" selected="selected">10月</option>
+                        <option value="11">11月</option>
+                        <option value="12">12月</option>
+                    </select>
+
+                    <label for="year">年</label>
+                    <select id="year" name="year">
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022" selected="selected">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                    </select>
+
+
+                    <a href="#" onclick="$(&quot;#query_form&quot;).submit(); return false;" class="icon icon-checked">適用</a>
+                    <a class="icon icon-reload" href="#">クリア</a>
+                    <a href="#" onclick="$(&#39;#query_form&#39;).attr(&#39;action&#39;, &#39;/projects/test1-1-1/queries/new&#39;).submit();; return false;" class="icon icon-save">カスタムクエリを保存</a>
+                </p>
+            </div>
+        </form>
+
+        <form data-cm-url="/issues/context_menu" action="#" accept-charset="UTF-8" name="form-ac44c645" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+            <input type="hidden" name="back_url" value="" autocomplete="off"/>
+            <table class="cal">
+                <thead>
+                <tr>
+                    <th scope="col" title="週" class="week-number"></th>
+                    <th scope="col">日曜日</th>
+                    <th scope="col">月曜日</th>
+                    <th scope="col">火曜日</th>
+                    <th scope="col">水曜日</th>
+                    <th scope="col">木曜日</th>
+                    <th scope="col">金曜日</th>
+                    <th scope="col">土曜日</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class='week-number' title='週'>
+                        39
+                    </td>
+                    <td class="odd nwday">
+                        <p class="day-num">25</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">26</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">27</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">28</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">29</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">30</p>
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">1</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='week-number' title='週'>
+                        40
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">2</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">3</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">4</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">5</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">6</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">7</p>
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">8</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='week-number' title='週'>
+                        41
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">9</p>
+                        <div class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #4</a>: issue4
+                            <span class="tip"><a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #4</a>: issue4<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/09<br/><strong>期日</strong>: 2022/10/17<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="4" style="display:none;"/>
+                        </div>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">10</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">11</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">12</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">13</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">14</p>
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">15</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='week-number' title='週'>
+                        42
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">16</p>
+                        <span class="icon icon-package">
+                            <a title="2022/10/16" href="#">version1</a>
+                        </span>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">17</p>
+                        <div class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #4</a>: issue4
+                            <span class="tip"><a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #4</a>: issue4<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/09<br/><strong>期日</strong>: 2022/10/17<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="4" style="display:none;"/>
+                        </div>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">18</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">サポート #12</a>: issue12
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">サポート #12</a>: issue12<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/18<br/><strong>期日</strong>: 2022/10/19<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="12" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-2 status-2 priority-3 priority-high3 created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-2 status-2 priority-3 priority-high3 created-by-me" href="#">機能 #1</a>: ticket1
+                            <span class="tip"><a class="issue tracker-2 status-2 priority-3 priority-high3 created-by-me" href="#">機能 #1</a>: ticket1<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 進行中<br/><strong>開始日</strong>: 2022/10/18<br/><strong>期日</strong>: <br/><strong>担当者</strong>: <img alt="" title="担当者" class="gravatar" srcset="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=26&amp;default=retro 2x" src="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=13&amp;default=retro"/> user1 user1<br/><strong>優先度</strong>: 高め</span>
+                            <input type="checkbox" name="ids[]" value="1" style="display:none;"/>
+                        </div>
+                        <span class="icon icon-package">
+                            <a title="2022/10/16" href="#">version1</a>
+                        </span>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">19</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">サポート #12</a>: issue12
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">サポート #12</a>: issue12<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/18<br/><strong>期日</strong>: 2022/10/19<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="12" style="display:none;"/>
+                        </div>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">20</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">21</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default child created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default child created-by-me" href="#">サポート #40</a>: issue40
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default child created-by-me" href="#">サポート #40</a>: issue40<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="40" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default child created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default child created-by-me" href="#">サポート #39</a>: issue39
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default child created-by-me" href="#">サポート #39</a>: issue39<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="39" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #38</a>: issue38
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #38</a>: issue38<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="38" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #37</a>: issue37
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #37</a>: issue37<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="37" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #36</a>: issue36
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #36</a>: issue36<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="36" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #35</a>: issue35
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #35</a>: issue35<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="35" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #34</a>: issue34
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #34</a>: issue34<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="34" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #33</a>: issue33
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #33</a>: issue33<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="33" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #32</a>: issue32
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #32</a>: issue32<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="32" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #31</a>: issue31
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #31</a>: issue31<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="31" style="display:none;"/>
+                        </div>
+                        <span class="icon icon-package">
+                            <a title="2022/10/31" href="#">version2</a>
+                        </span>
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">22</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default overdue child behind-schedule created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default overdue child behind-schedule created-by-me" href="#">サポート #7</a>: issue7
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue child behind-schedule created-by-me" href="#">サポート #7</a>: issue7<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/22<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="7" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default overdue child parent behind-schedule created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default overdue child parent behind-schedule created-by-me" href="#">サポート #6</a>: issue6
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue child parent behind-schedule created-by-me" href="#">サポート #6</a>: issue6<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/22<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="6" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default overdue parent behind-schedule created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default overdue parent behind-schedule created-by-me" href="#">サポート #5</a>: issue5
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue parent behind-schedule created-by-me" href="#">サポート #5</a>: issue5<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/22<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="5" style="display:none;"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='week-number' title='週'>
+                        43
+                    </td>
+                    <td class="even today nwday">
+                        <p class="day-num">23</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">24</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">25</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #14</a>: issue14
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #14</a>: issue14<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/25<br/><strong>期日</strong>: 2022/10/29<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="14" style="display:none;"/>
+                        </div>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me starting  tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #11</a>: issue11
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #11</a>: issue11<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/25<br/><strong>期日</strong>: 2022/10/27<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="11" style="display:none;"/>
+                        </div>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">26</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">27</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #11</a>: issue11
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #11</a>: issue11<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/25<br/><strong>期日</strong>: 2022/10/27<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="11" style="display:none;"/>
+                        </div>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">28</p>
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">29</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #14</a>: issue14
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #14</a>: issue14<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/25<br/><strong>期日</strong>: 2022/10/29<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="14" style="display:none;"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='week-number' title='週'>
+                        44
+                    </td>
+                    <td class="even nwday">
+                        <p class="day-num">30</p>
+                    </td>
+                    <td class="even">
+                        <p class="day-num">31</p>
+                        <div class="issue tracker-3 status-1 priority-2 priority-default created-by-me  ending tooltip hascontextmenu">
+
+                            <a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #9</a>: issue9
+                            <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #9</a>: issue9<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/31<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span>
+                            <input type="checkbox" name="ids[]" value="9" style="display:none;"/>
+                        </div>
+                        <span class="icon icon-package">
+                            <a title="2022/10/31" href="#">version2</a>
+                        </span>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">1</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">2</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">3</p>
+                    </td>
+                    <td class="odd">
+                        <p class="day-num">4</p>
+                    </td>
+                    <td class="odd nwday">
+                        <p class="day-num">5</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <p class="legend cal">
+            <span class="starting">この日に開始するチケット</span>
+            <span class="ending">この日に終了するチケット</span>
+            <span class="starting ending">この日に開始・終了するチケット</span>
+        </p>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>
