@@ -7,8 +7,8 @@
     "build-storybook": "build-storybook"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Tsuyoshi Tsurushima",
+  "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@storybook/addon-actions": "^6.5.12",
@@ -20,7 +20,7 @@
     "@storybook/html": "^6.5.12",
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^8.2.5"
-  },
-  "dependencies": {}
+    "babel-loader": "^8.2.5",
+    "storybook-stylesheet-toggle": "^0.1.3"
+  }
 }

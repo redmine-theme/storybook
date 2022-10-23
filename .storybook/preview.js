@@ -16,4 +16,23 @@ export const parameters = {
       },
     ],
   },
+  stylesheetToggle: {
+    stylesheets: [
+      {
+        id: 'default',
+        title: 'default',
+        url: './stylesheets/application.css',
+      },
+      {
+        id: 'alternate',
+        title: 'alternate',
+        url: './themes/alternate/stylesheets/application.css',
+      },
+      {
+        id: 'classic',
+        title: 'classic',
+        url: './themes/classic/stylesheets/application.css',
+      },
+    ],
+  },
 }

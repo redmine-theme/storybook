@@ -7,7 +7,8 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/addon-viewport"
+    "@storybook/addon-viewport",
+    "storybook-stylesheet-toggle",
   ],
   staticDirs: [
     '../public'
