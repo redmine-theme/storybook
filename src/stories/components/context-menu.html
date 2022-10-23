@@ -1,0 +1,117 @@
+<div id="context-menu" class="reverse-x">
+    <ul>
+        <li><a class="icon icon-edit" href="#">編集</a></li>
+
+        <li class="folder">
+            <a href="#" class="submenu">ステータス</a>
+            <ul>
+                <li>
+                    <a class=" icon icon-checked disabled disabled" onclick="return false;" href="#">新規</a>
+                </li>
+                <li>
+                    <a class="" rel="nofollow" data-method="patch" href="#">進行中</a>
+                </li>
+                <li>
+                    <a class="" rel="nofollow" data-method="patch" href="#">解決</a>
+                </li>
+                <li>
+                    <a class="" rel="nofollow" data-method="patch" href="#">フィードバック</a>
+                </li>
+                <li>
+                    <a class="" rel="nofollow" data-method="patch" href="#">終了</a>
+                </li>
+                <li>
+                    <a class="" rel="nofollow" data-method="patch" href="#">却下</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="folder">
+            <a href="#" class="submenu">トラッカー</a>
+            <ul>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">バグ</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">機能</a></li>
+                <li><a class=" icon icon-checked disabled" onclick="return false;" href="#">サポート</a></li>
+            </ul>
+        </li>
+
+        <li class="folder">
+            <a href="#" class="submenu">優先度</a>
+            <ul>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">今すぐ</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">急いで</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">高め</a></li>
+                <li><a class=" icon icon-checked disabled" onclick="return false;" href="#">通常</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">低め</a></li>
+            </ul>
+        </li>
+
+        <li class="folder">
+            <a href="#" class="submenu">対象バージョン</a>
+            <ul>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">version1</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">version2</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">version3</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">version4</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">version7</a></li>
+                <li><a class=" icon icon-checked disabled" onclick="return false;" href="#">なし</a></li>
+            </ul>
+        </li>
+
+        <li class="folder">
+            <a href="#" class="submenu">担当者</a>
+            <ul>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">&lt;&lt; 自分 &gt;&gt;</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">Redmine Admin</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">user1 user1</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">user2 user2</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">user3 user3</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">user4 user4</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">user5 user5</a></li>
+                <li><a class=" icon icon-checked disabled" onclick="return false;" href="#">無記名</a></li>
+            </ul>
+        </li>
+
+        <li class="folder">
+            <a href="#" class="submenu">カテゴリ</a>
+            <ul>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">category1</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">category2</a></li>
+                <li><a class=" icon icon-checked disabled" onclick="return false;" href="#">なし</a></li>
+            </ul>
+        </li>
+
+        <li class="folder">
+            <a href="#" class="submenu">進捗率</a>
+            <ul>
+                <li><a class=" icon icon-checked disabled" onclick="return false;" href="#">0%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">10%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">20%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">30%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">40%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">50%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">60%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">70%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">80%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">90%</a></li>
+                <li><a class="" rel="nofollow" data-method="patch" href="#">100%</a></li>
+            </ul>
+        </li>
+
+
+        <li class="folder">
+            <a href="#" class="submenu">ウォッチャー</a>
+            <ul>
+                <li><a class="icon icon-add" data-remote="true" href="#">追加</a></li>
+            </ul>
+        </li>
+
+        <li><a class="issue-40-watcher icon icon-fav" data-remote="true" rel="nofollow" data-method="delete" href="#">ウォッチをやめる</a></li>
+
+        <li><a class="icon icon-time-add" href="#">時間を記録</a></li>
+        <li><a class="icon icon-add" href="#">子チケットを追加</a></li>
+        <li><a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#">リンクをコピー</a></li>
+        <li><a class="icon icon-copy" href="#">コピー</a></li>
+        <li><a data-confirm="本当に選択したチケットを削除しますか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">チケットを削除</a></li>
+    </ul>
+</div>

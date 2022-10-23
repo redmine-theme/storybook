@@ -1,0 +1,14 @@
+<textarea rows="8" class="wiki-edit" name="wiki" id="wiki"></textarea>
+
+<script src="/javascripts/jstoolbar/jstoolbar.js"></script>
+<script src="/javascripts/jstoolbar/common_mark.js"></script>
+<script src="/javascripts/jstoolbar/lang/jstoolbar-ja.js"></script>
+<script>
+  var wikiImageMimeTypes = ["image/gif","image/jpeg","image/png","image/tiff","image/x-ms-bmp"];
+  var userHlLanguages = ["c","cpp","csharp","css","diff","go","groovy","html","java","javascript","objc","perl","php","python","r","ruby","sass","scala","shell","sql","swift","xml","yaml"];
+</script>
+<script>
+  var wikiToolbar = new jsToolBar(document.getElementById('wiki'));
+  wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+  wikiToolbar.setPreviewUrl('/preview/text'); wikiToolbar.draw();
+</script>
