@@ -12,4 +12,4 @@ export default {
   ],
 };
 
-export const Page = () => html;
+export const ShowApiKey = () => html;

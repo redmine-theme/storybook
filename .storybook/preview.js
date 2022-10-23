@@ -21,23 +21,23 @@ export const parameters = {
       },
     ],
   },
-  stylesheetToggle: {
-    stylesheets: [
-      {
-        id: 'default',
-        title: 'Default',
-        url: './stylesheets/application.css',
-      },
-      {
-        id: 'alternate',
-        title: 'Alternate',
-        url: './themes/alternate/stylesheets/application.css',
-      },
-      {
-        id: 'classic',
-        title: 'Classic',
-        url: './themes/classic/stylesheets/application.css',
-      },
-    ],
-  },
+  // stylesheetToggle: {
+  //   stylesheets: [
+  //     {
+  //       id: 'default',
+  //       title: 'Default',
+  //       url: './stylesheets/application.css',
+  //     },
+  //     {
+  //       id: 'alternate',
+  //       title: 'Alternate',
+  //       url: './themes/alternate/stylesheets/application.css',
+  //     },
+  //     {
+  //       id: 'classic',
+  //       title: 'Classic',
+  //       url: './themes/classic/stylesheets/application.css',
+  //     },
+  //   ],
+  // },
 }

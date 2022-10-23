@@ -1,4 +1,5 @@
 import html from "./show.html";
+import '../../../../public/stylesheets/context_menu.css';
 
 export default {
   title: "Pages/Gantts/Show",
