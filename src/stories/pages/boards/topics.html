@@ -1,0 +1,128 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <div id="watchers">
+            <div class="contextual">
+                <a data-remote="true" data-method="get" href="#">追加</a>
+            </div>
+
+            <h3>ウォッチャー (1)</h3>
+
+            <ul class="watchers">
+                <li class="user-1">
+                    <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=32&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=16&amp;default=retro"/><a class="user active user" href="#">Redmine Admin</a>
+                    <a class="delete icon-only icon-del" title="削除" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <p class="breadcrumb"><a href="#">フォーラム</a> »
+            <a href="#">forum1</a> » </p>
+
+        <div class="contextual">
+            <a class="message-1-watcher icon icon-fav" data-remote="true" rel="nofollow" data-method="delete" href="#">ウォッチをやめる</a>
+            <a class="icon icon-comment" data-remote="true" data-method="get" href="#">引用</a>
+            <a class="icon icon-edit" href="#">編集</a>
+            <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="post" href="#">削除</a>
+        </div>
+
+        <h2>
+            <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>message1
+        </h2>
+
+        <div class="message">
+            <p>
+                <span class="author"><a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/18 17:02" href="#">5日</a>前に追加</span>
+            </p>
+            <div class="wiki">
+                <p>message1</p>
+            </div>
+
+        </div>
+        <br/>
+
+        <div id="replies">
+            <h3 class="comments icon icon-comments">返答 (2)</h3>
+            <div class="message reply" id="message-2">
+                <div class="contextual">
+                    <a title="引用" class="icon icon-comment" data-remote="true" data-method="get" href="#"></a>
+                    <a title="編集" class="icon icon-edit" href="#"></a>
+                    <a data-confirm="よろしいですか？" title="削除" class="icon icon-del" rel="nofollow" data-method="post" href="#"></a>
+                </div>
+                <h4 class='reply-header'>
+                    <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                    <a href="/boards/1/topics/1?r=2#message-2">RE: message1</a>
+                    -
+                    <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/19 01:12" href="#">4日</a>前に追加
+                </h4>
+                <div class="wiki"><p>reply</p></div>
+
+            </div>
+            <div class="message reply" id="message-3">
+                <div class="contextual">
+                    <a title="引用" class="icon icon-comment" data-remote="true" data-method="get" href="#"></a>
+                    <a title="編集" class="icon icon-edit" href="#"></a>
+                    <a data-confirm="よろしいですか？" title="削除" class="icon icon-del" rel="nofollow" data-method="post" href="#"></a>
+                </div>
+                <h4 class='reply-header'>
+                    <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                    <a href="/boards/1/topics/1?r=3#message-3">RE: message1</a>
+                    -
+                    <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/19 22:54" href="#">3日</a>前に追加
+                </h4>
+                <div class="wiki"><p>reply2</p></div>
+
+            </div>
+        </div>
+        <span class="pagination"><ul class="pages"></ul><span><span class="items">(1-2/2)</span> </span></span>
+
+        <p>
+            <a onclick="$(&#39;#reply&#39;).toggle(); $(&#39;#message_content&#39;).focus(); return false;" href="#">返答</a>
+        </p>
+        <div id="reply" style="display:none;">
+            <form class="new_reply" id="message-form" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="message-form-7b9360cc" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+
+                <div class="box">
+                    <!--[form:message]-->
+                    <p><label for="message_subject">題名</label><br/>
+                        <input size="120" id="message_subject" type="text" value="RE: message1" name="reply[subject]"/>
+                    </p>
+
+                    <p>
+                        <label class="hidden-for-sighted" for="message_content">内容</label>
+                        <textarea cols="80" rows="15" class="wiki-edit" id="message_content" accesskey="e" data-auto-complete="true" name="reply[content]">
+</textarea></p>
+                    <script>
+                      //<![CDATA[
+                      var wikiToolbar = new jsToolBar(document.getElementById('message_content'));
+                      wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+                      wikiToolbar.setPreviewUrl('#');
+                      wikiToolbar.draw();
+                      //]]>
+                    </script>
+                    <!--[eoform:message]-->
+
+                    <p>ファイル<br/>
+
+                        <span class="attachments_form">
+  <span class="attachments_fields">
+  </span>
+  <span class="add_attachment" style="">
+    <input type="file" name="attachments[dummy][file]" class="file_selector filedrop" multiple="multiple" onchange="addInputFiles(this);" data-max-number-of-files-message="このファイルはアップロードできません。同時にアップロードできるファイル数の上限(10)を超えています。" data-max-file-size="5242880" data-max-file-size-message="このファイルはアップロードできません。添付ファイルサイズの上限(5 MB)を超えています。" data-max-concurrent-uploads="2" data-upload-path="/uploads.js" data-param="attachments" data-description="true" data-description-placeholder="説明 (任意)"/>
+    (サイズの上限: 5 MB)
+  </span>
+</span>
+                    </p>
+                </div>
+
+                <input type="submit" name="commit" value="送信" data-disable-with="送信"/>
+            </form>
+        </div>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

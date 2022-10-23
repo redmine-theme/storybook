@@ -1,0 +1,172 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <p class="breadcrumb"><a href="#">フォーラム</a> » </p>
+
+        <div class="contextual">
+            <a class="icon icon-add" onclick="showAndScrollTo(&quot;add-message&quot;, &quot;message_subject&quot;); return false;" href="#">新しいメッセージ</a>
+            <a class="board-1-watcher icon icon-fav" data-remote="true" rel="nofollow" data-method="delete" href="#">ウォッチをやめる</a>
+            <a class="icon icon-settings" href="#">設定</a>
+        </div>
+
+        <div id="add-message" style="display:none;">
+            <h2><a href="#">forum1</a> &#187; 新しいメッセージ</h2>
+            <form class="new_message" id="message-form" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="message-form-8c868bb2" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+
+                <div class="box">
+                    <!--[form:message]-->
+                    <p><label for="message_subject">題名</label><br/>
+                        <input size="120" id="message_subject" type="text" value="" name="message[subject]"/>
+
+                        <input name="message[sticky]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="message[sticky]" id="message_sticky"/>
+                        <label for="message_sticky">スティッキー</label>
+                        <input name="message[locked]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="message[locked]" id="message_locked"/>
+                        <label for="message_locked">ロック</label>
+                    </p>
+
+                    <p>
+                        <label class="hidden-for-sighted" for="message_content">内容</label>
+                        <textarea cols="80" rows="15" class="wiki-edit" id="message_content" accesskey="e" data-auto-complete="true" name="message[content]">
+</textarea></p>
+                    <script>
+                      //<![CDATA[
+                      var wikiToolbar = new jsToolBar(document.getElementById('message_content'));
+                      wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+                      wikiToolbar.setPreviewUrl('#');
+                      wikiToolbar.draw();
+                      //]]>
+                    </script>
+                    <!--[eoform:message]-->
+
+                    <p>ファイル<br/>
+                        <span class="attachments_form">
+  <span class="attachments_fields">
+  </span>
+  <span class="add_attachment" style="">
+    <input type="file" name="attachments[dummy][file]" class="file_selector filedrop" multiple="multiple" onchange="addInputFiles(this);" data-max-number-of-files-message="このファイルはアップロードできません。同時にアップロードできるファイル数の上限(10)を超えています。" data-max-file-size="5242880" data-max-file-size-message="このファイルはアップロードできません。添付ファイルサイズの上限(5 MB)を超えています。" data-max-concurrent-uploads="2" data-upload-path="/uploads.js" data-param="attachments" data-description="true" data-description-placeholder="説明 (任意)"/>
+    (サイズの上限: 5 MB)
+  </span>
+</span>
+
+                    </p>
+                </div>
+
+                <p><input type="submit" name="commit" value="作成" data-disable-with="作成"/>
+                    <a onclick="$(&quot;#add-message&quot;).hide(); return false;" href="#">キャンセル</a></p>
+            </form>
+        </div>
+
+        <h2>forum1</h2>
+        <p class="subtitle">forum1</p>
+
+        <table class="list messages">
+            <thead>
+            <tr>
+                <th>題名</th>
+                <th>作成者</th>
+                <th title="並べ替え &quot;作成日&quot;">
+                    <a href="#">作成日</a></th>
+                <th title="並べ替え &quot;返答&quot;">
+                    <a href="#">返答</a></th>
+                <th title="並べ替え &quot;最新のメッセージ&quot;">
+                    <a class="sort desc icon icon-sorted-asc" href="#">最新のメッセージ</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="message-5" class="message sticky ">
+                <td class="subject icon icon-sticky "><a href="#">message3</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:28</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-18" class="message  ">
+                <td class="subject icon  "><a href="#">m16</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:32</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-17" class="message  ">
+                <td class="subject icon  "><a href="#">m15</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:32</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-16" class="message  ">
+                <td class="subject icon  "><a href="#">m14</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:32</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-15" class="message  ">
+                <td class="subject icon  "><a href="#">message13</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:31</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-14" class="message  ">
+                <td class="subject icon  "><a href="#">message12</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:31</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-13" class="message  ">
+                <td class="subject icon  "><a href="#">message11</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:31</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-12" class="message  ">
+                <td class="subject icon  "><a href="#">message10</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:31</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-11" class="message  ">
+                <td class="subject icon  "><a href="#">message9</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:30</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            <tr id="message-10" class="message  ">
+                <td class="subject icon  "><a href="#">message8</a></td>
+                <td class="author"><a class="user active" href="#">Redmine Admin</a></td>
+                <td class="created_on">2022/10/22 10:30</td>
+                <td class="reply-count">0</td>
+                <td class="last_message">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <span class="pagination"><ul class="pages"><li class="previous"><span>« 前</span></li><li class="current"><span>1</span></li><li class="page"><a href="#">2</a></li><li class="next page"><a accesskey="n" href="#">次 »</a></li></ul><span><span class="items">(1-10/16)</span> <span class="per-page">1ページに: <span class="selected">10</span>, <a href="#">25</a></span></span></span>
+
+        <p class="other-formats">他の形式にエクスポート:
+            <span><a class="atom" rel="nofollow" href="#">Atom</a></span>
+        </p>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>
