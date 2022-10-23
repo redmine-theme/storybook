@@ -1,0 +1,106 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>並べ替え </h3>
+        <ul>
+            <li><a class="selected" href="#">カテゴリ</a></li>
+            <li><a href="#">日付</a></li>
+            <li><a href="#">タイトル</a></li>
+            <li><a href="#">作成者</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+
+        <div class="contextual">
+            <a class="icon icon-add" onclick="showAndScrollTo(&quot;add-document&quot;, &quot;document_title&quot;); return false;" href="#">新しい文書</a>
+        </div>
+
+        <div id="add-document" style="display:none;">
+            <h2>新しい文書</h2>
+            <form class="new_document" id="new_document" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="new_document-32a71c54" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+                <div class="box tabular">
+                    <p>
+                        <label for="document_category_id">カテゴリ</label><select name="document[category_id]" id="document_category_id">
+                        <option selected="selected" value="6">ユーザー文書</option>
+                        <option value="7">技術文書</option>
+                    </select></p>
+                    <p>
+                        <label for="document_title">タイトル<span class="required"> *</span></label><input size="60" type="text" value="" name="document[title]" id="document_title"/>
+                    </p>
+                    <p>
+                        <label for="document_description">説明</label><textarea cols="60" rows="15" class="wiki-edit" data-auto-complete="true" name="document[description]" id="document_description">
+</textarea></p>
+
+                    <p><label>ファイル</label>
+                        <span class="attachments_form">
+  <span class="attachments_fields">
+  </span>
+  <span class="add_attachment" style="">
+    <input type="file" name="attachments[dummy][file]" class="file_selector filedrop" multiple="multiple" onchange="addInputFiles(this);" data-max-number-of-files-message="このファイルはアップロードできません。同時にアップロードできるファイル数の上限(10)を超えています。" data-max-file-size="5242880" data-max-file-size-message="このファイルはアップロードできません。添付ファイルサイズの上限(5 MB)を超えています。" data-max-concurrent-uploads="2" data-upload-path="/uploads.js" data-param="attachments" data-description="true" data-description-placeholder="説明 (任意)"/>
+    (サイズの上限: 5 MB)
+  </span>
+</span>
+                    </p>
+                </div>
+
+                <script>
+                  //<![CDATA[
+                  var wikiToolbar = new jsToolBar(document.getElementById('document_description'));
+                  wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+                  wikiToolbar.setPreviewUrl('/preview/text');
+                  wikiToolbar.draw();
+                  //]]>
+                </script>
+
+                <p>
+                    <input type="submit" name="commit" value="作成" data-disable-with="作成"/>
+                    <a onclick="$(&quot;#add-document&quot;).hide(); return false;" href="#">キャンセル</a>
+                </p>
+            </form>
+        </div>
+
+        <h2>文書</h2>
+
+        <div id="document-list">
+            <div class="document-group document-group-category">
+                <h3 class="group-name">ユーザー文書</h3>
+                <div class="document-item document-1">
+                    <h4 class="title"><a href="#">document1</a></h4>
+                    <div class="updated_on"><em>2022/10/19 18:38</em></div>
+
+                    <div class="wiki description">
+                        <ul class="toc right">
+                            <li><strong>目次</strong></li>
+                            <li><a href="#h1-title">h1 title</a></li>
+                        </ul>
+                        <a name="h1-title"></a>
+                        <h1>h1 title<a href="#h1-title" class="wiki-anchor">&para;</a></h1>
+                        <p>ジョバンニ、カムパネルラがそれを知っている、それはいままで、いくつのものの命をとったような鷺が、まるで一本の木というふうにして校庭の隅の所へ行ってしまったよ。室中のひとたちは半分うしろの方へ向けて、ではカムパネルラさんといっしょなら心配はないからああきっといっしょだよ。カムパネルラは、なにかなつかしそうにわらいながら、ジョバンニもぼんやり答えていました。もうまるでひどい峡谷になって、なにかのあかりのように見えるように、砂や砂利の粒にもあたるのです。だからやっぱりおまえはさっき考えたように思ったとき、ジョバンニ、お仕事がひどかったろう。...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="document-group document-group-category">
+                <h3 class="group-name">技術文書</h3>
+                <div class="document-item document-2">
+                    <h4 class="title"><a href="#">document2</a></h4>
+                    <div class="updated_on"><em>2022/10/19 18:38</em></div>
+
+                    <div class="wiki description">
+                        <ul class="toc right">
+                            <li><strong>目次</strong></li>
+                            <li><a href="#h1-title">h1 title</a></li>
+                        </ul>
+                        <a name="h1-title"></a>
+                        <h1>h1 title<a href="#h1-title" class="wiki-anchor">&para;</a></h1>
+                        <p>ジョバンニ、カムパネルラがそれを知っている、それはいままで、いくつのものの命をとったような鷺が、まるで一本の木というふうにして校庭の隅の所へ行ってしまったよ。室中のひとたちは半分うしろの方へ向けて、ではカムパネルラさんといっしょなら心配はないからああきっといっしょだよ。カムパネルラは、なにかなつかしそうにわらいながら、ジョバンニもぼんやり答えていました。もうまるでひどい峡谷になって、なにかのあかりのように見えるように、砂や砂利の粒にもあたるのです。だからやっぱりおまえはさっき考えたように思ったとき、ジョバンニ、お仕事がひどかったろう。...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>
