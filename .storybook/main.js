@@ -10,7 +10,7 @@ module.exports = {
     "@storybook/addon-viewport"
   ],
   staticDirs: [
-    '../src/public'
+    '../public'
   ],
   "framework": "@storybook/html",
   "core": {
