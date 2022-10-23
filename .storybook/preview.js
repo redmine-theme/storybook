@@ -20,17 +20,17 @@ export const parameters = {
     stylesheets: [
       {
         id: 'default',
-        title: 'default',
+        title: 'Default',
         url: './stylesheets/application.css',
       },
       {
         id: 'alternate',
-        title: 'alternate',
+        title: 'Alternate',
         url: './themes/alternate/stylesheets/application.css',
       },
       {
         id: 'classic',
-        title: 'classic',
+        title: 'Classic',
         url: './themes/classic/stylesheets/application.css',
       },
     ],
