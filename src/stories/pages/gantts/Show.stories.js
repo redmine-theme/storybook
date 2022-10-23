@@ -1,13 +1,13 @@
-import html from './show.html';
+import html from "./show.html";
 
 export default {
-  title: "Pages/Projects/Show",
+  title: "Pages/Gantts/Show",
   parameters: {
     layout: 'fullscreen',
   },
   decorators: [
     (Story) => (
-      `<div class="controller-projects action-show avatars-on">${Story()}</div>`
+      `<div class="controller-gantts action-show avatars-on">${Story()}</div>`
     ),
   ],
 };

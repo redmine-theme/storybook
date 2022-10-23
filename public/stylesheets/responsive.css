@@ -661,7 +661,7 @@
 
   .version-overview table.progress {width:75%;}
   div#version-summary {float:none; width:100%; margin-left:0;}
-  body.controller-versions.action-show div#roadmap .related-issues {width:100%;}
+  .controller-versions.action-show div#roadmap .related-issues {width:100%;}
 
   /* History and Changeset */
   div#issue-changesets {
@@ -756,7 +756,7 @@
   }
 
   /* issues page */
-  body.controller-issues p.query-totals {
+  .controller-issues p.query-totals {
     margin-top: 0px;
     text-align: left;
   }

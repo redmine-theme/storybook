@@ -1,0 +1,2084 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>カスタムクエリ</h3>
+
+        <ul class="queries">
+            <li><a class="query" href="#">ウォッチしているチケット</a></li>
+            <li><a class="query" href="#">報告したチケット</a></li>
+            <li><a class="query" href="#">担当しているチケット</a></li>
+            <li><a class="query" href="#">更新したチケット</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+        </div>
+
+        <h2>ガントチャート</h2>
+
+        <form id="query_form" action="#" accept-charset="UTF-8" name="query_form-de601156" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="set_filter" id="set_filter" value="1" autocomplete="off"/>
+            <input type="hidden" name="gantt" id="gantt" value="1" autocomplete="off"/>
+
+            <div id="query_form_with_buttons" class="hide-when-print">
+                <div id="query_form_content">
+                    <fieldset id="filters" class="collapsible ">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-expanded">フィルタ</legend>
+                        <div style="">
+                            <script>
+                              //<![CDATA[
+
+                              var operatorLabels = {
+                                "=": "等しい",
+                                "!": "等しくない",
+                                "o": "未完了",
+                                "c": "完了",
+                                "!*": "なし",
+                                "*": "すべて",
+                                "\u003e=": "以上",
+                                "\u003c=": "以下",
+                                "\u003e\u003c": "次の範囲内",
+                                "\u003ct+": "N日後以前",
+                                "\u003et+": "N日後以降",
+                                "\u003e\u003ct+": "今後N日",
+                                "t+": "N日後",
+                                "nd": "明日",
+                                "t": "今日",
+                                "ld": "昨日",
+                                "nw": "来週",
+                                "w": "今週",
+                                "lw": "先週",
+                                "l2w": "直近2週間",
+                                "nm": "来月",
+                                "m": "今月",
+                                "lm": "先月",
+                                "y": "今年",
+                                "\u003et-": "N日前以降",
+                                "\u003ct-": "N日前以前",
+                                "\u003e\u003ct-": "過去N日",
+                                "t-": "N日前",
+                                "~": "含む",
+                                "!~": "含まない",
+                                "^": "前方一致",
+                                "$": "後方一致",
+                                "=p": "次のプロジェクト内のチケット",
+                                "=!p": "次のプロジェクト外のチケット",
+                                "!p": "次のプロジェクト内のチケットを除く",
+                                "*o": "未完了のチケット",
+                                "!o": "なし または完了したチケット"
+                              };
+                              var operatorByType = {
+                                "list": ["=", "!"],
+                                "list_status": ["o", "=", "!", "c", "*"],
+                                "list_optional": ["=", "!", "!*", "*"],
+                                "list_subprojects": ["*", "!*", "=", "!"],
+                                "date": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003ct+", "\u003et+", "\u003e\u003ct+", "t+", "nd", "t", "ld", "nw", "w", "lw", "l2w", "nm", "m", "lm", "y", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "!*", "*"],
+                                "date_past": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "t", "ld", "w", "lw", "l2w", "m", "lm", "y", "!*", "*"],
+                                "string": ["~", "=", "!~", "!", "^", "$", "!*", "*"],
+                                "text": ["~", "!~", "^", "$", "!*", "*"],
+                                "integer": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "float": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "relation": ["=", "!", "=p", "=!p", "!p", "*o", "!o", "!*", "*"],
+                                "tree": ["=", "~", "!*", "*"]
+                              };
+                              var availableFilters = {
+                                "status_id": {
+                                  "type": "list_status",
+                                  "name": "ステータス",
+                                  "remote": true,
+                                  "values": [["新規", "1"], ["進行中", "2"], ["解決", "3"], ["フィードバック", "4"], ["終了", "5"], ["却下", "6"]]
+                                },
+                                "tracker_id": {
+                                  "type": "list",
+                                  "name": "トラッカー",
+                                  "values": [["バグ", "1"], ["機能", "2"], ["サポート", "3"]]
+                                },
+                                "priority_id": {
+                                  "type": "list",
+                                  "name": "優先度",
+                                  "values": [["低め", "1"], ["通常", "2"], ["高め", "3"], ["急いで", "4"], ["今すぐ", "5"]]
+                                },
+                                "author_id": {"type": "list", "name": "作成者", "remote": true},
+                                "assigned_to_id": {"type": "list_optional", "name": "担当者", "remote": true},
+                                "member_of_group": {"type": "list_optional", "name": "担当者のグループ", "remote": true},
+                                "assigned_to_role": {"type": "list_optional", "name": "担当者のロール", "remote": true},
+                                "fixed_version_id": {"type": "list_optional", "name": "対象バージョン", "remote": true},
+                                "fixed_version.due_date": {"type": "date", "name": "対象バージョンの 期日", "values": null},
+                                "fixed_version.status": {
+                                  "type": "list",
+                                  "name": "対象バージョンの ステータス",
+                                  "values": [["進行中", "open"], ["ロック中", "locked"], ["終了", "closed"]]
+                                },
+                                "category_id": {"type": "list_optional", "name": "カテゴリ", "remote": true},
+                                "subject": {"type": "text", "name": "題名", "values": null},
+                                "description": {"type": "text", "name": "説明", "values": null},
+                                "notes": {"type": "text", "name": "コメント", "values": null},
+                                "created_on": {"type": "date_past", "name": "作成日", "values": null},
+                                "updated_on": {"type": "date_past", "name": "更新日", "values": null},
+                                "closed_on": {"type": "date_past", "name": "終了日", "values": null},
+                                "start_date": {"type": "date", "name": "開始日", "values": null},
+                                "due_date": {"type": "date", "name": "期日", "values": null},
+                                "estimated_hours": {"type": "float", "name": "予定工数", "values": null},
+                                "spent_time": {"type": "float", "name": "作業時間", "values": null},
+                                "done_ratio": {"type": "integer", "name": "進捗率", "values": null},
+                                "is_private": {"type": "list", "name": "プライベート", "values": [["はい", "1"], ["いいえ", "0"]]},
+                                "attachment": {"type": "text", "name": "ファイル", "values": null},
+                                "attachment_description": {"type": "text", "name": "ファイルの説明", "values": null},
+                                "watcher_id": {"type": "list", "name": "ウォッチャー", "remote": true},
+                                "updated_by": {"type": "list", "name": "更新者", "remote": true},
+                                "last_updated_by": {"type": "list", "name": "最終更新者", "remote": true},
+                                "subproject_id": {"type": "list_subprojects", "name": "サブプロジェクト", "remote": true},
+                                "project.status": {"type": "list", "name": "プロジェクトの ステータス", "remote": true},
+                                "relates": {"type": "relation", "name": "関連している", "remote": true},
+                                "duplicates": {"type": "relation", "name": "次のチケットと重複", "remote": true},
+                                "duplicated": {"type": "relation", "name": "次のチケットが重複", "remote": true},
+                                "blocks": {"type": "relation", "name": "ブロック先", "remote": true},
+                                "blocked": {"type": "relation", "name": "ブロック元", "remote": true},
+                                "precedes": {"type": "relation", "name": "次のチケットに先行", "remote": true},
+                                "follows": {"type": "relation", "name": "次のチケットに後続", "remote": true},
+                                "copied_to": {"type": "relation", "name": "コピー先", "remote": true},
+                                "copied_from": {"type": "relation", "name": "コピー元", "remote": true},
+                                "parent_id": {"type": "tree", "name": "親チケット", "values": null},
+                                "child_id": {"type": "tree", "name": "子チケット", "values": null},
+                                "issue_id": {"type": "integer", "name": "チケット", "values": null}
+                              };
+                              var labelDayPlural = "日";
+
+                              var filtersUrl = "\/queries\/filter?project_id=1\u0026type=IssueQuery";
+
+                              $(document).ready(function () {
+                                initFilters();
+                                addFilter("status_id", "o", [""]);
+                              });
+
+                              //]]>
+                            </script>
+                            <table id="filters-table">
+                            </table>
+
+                            <div class="add-filter">
+                                <label for="add_filter_select">フィルタ追加</label>
+                                <select id="add_filter_select">
+                                    <option value="">&nbsp;</option>
+                                    <option value="status_id">ステータス</option>
+                                    <option value="tracker_id">トラッカー</option>
+                                    <option value="priority_id">優先度</option>
+                                    <option value="author_id">作成者</option>
+                                    <option value="assigned_to_id">担当者</option>
+                                    <option value="fixed_version_id">対象バージョン</option>
+                                    <option value="category_id">カテゴリ</option>
+                                    <option value="subject">題名</option>
+                                    <option value="description">説明</option>
+                                    <option value="notes">コメント</option>
+                                    <option value="done_ratio">進捗率</option>
+                                    <option value="is_private">プライベート</option>
+                                    <option value="watcher_id">ウォッチャー</option>
+                                    <option value="updated_by">更新者</option>
+                                    <option value="last_updated_by">最終更新者</option>
+                                    <option value="subproject_id">サブプロジェクト</option>
+                                    <option value="issue_id">チケット</option>
+                                    <optgroup label="担当者">
+                                        <option value="member_of_group">担当者のグループ</option>
+                                        <option value="assigned_to_role">担当者のロール</option>
+                                    </optgroup>
+                                    <optgroup label="対象バージョン">
+                                        <option value="fixed_version.due_date">対象バージョンの 期日</option>
+                                        <option value="fixed_version.status">対象バージョンの ステータス</option>
+                                    </optgroup>
+                                    <optgroup label="日付">
+                                        <option value="created_on">作成日</option>
+                                        <option value="updated_on">更新日</option>
+                                        <option value="closed_on">終了日</option>
+                                        <option value="start_date">開始日</option>
+                                        <option value="due_date">期日</option>
+                                    </optgroup>
+                                    <optgroup label="時間管理">
+                                        <option value="estimated_hours">予定工数</option>
+                                        <option value="spent_time">作業時間</option>
+                                    </optgroup>
+                                    <optgroup label="ファイル">
+                                        <option value="attachment">ファイル</option>
+                                        <option value="attachment_description">ファイルの説明</option>
+                                    </optgroup>
+                                    <optgroup label="プロジェクト">
+                                        <option value="project.status">プロジェクトの ステータス</option>
+                                    </optgroup>
+                                    <optgroup label="関係">
+                                        <option value="relates">関連している</option>
+                                        <option value="duplicates">次のチケットと重複</option>
+                                        <option value="duplicated">次のチケットが重複</option>
+                                        <option value="blocks">ブロック先</option>
+                                        <option value="blocked">ブロック元</option>
+                                        <option value="precedes">次のチケットに先行</option>
+                                        <option value="follows">次のチケットに後続</option>
+                                        <option value="copied_to">コピー先</option>
+                                        <option value="copied_from">コピー元</option>
+                                        <option value="parent_id">親チケット</option>
+                                        <option value="child_id">子チケット</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="f[]" id="f_" value="" autocomplete="off"/>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="options" class="collapsible collapsed">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-collapsed">オプション</legend>
+                        <div style="display: none;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <fieldset>
+                                            <legend>
+                                                項目
+                                            </legend>
+                                            <label for="draw_selected_columns">
+                                                <input name="query[draw_selected_columns]" type="hidden" value="0" autocomplete="off"/><input id="draw_selected_columns" data-enables="span.query-columns select, span.query-columns input" type="checkbox" value="1" name="query[draw_selected_columns]"/>
+                                                表示
+                                            </label>
+
+                                            <span class="query-columns">
+                                                <span>
+                                                    <label for="available_c">利用できる項目</label>
+                                                    <select name="available_columns[]" id="available_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.available_c, this.form.selected_c);"><option value="project">プロジェクト</option>
+                                                        <option value="parent">親チケット</option>
+                                                        <option value="parent.subject">親チケットの題名</option>
+                                                        <option value="author">作成者</option>
+                                                        <option value="category">カテゴリ</option>
+                                                        <option value="fixed_version">対象バージョン</option>
+                                                        <option value="start_date">開始日</option>
+                                                        <option value="due_date">期日</option>
+                                                        <option value="estimated_hours">予定工数</option>
+                                                        <option value="total_estimated_hours">合計予定工数</option>
+                                                        <option value="spent_hours">作業時間</option>
+                                                        <option value="total_spent_hours">合計作業時間</option>
+                                                        <option value="done_ratio">進捗率</option>
+                                                        <option value="created_on">作成日</option>
+                                                        <option value="closed_on">終了日</option>
+                                                        <option value="last_updated_by">最終更新者</option>
+                                                        <option value="relations">関連するチケット</option>
+                                                        <option value="attachments">ファイル</option>
+                                                        <option value="is_private">プライベート</option>
+                                                    </select>
+                                                </span>
+                                                <span class="buttons">
+                                                    <input type="button" value="&#8594;" class="move-right"
+                                                         onclick="moveOptions(this.form.available_c, this.form.selected_c);"/>
+                                                    <input type="button" value="&#8592;" class="move-left"
+                                                         onclick="moveOptions(this.form.selected_c, this.form.available_c);"/>
+                                                </span>
+                                                <span>
+                                                    <label for="selected_c">選択された項目</label>
+                                                    <select name="c[]" id="selected_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.selected_c, this.form.available_c);"><option value="tracker">トラッカー</option>
+                                                        <option value="status">ステータス</option>
+                                                        <option value="priority">優先度</option>
+                                                        <option value="subject">題名</option>
+                                                        <option value="assigned_to">担当者</option>
+                                                        <option value="updated_on">更新日</option>
+                                                    </select>
+                                                </span>
+                                                <span class="buttons">
+                                                    <input type="button" value="&#8648;" onclick="moveOptionTop(this.form.selected_c);"/>
+                                                    <input type="button" value="&#8593;" onclick="moveOptionUp(this.form.selected_c);"/>
+                                                    <input type="button" value="&#8595;" onclick="moveOptionDown(this.form.selected_c);"/>
+                                                    <input type="button" value="&#8650;" onclick="moveOptionBottom(this.form.selected_c);"/>
+                                                </span>
+                                            </span>
+
+                                            <script>
+                                              //<![CDATA[
+
+                                              $(document).ready(function () {
+                                                $('.query-columns').closest('form').submit(function () {
+                                                  $('#selected_c option:not(:disabled)').prop('selected', true);
+                                                });
+                                              });
+
+                                              //]]>
+                                            </script>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset>
+                                            <legend>関連するチケット</legend>
+                                            <label for="draw_relations">
+                                                <input name="query[draw_relations]" type="hidden" value="0" autocomplete="off"/><input id="draw_relations" type="checkbox" value="1" checked="checked" name="query[draw_relations]"/>
+                                                <span style="background-color: #F34F4F">&nbsp;&nbsp;&nbsp;</span>
+                                                ブロック先
+                                                <span style="background-color: #628FEA">&nbsp;&nbsp;&nbsp;</span>
+                                                次のチケットに先行
+                                            </label>
+                                        </fieldset>
+                                    </td>
+                                    <td>
+                                        <fieldset>
+                                            <legend>イナズマ線</legend>
+                                            <label for="draw_progress_line">
+                                                <input name="query[draw_progress_line]" type="hidden" value="0" autocomplete="off"/><input id="draw_progress_line" type="checkbox" value="1" name="query[draw_progress_line]"/>
+                                                表示
+                                            </label>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <p class="contextual">
+  <span>
+    <span class="icon icon-zoom-in">拡大</span>
+    <a class="icon icon-zoom-out" href="#">縮小</a>
+  </span>
+                    <span>
+    <a accesskey="p" href="#">« 9月</a> | <a accesskey="n" href="#">11月 »</a>
+  </span>
+                </p>
+
+                <p class="buttons">
+                    <input type="number" name="months" id="months" value="6" min="1" max="24" autocomplete="false"/>
+                    ヶ月分
+                    <select id="month" name="month">
+                        <option value="1">1月</option>
+                        <option value="2">2月</option>
+                        <option value="3">3月</option>
+                        <option value="4">4月</option>
+                        <option value="5">5月</option>
+                        <option value="6">6月</option>
+                        <option value="7">7月</option>
+                        <option value="8">8月</option>
+                        <option value="9">9月</option>
+                        <option value="10" selected="selected">10月</option>
+                        <option value="11">11月</option>
+                        <option value="12">12月</option>
+                    </select>
+
+                    <select id="year" name="year">
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022" selected="selected">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                    </select>
+
+                    <input type="hidden" name="zoom" id="zoom" value="4" autocomplete="off"/>
+
+                    <a href="#" onclick="$(&quot;#query_form&quot;).submit(); return false;" class="icon icon-checked">適用</a>
+                    <a class="icon icon-reload" href="#">クリア</a>
+                    <a href="#" onclick="$(&#39;#query_form&#39;).attr(&#39;action&#39;, &#39;/projects/test1/queries/new&#39;).submit();; return false;" class="icon icon-save">カスタムクエリを保存</a>
+                </p>
+            </div>
+        </form>
+
+
+        <table class='gantt-table'>
+            <tr>
+                <td style="width:332px;" class="gantt_subjects_column">
+                    <div style="position:relative;height: 1226px;width: 331px;" class="gantt_subjects_container ">
+                        <div style="width: 331px;height: 72px;background: #eee;" class="gantt_hdr"></div>
+                        <div style="z-index: 1;width: 331px;height: 1202px;overflow: hidden;" class="gantt_hdr"></div>
+                        <div class="gantt_subjects">
+                            <form data-cm-url="/issues/context_menu" action="#" accept-charset="UTF-8" name="form-344b8769" method="post">
+                                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/><input type="hidden" name="authenticity_token" value="Wqx4GDW35h0U/4r6ePTh6QWK5bIIjve/hz00F8Nuh1vLHQgpjf7HLYr94Z/P2oSihbgmkaCtnmE6gUlY3eTnkA==" autocomplete="off"/>
+                                <input type="hidden" name="back_url" value="" autocomplete="off"/>
+                                <div class="project-name open" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;project-1&quot;}" data-number-of-rows="0" style="position: absolute;top:80px;left:4px;width:326px;">
+                                    <span class="icon icon-expanded expander"></span><span class="icon icon-projects "><a href="#">test1</a></span>
+                                </div>
+                                <div id="issue-3" class="issue-subject hascontextmenu" title="test3" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-3&quot;}" data-number-of-rows="1" style="position: absolute;top:100px;left:36px;width:294px;">
+                                    <span class=" issue-behind-schedule icon icon-issue"><a class="issue tracker-1 status-1 priority-2 priority-default behind-schedule created-by-me" href="#">バグ #3</a>: test3<input type="checkbox" name="ids[]" value="3" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-4" class="issue-subject hascontextmenu" title="issue4" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-4&quot;}" data-number-of-rows="2" style="position: absolute;top:120px;left:36px;width:294px;">
+                                    <span class=" issue-overdue issue-behind-schedule icon icon-issue"><a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #4</a>: issue4<input type="checkbox" name="ids[]" value="4" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-2" class="issue-subject hascontextmenu" title="test2" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-2&quot;}" data-number-of-rows="3" style="position: absolute;top:140px;left:36px;width:294px;">
+                                    <span class=" issue-overdue issue-behind-schedule icon icon-issue"><a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #2</a>: test2<input type="checkbox" name="ids[]" value="2" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-5" class="issue-subject hascontextmenu open" title="issue5" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-5&quot;}" data-number-of-rows="4" style="position: absolute;top:160px;left:24px;width:306px;">
+                                    <span class="icon icon-expanded expander"></span><span class=" issue-overdue issue-behind-schedule icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default overdue parent behind-schedule created-by-me" href="#">サポート #5</a>: issue5<input type="checkbox" name="ids[]" value="5" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-6" class="issue-subject hascontextmenu open" title="issue6" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-6&quot;}" data-number-of-rows="5" style="position: absolute;top:180px;left:44px;width:286px;">
+                                    <span class="icon icon-expanded expander"></span><span class=" issue-overdue issue-behind-schedule icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default overdue child parent behind-schedule created-by-me" href="#">サポート #6</a>: issue6<input type="checkbox" name="ids[]" value="6" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-7" class="issue-subject hascontextmenu" title="issue7" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-7&quot;}" data-number-of-rows="6" style="position: absolute;top:200px;left:76px;width:254px;">
+                                    <span class=" issue-overdue issue-behind-schedule icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default overdue child behind-schedule created-by-me" href="#">サポート #7</a>: issue7<input type="checkbox" name="ids[]" value="7" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-8" class="issue-subject hascontextmenu" title="issue8" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-8&quot;}" data-number-of-rows="7" style="position: absolute;top:220px;left:76px;width:254px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default child created-by-me" href="#">サポート #8</a>: issue8<input type="checkbox" name="ids[]" value="8" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-9" class="issue-subject hascontextmenu" title="issue9" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-9&quot;}" data-number-of-rows="8" style="position: absolute;top:240px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #9</a>: issue9<input type="checkbox" name="ids[]" value="9" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-13" class="issue-subject hascontextmenu" title="issue13" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-13&quot;}" data-number-of-rows="9" style="position: absolute;top:260px;left:36px;width:294px;">
+                                    <span class=""><img alt="" title="担当者: user1 user1" class="gravatar icon-gravatar" srcset="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=26&amp;default=retro 2x" src="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=13&amp;default=retro"/><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #13</a>: issue13<input type="checkbox" name="ids[]" value="13" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-15" class="issue-subject hascontextmenu" title="issue15" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-15&quot;}" data-number-of-rows="10" style="position: absolute;top:280px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #15</a>: issue15<input type="checkbox" name="ids[]" value="15" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-16" class="issue-subject hascontextmenu" title="issue16" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-16&quot;}" data-number-of-rows="11" style="position: absolute;top:300px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #16</a>: issue16<input type="checkbox" name="ids[]" value="16" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-17" class="issue-subject hascontextmenu" title="issue17" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-17&quot;}" data-number-of-rows="12" style="position: absolute;top:320px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #17</a>: issue17<input type="checkbox" name="ids[]" value="17" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-18" class="issue-subject hascontextmenu" title="issue18" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-18&quot;}" data-number-of-rows="13" style="position: absolute;top:340px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #18</a>: issue18<input type="checkbox" name="ids[]" value="18" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-19" class="issue-subject hascontextmenu" title="issue19" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-19&quot;}" data-number-of-rows="14" style="position: absolute;top:360px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #19</a>: issue19<input type="checkbox" name="ids[]" value="19" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-20" class="issue-subject hascontextmenu" title="issue20" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-20&quot;}" data-number-of-rows="15" style="position: absolute;top:380px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #20</a>: issue20<input type="checkbox" name="ids[]" value="20" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-21" class="issue-subject hascontextmenu" title="issue21" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-21&quot;}" data-number-of-rows="16" style="position: absolute;top:400px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #21</a>: issue21<input type="checkbox" name="ids[]" value="21" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-22" class="issue-subject hascontextmenu" title="issue22" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-22&quot;}" data-number-of-rows="17" style="position: absolute;top:420px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #22</a>: issue22<input type="checkbox" name="ids[]" value="22" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-23" class="issue-subject hascontextmenu" title="issue23" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-23&quot;}" data-number-of-rows="18" style="position: absolute;top:440px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #23</a>: issue23<input type="checkbox" name="ids[]" value="23" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-24" class="issue-subject hascontextmenu" title="issue24" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-24&quot;}" data-number-of-rows="19" style="position: absolute;top:460px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #24</a>: issue24<input type="checkbox" name="ids[]" value="24" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-25" class="issue-subject hascontextmenu" title="issue25" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-25&quot;}" data-number-of-rows="20" style="position: absolute;top:480px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #25</a>: issue25<input type="checkbox" name="ids[]" value="25" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-26" class="issue-subject hascontextmenu" title="issue26" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-26&quot;}" data-number-of-rows="21" style="position: absolute;top:500px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #26</a>: issue26<input type="checkbox" name="ids[]" value="26" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-27" class="issue-subject hascontextmenu" title="issue27" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-27&quot;}" data-number-of-rows="22" style="position: absolute;top:520px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #27</a>: issue27<input type="checkbox" name="ids[]" value="27" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-28" class="issue-subject hascontextmenu" title="issue28" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-28&quot;}" data-number-of-rows="23" style="position: absolute;top:540px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #28</a>: issue28<input type="checkbox" name="ids[]" value="28" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-29" class="issue-subject hascontextmenu" title="issue29" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-29&quot;}" data-number-of-rows="24" style="position: absolute;top:560px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #29</a>: issue29<input type="checkbox" name="ids[]" value="29" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-30" class="issue-subject hascontextmenu" title="issue30" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-30&quot;}" data-number-of-rows="25" style="position: absolute;top:580px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #30</a>: issue30<input type="checkbox" name="ids[]" value="30" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-31" class="issue-subject hascontextmenu" title="issue31" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-31&quot;}" data-number-of-rows="26" style="position: absolute;top:600px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #31</a>: issue31<input type="checkbox" name="ids[]" value="31" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-32" class="issue-subject hascontextmenu" title="issue32" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-32&quot;}" data-number-of-rows="27" style="position: absolute;top:620px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #32</a>: issue32<input type="checkbox" name="ids[]" value="32" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-33" class="issue-subject hascontextmenu" title="issue33" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-33&quot;}" data-number-of-rows="28" style="position: absolute;top:640px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #33</a>: issue33<input type="checkbox" name="ids[]" value="33" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-34" class="issue-subject hascontextmenu" title="issue34" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-34&quot;}" data-number-of-rows="29" style="position: absolute;top:660px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #34</a>: issue34<input type="checkbox" name="ids[]" value="34" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-35" class="issue-subject hascontextmenu" title="issue35" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-35&quot;}" data-number-of-rows="30" style="position: absolute;top:680px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #35</a>: issue35<input type="checkbox" name="ids[]" value="35" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-36" class="issue-subject hascontextmenu" title="issue36" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-36&quot;}" data-number-of-rows="31" style="position: absolute;top:700px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #36</a>: issue36<input type="checkbox" name="ids[]" value="36" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-37" class="issue-subject hascontextmenu" title="issue37" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-37&quot;}" data-number-of-rows="32" style="position: absolute;top:720px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #37</a>: issue37<input type="checkbox" name="ids[]" value="37" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-38" class="issue-subject hascontextmenu" title="issue38" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-38&quot;}" data-number-of-rows="33" style="position: absolute;top:740px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #38</a>: issue38<input type="checkbox" name="ids[]" value="38" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-39" class="issue-subject hascontextmenu" title="issue39" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-39&quot;}" data-number-of-rows="34" style="position: absolute;top:760px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #39</a>: issue39<input type="checkbox" name="ids[]" value="39" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-40" class="issue-subject hascontextmenu" title="issue40" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-40&quot;}" data-number-of-rows="35" style="position: absolute;top:780px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #40</a>: issue40<input type="checkbox" name="ids[]" value="40" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-11" class="issue-subject hascontextmenu" title="issue11" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-11&quot;}" data-number-of-rows="36" style="position: absolute;top:800px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #11</a>: issue11<input type="checkbox" name="ids[]" value="11" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-14" class="issue-subject hascontextmenu" title="issue14" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-14&quot;}" data-number-of-rows="37" style="position: absolute;top:820px;left:36px;width:294px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #14</a>: issue14<input type="checkbox" name="ids[]" value="14" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="version-1" class="version-name open" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;version-1&quot;}" data-number-of-rows="38" style="position: absolute;top:840px;left:24px;width:306px;">
+                                    <span class="icon icon-expanded expander"></span><span class="icon icon-package version-behind-schedule version-overdue"><a title="2022/10/16" href="#">version1</a></span>
+                                </div>
+                                <div id="issue-1" class="issue-subject hascontextmenu" title="ticket1" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-1&quot;}" data-number-of-rows="39" style="position: absolute;top:860px;left:56px;width:274px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-2 status-1 priority-2 priority-default created-by-me" href="#">機能 #1</a>: ticket1<input type="checkbox" name="ids[]" value="1" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="issue-12" class="issue-subject hascontextmenu" title="issue12" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-12&quot;}" data-number-of-rows="40" style="position: absolute;top:880px;left:56px;width:274px;">
+                                    <span class=" issue-overdue issue-behind-schedule icon icon-issue"><a class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">サポート #12</a>: issue12<input type="checkbox" name="ids[]" value="12" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                                <div id="version-2" class="version-name open" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;version-2&quot;}" data-number-of-rows="41" style="position: absolute;top:900px;left:24px;width:306px;">
+                                    <span class="icon icon-expanded expander"></span><span class="icon icon-package version-behind-schedule "><a title="2022/10/31" href="#">version2</a></span>
+                                </div>
+                                <div id="issue-10" class="issue-subject hascontextmenu" title="issue10" data-collapse-expand="{&quot;top_increment&quot;:20,&quot;obj_id&quot;:&quot;issue-10&quot;}" data-number-of-rows="42" style="position: absolute;top:920px;left:56px;width:274px;">
+                                    <span class=" icon icon-issue"><a class="issue tracker-3 status-3 priority-2 priority-default created-by-me" href="#">サポート #10</a>: issue10<input type="checkbox" name="ids[]" value="10" style="display:none;" class="toggle-selection"></input></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+                <td class="gantt_status_column gantt_selected_column " id="status">
+                    <div style="position: relative;height: 1226px;" class="gantt_status_container gantt_selected_column_container">
+                        <div style="height: 1202px;overflow: hidden;" class="gantt_hdr"></div>
+                        <div style="height: 72px;background: #eee;" class="gantt_hdr">
+                            <p class="gantt_hdr_selected_column_name">ステータス</p></div>
+                        <div class="gantt_status gantt_selected_column_content">
+                            <div style="position: absolute;top: 100px; font-size: 0.8em;" class="issue_status" id="status_issue_3" data-collapse-expand="issue-3" data-number-of-rows="1">新規</div>
+                            <div style="position: absolute;top: 120px; font-size: 0.8em;" class="issue_status" id="status_issue_4" data-collapse-expand="issue-4" data-number-of-rows="2">新規</div>
+                            <div style="position: absolute;top: 140px; font-size: 0.8em;" class="issue_status" id="status_issue_2" data-collapse-expand="issue-2" data-number-of-rows="3">新規</div>
+                            <div style="position: absolute;top: 160px; font-size: 0.8em;" class="issue_status" id="status_issue_5" data-collapse-expand="issue-5" data-number-of-rows="4">新規</div>
+                            <div style="position: absolute;top: 180px; font-size: 0.8em;" class="issue_status" id="status_issue_6" data-collapse-expand="issue-6" data-number-of-rows="5">新規</div>
+                            <div style="position: absolute;top: 200px; font-size: 0.8em;" class="issue_status" id="status_issue_7" data-collapse-expand="issue-7" data-number-of-rows="6">新規</div>
+                            <div style="position: absolute;top: 220px; font-size: 0.8em;" class="issue_status" id="status_issue_8" data-collapse-expand="issue-8" data-number-of-rows="7">新規</div>
+                            <div style="position: absolute;top: 240px; font-size: 0.8em;" class="issue_status" id="status_issue_9" data-collapse-expand="issue-9" data-number-of-rows="8">新規</div>
+                            <div style="position: absolute;top: 260px; font-size: 0.8em;" class="issue_status" id="status_issue_13" data-collapse-expand="issue-13" data-number-of-rows="9">新規</div>
+                            <div style="position: absolute;top: 280px; font-size: 0.8em;" class="issue_status" id="status_issue_15" data-collapse-expand="issue-15" data-number-of-rows="10">新規</div>
+                            <div style="position: absolute;top: 300px; font-size: 0.8em;" class="issue_status" id="status_issue_16" data-collapse-expand="issue-16" data-number-of-rows="11">新規</div>
+                            <div style="position: absolute;top: 320px; font-size: 0.8em;" class="issue_status" id="status_issue_17" data-collapse-expand="issue-17" data-number-of-rows="12">新規</div>
+                            <div style="position: absolute;top: 340px; font-size: 0.8em;" class="issue_status" id="status_issue_18" data-collapse-expand="issue-18" data-number-of-rows="13">新規</div>
+                            <div style="position: absolute;top: 360px; font-size: 0.8em;" class="issue_status" id="status_issue_19" data-collapse-expand="issue-19" data-number-of-rows="14">新規</div>
+                            <div style="position: absolute;top: 380px; font-size: 0.8em;" class="issue_status" id="status_issue_20" data-collapse-expand="issue-20" data-number-of-rows="15">新規</div>
+                            <div style="position: absolute;top: 400px; font-size: 0.8em;" class="issue_status" id="status_issue_21" data-collapse-expand="issue-21" data-number-of-rows="16">新規</div>
+                            <div style="position: absolute;top: 420px; font-size: 0.8em;" class="issue_status" id="status_issue_22" data-collapse-expand="issue-22" data-number-of-rows="17">新規</div>
+                            <div style="position: absolute;top: 440px; font-size: 0.8em;" class="issue_status" id="status_issue_23" data-collapse-expand="issue-23" data-number-of-rows="18">新規</div>
+                            <div style="position: absolute;top: 460px; font-size: 0.8em;" class="issue_status" id="status_issue_24" data-collapse-expand="issue-24" data-number-of-rows="19">新規</div>
+                            <div style="position: absolute;top: 480px; font-size: 0.8em;" class="issue_status" id="status_issue_25" data-collapse-expand="issue-25" data-number-of-rows="20">新規</div>
+                            <div style="position: absolute;top: 500px; font-size: 0.8em;" class="issue_status" id="status_issue_26" data-collapse-expand="issue-26" data-number-of-rows="21">新規</div>
+                            <div style="position: absolute;top: 520px; font-size: 0.8em;" class="issue_status" id="status_issue_27" data-collapse-expand="issue-27" data-number-of-rows="22">新規</div>
+                            <div style="position: absolute;top: 540px; font-size: 0.8em;" class="issue_status" id="status_issue_28" data-collapse-expand="issue-28" data-number-of-rows="23">新規</div>
+                            <div style="position: absolute;top: 560px; font-size: 0.8em;" class="issue_status" id="status_issue_29" data-collapse-expand="issue-29" data-number-of-rows="24">新規</div>
+                            <div style="position: absolute;top: 580px; font-size: 0.8em;" class="issue_status" id="status_issue_30" data-collapse-expand="issue-30" data-number-of-rows="25">新規</div>
+                            <div style="position: absolute;top: 600px; font-size: 0.8em;" class="issue_status" id="status_issue_31" data-collapse-expand="issue-31" data-number-of-rows="26">新規</div>
+                            <div style="position: absolute;top: 620px; font-size: 0.8em;" class="issue_status" id="status_issue_32" data-collapse-expand="issue-32" data-number-of-rows="27">新規</div>
+                            <div style="position: absolute;top: 640px; font-size: 0.8em;" class="issue_status" id="status_issue_33" data-collapse-expand="issue-33" data-number-of-rows="28">新規</div>
+                            <div style="position: absolute;top: 660px; font-size: 0.8em;" class="issue_status" id="status_issue_34" data-collapse-expand="issue-34" data-number-of-rows="29">新規</div>
+                            <div style="position: absolute;top: 680px; font-size: 0.8em;" class="issue_status" id="status_issue_35" data-collapse-expand="issue-35" data-number-of-rows="30">新規</div>
+                            <div style="position: absolute;top: 700px; font-size: 0.8em;" class="issue_status" id="status_issue_36" data-collapse-expand="issue-36" data-number-of-rows="31">新規</div>
+                            <div style="position: absolute;top: 720px; font-size: 0.8em;" class="issue_status" id="status_issue_37" data-collapse-expand="issue-37" data-number-of-rows="32">新規</div>
+                            <div style="position: absolute;top: 740px; font-size: 0.8em;" class="issue_status" id="status_issue_38" data-collapse-expand="issue-38" data-number-of-rows="33">新規</div>
+                            <div style="position: absolute;top: 760px; font-size: 0.8em;" class="issue_status" id="status_issue_39" data-collapse-expand="issue-39" data-number-of-rows="34">新規</div>
+                            <div style="position: absolute;top: 780px; font-size: 0.8em;" class="issue_status" id="status_issue_40" data-collapse-expand="issue-40" data-number-of-rows="35">新規</div>
+                            <div style="position: absolute;top: 800px; font-size: 0.8em;" class="issue_status" id="status_issue_11" data-collapse-expand="issue-11" data-number-of-rows="36">新規</div>
+                            <div style="position: absolute;top: 820px; font-size: 0.8em;" class="issue_status" id="status_issue_14" data-collapse-expand="issue-14" data-number-of-rows="37">新規</div>
+                            <div style="position: absolute;top: 860px; font-size: 0.8em;" class="issue_status" id="status_issue_1" data-collapse-expand="issue-1" data-number-of-rows="39">新規</div>
+                            <div style="position: absolute;top: 880px; font-size: 0.8em;" class="issue_status" id="status_issue_12" data-collapse-expand="issue-12" data-number-of-rows="40">新規</div>
+                            <div style="position: absolute;top: 920px; font-size: 0.8em;" class="issue_status" id="status_issue_10" data-collapse-expand="issue-10" data-number-of-rows="42">解決</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="gantt_priority_column gantt_selected_column " id="priority">
+                    <div style="position: relative;height: 1226px;" class="gantt_priority_container gantt_selected_column_container">
+                        <div style="height: 1202px;overflow: hidden;" class="gantt_hdr"></div>
+                        <div style="height: 72px;background: #eee;" class="gantt_hdr">
+                            <p class="gantt_hdr_selected_column_name">優先度</p></div>
+                        <div class="gantt_priority gantt_selected_column_content">
+                            <div style="position: absolute;top: 100px; font-size: 0.8em;" class="issue_priority" id="priority_issue_3" data-collapse-expand="issue-3" data-number-of-rows="1">通常</div>
+                            <div style="position: absolute;top: 120px; font-size: 0.8em;" class="issue_priority" id="priority_issue_4" data-collapse-expand="issue-4" data-number-of-rows="2">通常</div>
+                            <div style="position: absolute;top: 140px; font-size: 0.8em;" class="issue_priority" id="priority_issue_2" data-collapse-expand="issue-2" data-number-of-rows="3">通常</div>
+                            <div style="position: absolute;top: 160px; font-size: 0.8em;" class="issue_priority" id="priority_issue_5" data-collapse-expand="issue-5" data-number-of-rows="4">通常</div>
+                            <div style="position: absolute;top: 180px; font-size: 0.8em;" class="issue_priority" id="priority_issue_6" data-collapse-expand="issue-6" data-number-of-rows="5">通常</div>
+                            <div style="position: absolute;top: 200px; font-size: 0.8em;" class="issue_priority" id="priority_issue_7" data-collapse-expand="issue-7" data-number-of-rows="6">通常</div>
+                            <div style="position: absolute;top: 220px; font-size: 0.8em;" class="issue_priority" id="priority_issue_8" data-collapse-expand="issue-8" data-number-of-rows="7">通常</div>
+                            <div style="position: absolute;top: 240px; font-size: 0.8em;" class="issue_priority" id="priority_issue_9" data-collapse-expand="issue-9" data-number-of-rows="8">通常</div>
+                            <div style="position: absolute;top: 260px; font-size: 0.8em;" class="issue_priority" id="priority_issue_13" data-collapse-expand="issue-13" data-number-of-rows="9">通常</div>
+                            <div style="position: absolute;top: 280px; font-size: 0.8em;" class="issue_priority" id="priority_issue_15" data-collapse-expand="issue-15" data-number-of-rows="10">通常</div>
+                            <div style="position: absolute;top: 300px; font-size: 0.8em;" class="issue_priority" id="priority_issue_16" data-collapse-expand="issue-16" data-number-of-rows="11">通常</div>
+                            <div style="position: absolute;top: 320px; font-size: 0.8em;" class="issue_priority" id="priority_issue_17" data-collapse-expand="issue-17" data-number-of-rows="12">通常</div>
+                            <div style="position: absolute;top: 340px; font-size: 0.8em;" class="issue_priority" id="priority_issue_18" data-collapse-expand="issue-18" data-number-of-rows="13">通常</div>
+                            <div style="position: absolute;top: 360px; font-size: 0.8em;" class="issue_priority" id="priority_issue_19" data-collapse-expand="issue-19" data-number-of-rows="14">通常</div>
+                            <div style="position: absolute;top: 380px; font-size: 0.8em;" class="issue_priority" id="priority_issue_20" data-collapse-expand="issue-20" data-number-of-rows="15">通常</div>
+                            <div style="position: absolute;top: 400px; font-size: 0.8em;" class="issue_priority" id="priority_issue_21" data-collapse-expand="issue-21" data-number-of-rows="16">通常</div>
+                            <div style="position: absolute;top: 420px; font-size: 0.8em;" class="issue_priority" id="priority_issue_22" data-collapse-expand="issue-22" data-number-of-rows="17">通常</div>
+                            <div style="position: absolute;top: 440px; font-size: 0.8em;" class="issue_priority" id="priority_issue_23" data-collapse-expand="issue-23" data-number-of-rows="18">通常</div>
+                            <div style="position: absolute;top: 460px; font-size: 0.8em;" class="issue_priority" id="priority_issue_24" data-collapse-expand="issue-24" data-number-of-rows="19">通常</div>
+                            <div style="position: absolute;top: 480px; font-size: 0.8em;" class="issue_priority" id="priority_issue_25" data-collapse-expand="issue-25" data-number-of-rows="20">通常</div>
+                            <div style="position: absolute;top: 500px; font-size: 0.8em;" class="issue_priority" id="priority_issue_26" data-collapse-expand="issue-26" data-number-of-rows="21">通常</div>
+                            <div style="position: absolute;top: 520px; font-size: 0.8em;" class="issue_priority" id="priority_issue_27" data-collapse-expand="issue-27" data-number-of-rows="22">通常</div>
+                            <div style="position: absolute;top: 540px; font-size: 0.8em;" class="issue_priority" id="priority_issue_28" data-collapse-expand="issue-28" data-number-of-rows="23">通常</div>
+                            <div style="position: absolute;top: 560px; font-size: 0.8em;" class="issue_priority" id="priority_issue_29" data-collapse-expand="issue-29" data-number-of-rows="24">通常</div>
+                            <div style="position: absolute;top: 580px; font-size: 0.8em;" class="issue_priority" id="priority_issue_30" data-collapse-expand="issue-30" data-number-of-rows="25">通常</div>
+                            <div style="position: absolute;top: 600px; font-size: 0.8em;" class="issue_priority" id="priority_issue_31" data-collapse-expand="issue-31" data-number-of-rows="26">通常</div>
+                            <div style="position: absolute;top: 620px; font-size: 0.8em;" class="issue_priority" id="priority_issue_32" data-collapse-expand="issue-32" data-number-of-rows="27">通常</div>
+                            <div style="position: absolute;top: 640px; font-size: 0.8em;" class="issue_priority" id="priority_issue_33" data-collapse-expand="issue-33" data-number-of-rows="28">通常</div>
+                            <div style="position: absolute;top: 660px; font-size: 0.8em;" class="issue_priority" id="priority_issue_34" data-collapse-expand="issue-34" data-number-of-rows="29">通常</div>
+                            <div style="position: absolute;top: 680px; font-size: 0.8em;" class="issue_priority" id="priority_issue_35" data-collapse-expand="issue-35" data-number-of-rows="30">通常</div>
+                            <div style="position: absolute;top: 700px; font-size: 0.8em;" class="issue_priority" id="priority_issue_36" data-collapse-expand="issue-36" data-number-of-rows="31">通常</div>
+                            <div style="position: absolute;top: 720px; font-size: 0.8em;" class="issue_priority" id="priority_issue_37" data-collapse-expand="issue-37" data-number-of-rows="32">通常</div>
+                            <div style="position: absolute;top: 740px; font-size: 0.8em;" class="issue_priority" id="priority_issue_38" data-collapse-expand="issue-38" data-number-of-rows="33">通常</div>
+                            <div style="position: absolute;top: 760px; font-size: 0.8em;" class="issue_priority" id="priority_issue_39" data-collapse-expand="issue-39" data-number-of-rows="34">通常</div>
+                            <div style="position: absolute;top: 780px; font-size: 0.8em;" class="issue_priority" id="priority_issue_40" data-collapse-expand="issue-40" data-number-of-rows="35">通常</div>
+                            <div style="position: absolute;top: 800px; font-size: 0.8em;" class="issue_priority" id="priority_issue_11" data-collapse-expand="issue-11" data-number-of-rows="36">通常</div>
+                            <div style="position: absolute;top: 820px; font-size: 0.8em;" class="issue_priority" id="priority_issue_14" data-collapse-expand="issue-14" data-number-of-rows="37">通常</div>
+                            <div style="position: absolute;top: 860px; font-size: 0.8em;" class="issue_priority" id="priority_issue_1" data-collapse-expand="issue-1" data-number-of-rows="39">通常</div>
+                            <div style="position: absolute;top: 880px; font-size: 0.8em;" class="issue_priority" id="priority_issue_12" data-collapse-expand="issue-12" data-number-of-rows="40">通常</div>
+                            <div style="position: absolute;top: 920px; font-size: 0.8em;" class="issue_priority" id="priority_issue_10" data-collapse-expand="issue-10" data-number-of-rows="42">通常</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="gantt_assigned_to_column gantt_selected_column " id="assigned_to">
+                    <div style="position: relative;height: 1226px;" class="gantt_assigned_to_container gantt_selected_column_container">
+                        <div style="height: 1202px;overflow: hidden;" class="gantt_hdr"></div>
+                        <div style="height: 72px;background: #eee;" class="gantt_hdr">
+                            <p class="gantt_hdr_selected_column_name">担当者</p></div>
+                        <div class="gantt_assigned_to gantt_selected_column_content">
+                            <div style="position: absolute;top: 100px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_3" data-collapse-expand="issue-3" data-number-of-rows="1"></div>
+                            <div style="position: absolute;top: 120px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_4" data-collapse-expand="issue-4" data-number-of-rows="2"></div>
+                            <div style="position: absolute;top: 140px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_2" data-collapse-expand="issue-2" data-number-of-rows="3"></div>
+                            <div style="position: absolute;top: 160px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_5" data-collapse-expand="issue-5" data-number-of-rows="4"></div>
+                            <div style="position: absolute;top: 180px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_6" data-collapse-expand="issue-6" data-number-of-rows="5"></div>
+                            <div style="position: absolute;top: 200px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_7" data-collapse-expand="issue-7" data-number-of-rows="6"></div>
+                            <div style="position: absolute;top: 220px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_8" data-collapse-expand="issue-8" data-number-of-rows="7"></div>
+                            <div style="position: absolute;top: 240px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_9" data-collapse-expand="issue-9" data-number-of-rows="8"></div>
+                            <div style="position: absolute;top: 260px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_13" data-collapse-expand="issue-13" data-number-of-rows="9">
+                                <a class="user active" href="#">user1 user1</a></div>
+                            <div style="position: absolute;top: 280px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_15" data-collapse-expand="issue-15" data-number-of-rows="10"></div>
+                            <div style="position: absolute;top: 300px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_16" data-collapse-expand="issue-16" data-number-of-rows="11"></div>
+                            <div style="position: absolute;top: 320px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_17" data-collapse-expand="issue-17" data-number-of-rows="12"></div>
+                            <div style="position: absolute;top: 340px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_18" data-collapse-expand="issue-18" data-number-of-rows="13"></div>
+                            <div style="position: absolute;top: 360px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_19" data-collapse-expand="issue-19" data-number-of-rows="14"></div>
+                            <div style="position: absolute;top: 380px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_20" data-collapse-expand="issue-20" data-number-of-rows="15"></div>
+                            <div style="position: absolute;top: 400px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_21" data-collapse-expand="issue-21" data-number-of-rows="16"></div>
+                            <div style="position: absolute;top: 420px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_22" data-collapse-expand="issue-22" data-number-of-rows="17"></div>
+                            <div style="position: absolute;top: 440px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_23" data-collapse-expand="issue-23" data-number-of-rows="18"></div>
+                            <div style="position: absolute;top: 460px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_24" data-collapse-expand="issue-24" data-number-of-rows="19"></div>
+                            <div style="position: absolute;top: 480px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_25" data-collapse-expand="issue-25" data-number-of-rows="20"></div>
+                            <div style="position: absolute;top: 500px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_26" data-collapse-expand="issue-26" data-number-of-rows="21"></div>
+                            <div style="position: absolute;top: 520px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_27" data-collapse-expand="issue-27" data-number-of-rows="22"></div>
+                            <div style="position: absolute;top: 540px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_28" data-collapse-expand="issue-28" data-number-of-rows="23"></div>
+                            <div style="position: absolute;top: 560px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_29" data-collapse-expand="issue-29" data-number-of-rows="24"></div>
+                            <div style="position: absolute;top: 580px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_30" data-collapse-expand="issue-30" data-number-of-rows="25"></div>
+                            <div style="position: absolute;top: 600px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_31" data-collapse-expand="issue-31" data-number-of-rows="26"></div>
+                            <div style="position: absolute;top: 620px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_32" data-collapse-expand="issue-32" data-number-of-rows="27"></div>
+                            <div style="position: absolute;top: 640px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_33" data-collapse-expand="issue-33" data-number-of-rows="28"></div>
+                            <div style="position: absolute;top: 660px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_34" data-collapse-expand="issue-34" data-number-of-rows="29"></div>
+                            <div style="position: absolute;top: 680px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_35" data-collapse-expand="issue-35" data-number-of-rows="30"></div>
+                            <div style="position: absolute;top: 700px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_36" data-collapse-expand="issue-36" data-number-of-rows="31"></div>
+                            <div style="position: absolute;top: 720px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_37" data-collapse-expand="issue-37" data-number-of-rows="32"></div>
+                            <div style="position: absolute;top: 740px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_38" data-collapse-expand="issue-38" data-number-of-rows="33"></div>
+                            <div style="position: absolute;top: 760px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_39" data-collapse-expand="issue-39" data-number-of-rows="34"></div>
+                            <div style="position: absolute;top: 780px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_40" data-collapse-expand="issue-40" data-number-of-rows="35"></div>
+                            <div style="position: absolute;top: 800px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_11" data-collapse-expand="issue-11" data-number-of-rows="36"></div>
+                            <div style="position: absolute;top: 820px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_14" data-collapse-expand="issue-14" data-number-of-rows="37"></div>
+                            <div style="position: absolute;top: 860px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_1" data-collapse-expand="issue-1" data-number-of-rows="39"></div>
+                            <div style="position: absolute;top: 880px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_12" data-collapse-expand="issue-12" data-number-of-rows="40"></div>
+                            <div style="position: absolute;top: 920px; font-size: 0.8em;" class="issue_assigned_to" id="assigned_to_issue_10" data-collapse-expand="issue-10" data-number-of-rows="42"></div>
+                        </div>
+                    </div>
+                </td>
+                <td class="gantt_updated_on_column gantt_selected_column last_gantt_selected_column" id="updated_on">
+                    <div style="position: relative;height: 1226px;" class="gantt_updated_on_container gantt_selected_column_container">
+                        <div style="height: 1202px;overflow: hidden;" class="gantt_hdr"></div>
+                        <div style="height: 72px;background: #eee;" class="gantt_hdr">
+                            <p class="gantt_hdr_selected_column_name">更新日</p></div>
+                        <div class="gantt_updated_on gantt_selected_column_content">
+                            <div style="position: absolute;top: 100px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_3" data-collapse-expand="issue-3" data-number-of-rows="1">2022/10/21 19:08</div>
+                            <div style="position: absolute;top: 120px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_4" data-collapse-expand="issue-4" data-number-of-rows="2">2022/10/21 19:05</div>
+                            <div style="position: absolute;top: 140px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_2" data-collapse-expand="issue-2" data-number-of-rows="3">2022/10/21 19:05</div>
+                            <div style="position: absolute;top: 160px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_5" data-collapse-expand="issue-5" data-number-of-rows="4">2022/10/21 19:04</div>
+                            <div style="position: absolute;top: 180px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_6" data-collapse-expand="issue-6" data-number-of-rows="5">2022/10/21 19:04</div>
+                            <div style="position: absolute;top: 200px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_7" data-collapse-expand="issue-7" data-number-of-rows="6">2022/10/21 19:04</div>
+                            <div style="position: absolute;top: 220px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_8" data-collapse-expand="issue-8" data-number-of-rows="7">2022/10/21 19:04</div>
+                            <div style="position: absolute;top: 240px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_9" data-collapse-expand="issue-9" data-number-of-rows="8">2022/10/21 19:08</div>
+                            <div style="position: absolute;top: 260px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_13" data-collapse-expand="issue-13" data-number-of-rows="9">2022/10/21 19:09</div>
+                            <div style="position: absolute;top: 280px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_15" data-collapse-expand="issue-15" data-number-of-rows="10">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 300px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_16" data-collapse-expand="issue-16" data-number-of-rows="11">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 320px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_17" data-collapse-expand="issue-17" data-number-of-rows="12">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 340px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_18" data-collapse-expand="issue-18" data-number-of-rows="13">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 360px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_19" data-collapse-expand="issue-19" data-number-of-rows="14">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 380px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_20" data-collapse-expand="issue-20" data-number-of-rows="15">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 400px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_21" data-collapse-expand="issue-21" data-number-of-rows="16">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 420px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_22" data-collapse-expand="issue-22" data-number-of-rows="17">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 440px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_23" data-collapse-expand="issue-23" data-number-of-rows="18">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 460px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_24" data-collapse-expand="issue-24" data-number-of-rows="19">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 480px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_25" data-collapse-expand="issue-25" data-number-of-rows="20">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 500px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_26" data-collapse-expand="issue-26" data-number-of-rows="21">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 520px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_27" data-collapse-expand="issue-27" data-number-of-rows="22">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 540px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_28" data-collapse-expand="issue-28" data-number-of-rows="23">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 560px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_29" data-collapse-expand="issue-29" data-number-of-rows="24">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 580px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_30" data-collapse-expand="issue-30" data-number-of-rows="25">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 600px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_31" data-collapse-expand="issue-31" data-number-of-rows="26">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 620px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_32" data-collapse-expand="issue-32" data-number-of-rows="27">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 640px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_33" data-collapse-expand="issue-33" data-number-of-rows="28">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 660px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_34" data-collapse-expand="issue-34" data-number-of-rows="29">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 680px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_35" data-collapse-expand="issue-35" data-number-of-rows="30">2022/10/21 08:01</div>
+                            <div style="position: absolute;top: 700px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_36" data-collapse-expand="issue-36" data-number-of-rows="31">2022/10/21 08:02</div>
+                            <div style="position: absolute;top: 720px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_37" data-collapse-expand="issue-37" data-number-of-rows="32">2022/10/21 08:02</div>
+                            <div style="position: absolute;top: 740px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_38" data-collapse-expand="issue-38" data-number-of-rows="33">2022/10/21 08:02</div>
+                            <div style="position: absolute;top: 760px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_39" data-collapse-expand="issue-39" data-number-of-rows="34">2022/10/21 08:02</div>
+                            <div style="position: absolute;top: 780px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_40" data-collapse-expand="issue-40" data-number-of-rows="35">2022/10/21 08:02</div>
+                            <div style="position: absolute;top: 800px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_11" data-collapse-expand="issue-11" data-number-of-rows="36">2022/10/22 23:47</div>
+                            <div style="position: absolute;top: 820px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_14" data-collapse-expand="issue-14" data-number-of-rows="37">2022/10/22 23:47</div>
+                            <div style="position: absolute;top: 860px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_1" data-collapse-expand="issue-1" data-number-of-rows="39">2022/10/18 17:05</div>
+                            <div style="position: absolute;top: 880px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_12" data-collapse-expand="issue-12" data-number-of-rows="40">2022/10/21 19:06</div>
+                            <div style="position: absolute;top: 920px; font-size: 0.8em;" class="issue_updated_on" id="updated_on_issue_10" data-collapse-expand="issue-10" data-number-of-rows="42">2022/10/21 19:09</div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div style="position:relative;height:1226px;overflow:auto;" id="gantt_area">
+                        <div style="width: 2911px;height: 72px;background: #eee;" class="gantt_hdr">&nbsp;</div>
+
+                        <div style="left: 0px;width: 495px;height: 18px;" class="gantt_hdr">
+                            <a title="10月 2022" href="#">2022-10</a>
+                        </div>
+                        <div style="left: 496px;width: 479px;height: 18px;" class="gantt_hdr">
+                            <a title="11月 2022" href="#">2022-11</a>
+                        </div>
+                        <div style="left: 976px;width: 495px;height: 18px;" class="gantt_hdr">
+                            <a title="12月 2022" href="#">2022-12</a>
+                        </div>
+                        <div style="left: 1472px;width: 495px;height: 18px;" class="gantt_hdr">
+                            <a title="1月 2023" href="#">2023-1</a>
+                        </div>
+                        <div style="left: 1968px;width: 447px;height: 18px;" class="gantt_hdr">
+                            <a title="2月 2023" href="#">2023-2</a>
+                        </div>
+                        <div style="left: 2416px;width: 495px;height: 18px;" class="gantt_hdr">
+                            <a title="3月 2023" href="#">2023-3</a>
+                        </div>
+                        <div style="left: 0px;top: 19px;width: 31px;height: 17px;" class="gantt_hdr">&nbsp;</div>
+                        <div style="left: 32px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                40
+                            </small></div>
+                        <div style="left: 144px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                41
+                            </small></div>
+                        <div style="left: 256px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                42
+                            </small></div>
+                        <div style="left: 368px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                43
+                            </small></div>
+                        <div style="left: 480px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                44
+                            </small></div>
+                        <div style="left: 592px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                45
+                            </small></div>
+                        <div style="left: 704px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                46
+                            </small></div>
+                        <div style="left: 816px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                47
+                            </small></div>
+                        <div style="left: 928px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                48
+                            </small></div>
+                        <div style="left: 1040px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                49
+                            </small></div>
+                        <div style="left: 1152px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                50
+                            </small></div>
+                        <div style="left: 1264px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                51
+                            </small></div>
+                        <div style="left: 1376px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                52
+                            </small></div>
+                        <div style="left: 1488px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                1
+                            </small></div>
+                        <div style="left: 1600px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                2
+                            </small></div>
+                        <div style="left: 1712px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                3
+                            </small></div>
+                        <div style="left: 1824px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                4
+                            </small></div>
+                        <div style="left: 1936px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                5
+                            </small></div>
+                        <div style="left: 2048px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                6
+                            </small></div>
+                        <div style="left: 2160px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                7
+                            </small></div>
+                        <div style="left: 2272px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                8
+                            </small></div>
+                        <div style="left: 2384px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                9
+                            </small></div>
+                        <div style="left: 2496px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                10
+                            </small></div>
+                        <div style="left: 2608px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                11
+                            </small></div>
+                        <div style="left: 2720px;top: 19px;width: 111px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                12
+                            </small></div>
+                        <div style="left: 2832px;top: 19px;width: 79px;height: 17px;" class="gantt_hdr">
+                            <small>
+                                13
+                            </small></div>
+                        <div style="left:0px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            1
+                        </div>
+                        <div style="left:16px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            2
+                        </div>
+                        <div style="left:32px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            3
+                        </div>
+                        <div style="left:48px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            4
+                        </div>
+                        <div style="left:64px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            5
+                        </div>
+                        <div style="left:80px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            6
+                        </div>
+                        <div style="left:96px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            7
+                        </div>
+                        <div style="left:112px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            8
+                        </div>
+                        <div style="left:128px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            9
+                        </div>
+                        <div style="left:144px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            10
+                        </div>
+                        <div style="left:160px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            11
+                        </div>
+                        <div style="left:176px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            12
+                        </div>
+                        <div style="left:192px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            13
+                        </div>
+                        <div style="left:208px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            14
+                        </div>
+                        <div style="left:224px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            15
+                        </div>
+                        <div style="left:240px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            16
+                        </div>
+                        <div style="left:256px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            17
+                        </div>
+                        <div style="left:272px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            18
+                        </div>
+                        <div style="left:288px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            19
+                        </div>
+                        <div style="left:304px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            20
+                        </div>
+                        <div style="left:320px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            21
+                        </div>
+                        <div style="left:336px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            22
+                        </div>
+                        <div style="left:352px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            23
+                        </div>
+                        <div style="left:368px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            24
+                        </div>
+                        <div style="left:384px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            25
+                        </div>
+                        <div style="left:400px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            26
+                        </div>
+                        <div style="left:416px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            27
+                        </div>
+                        <div style="left:432px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            28
+                        </div>
+                        <div style="left:448px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            29
+                        </div>
+                        <div style="left:464px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            30
+                        </div>
+                        <div style="left:480px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            31
+                        </div>
+                        <div style="left:496px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            1
+                        </div>
+                        <div style="left:512px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            2
+                        </div>
+                        <div style="left:528px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            3
+                        </div>
+                        <div style="left:544px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            4
+                        </div>
+                        <div style="left:560px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            5
+                        </div>
+                        <div style="left:576px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            6
+                        </div>
+                        <div style="left:592px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            7
+                        </div>
+                        <div style="left:608px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            8
+                        </div>
+                        <div style="left:624px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            9
+                        </div>
+                        <div style="left:640px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            10
+                        </div>
+                        <div style="left:656px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            11
+                        </div>
+                        <div style="left:672px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            12
+                        </div>
+                        <div style="left:688px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            13
+                        </div>
+                        <div style="left:704px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            14
+                        </div>
+                        <div style="left:720px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            15
+                        </div>
+                        <div style="left:736px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            16
+                        </div>
+                        <div style="left:752px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            17
+                        </div>
+                        <div style="left:768px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            18
+                        </div>
+                        <div style="left:784px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            19
+                        </div>
+                        <div style="left:800px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            20
+                        </div>
+                        <div style="left:816px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            21
+                        </div>
+                        <div style="left:832px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            22
+                        </div>
+                        <div style="left:848px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            23
+                        </div>
+                        <div style="left:864px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            24
+                        </div>
+                        <div style="left:880px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            25
+                        </div>
+                        <div style="left:896px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            26
+                        </div>
+                        <div style="left:912px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            27
+                        </div>
+                        <div style="left:928px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            28
+                        </div>
+                        <div style="left:944px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            29
+                        </div>
+                        <div style="left:960px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            30
+                        </div>
+                        <div style="left:976px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            1
+                        </div>
+                        <div style="left:992px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            2
+                        </div>
+                        <div style="left:1008px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            3
+                        </div>
+                        <div style="left:1024px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            4
+                        </div>
+                        <div style="left:1040px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            5
+                        </div>
+                        <div style="left:1056px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            6
+                        </div>
+                        <div style="left:1072px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            7
+                        </div>
+                        <div style="left:1088px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            8
+                        </div>
+                        <div style="left:1104px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            9
+                        </div>
+                        <div style="left:1120px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            10
+                        </div>
+                        <div style="left:1136px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            11
+                        </div>
+                        <div style="left:1152px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            12
+                        </div>
+                        <div style="left:1168px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            13
+                        </div>
+                        <div style="left:1184px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            14
+                        </div>
+                        <div style="left:1200px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            15
+                        </div>
+                        <div style="left:1216px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            16
+                        </div>
+                        <div style="left:1232px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            17
+                        </div>
+                        <div style="left:1248px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            18
+                        </div>
+                        <div style="left:1264px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            19
+                        </div>
+                        <div style="left:1280px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            20
+                        </div>
+                        <div style="left:1296px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            21
+                        </div>
+                        <div style="left:1312px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            22
+                        </div>
+                        <div style="left:1328px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            23
+                        </div>
+                        <div style="left:1344px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            24
+                        </div>
+                        <div style="left:1360px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            25
+                        </div>
+                        <div style="left:1376px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            26
+                        </div>
+                        <div style="left:1392px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            27
+                        </div>
+                        <div style="left:1408px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            28
+                        </div>
+                        <div style="left:1424px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            29
+                        </div>
+                        <div style="left:1440px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            30
+                        </div>
+                        <div style="left:1456px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            31
+                        </div>
+                        <div style="left:1472px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            1
+                        </div>
+                        <div style="left:1488px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            2
+                        </div>
+                        <div style="left:1504px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            3
+                        </div>
+                        <div style="left:1520px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            4
+                        </div>
+                        <div style="left:1536px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            5
+                        </div>
+                        <div style="left:1552px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            6
+                        </div>
+                        <div style="left:1568px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            7
+                        </div>
+                        <div style="left:1584px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            8
+                        </div>
+                        <div style="left:1600px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            9
+                        </div>
+                        <div style="left:1616px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            10
+                        </div>
+                        <div style="left:1632px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            11
+                        </div>
+                        <div style="left:1648px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            12
+                        </div>
+                        <div style="left:1664px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            13
+                        </div>
+                        <div style="left:1680px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            14
+                        </div>
+                        <div style="left:1696px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            15
+                        </div>
+                        <div style="left:1712px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            16
+                        </div>
+                        <div style="left:1728px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            17
+                        </div>
+                        <div style="left:1744px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            18
+                        </div>
+                        <div style="left:1760px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            19
+                        </div>
+                        <div style="left:1776px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            20
+                        </div>
+                        <div style="left:1792px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            21
+                        </div>
+                        <div style="left:1808px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            22
+                        </div>
+                        <div style="left:1824px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            23
+                        </div>
+                        <div style="left:1840px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            24
+                        </div>
+                        <div style="left:1856px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            25
+                        </div>
+                        <div style="left:1872px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            26
+                        </div>
+                        <div style="left:1888px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            27
+                        </div>
+                        <div style="left:1904px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            28
+                        </div>
+                        <div style="left:1920px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            29
+                        </div>
+                        <div style="left:1936px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            30
+                        </div>
+                        <div style="left:1952px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            31
+                        </div>
+                        <div style="left:1968px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            1
+                        </div>
+                        <div style="left:1984px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            2
+                        </div>
+                        <div style="left:2000px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            3
+                        </div>
+                        <div style="left:2016px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            4
+                        </div>
+                        <div style="left:2032px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            5
+                        </div>
+                        <div style="left:2048px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            6
+                        </div>
+                        <div style="left:2064px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            7
+                        </div>
+                        <div style="left:2080px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            8
+                        </div>
+                        <div style="left:2096px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            9
+                        </div>
+                        <div style="left:2112px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            10
+                        </div>
+                        <div style="left:2128px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            11
+                        </div>
+                        <div style="left:2144px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            12
+                        </div>
+                        <div style="left:2160px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            13
+                        </div>
+                        <div style="left:2176px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            14
+                        </div>
+                        <div style="left:2192px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            15
+                        </div>
+                        <div style="left:2208px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            16
+                        </div>
+                        <div style="left:2224px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            17
+                        </div>
+                        <div style="left:2240px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            18
+                        </div>
+                        <div style="left:2256px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            19
+                        </div>
+                        <div style="left:2272px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            20
+                        </div>
+                        <div style="left:2288px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            21
+                        </div>
+                        <div style="left:2304px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            22
+                        </div>
+                        <div style="left:2320px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            23
+                        </div>
+                        <div style="left:2336px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            24
+                        </div>
+                        <div style="left:2352px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            25
+                        </div>
+                        <div style="left:2368px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            26
+                        </div>
+                        <div style="left:2384px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            27
+                        </div>
+                        <div style="left:2400px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            28
+                        </div>
+                        <div style="left:2416px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            1
+                        </div>
+                        <div style="left:2432px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            2
+                        </div>
+                        <div style="left:2448px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            3
+                        </div>
+                        <div style="left:2464px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            4
+                        </div>
+                        <div style="left:2480px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            5
+                        </div>
+                        <div style="left:2496px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            6
+                        </div>
+                        <div style="left:2512px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            7
+                        </div>
+                        <div style="left:2528px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            8
+                        </div>
+                        <div style="left:2544px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            9
+                        </div>
+                        <div style="left:2560px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            10
+                        </div>
+                        <div style="left:2576px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            11
+                        </div>
+                        <div style="left:2592px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            12
+                        </div>
+                        <div style="left:2608px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            13
+                        </div>
+                        <div style="left:2624px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            14
+                        </div>
+                        <div style="left:2640px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            15
+                        </div>
+                        <div style="left:2656px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            16
+                        </div>
+                        <div style="left:2672px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            17
+                        </div>
+                        <div style="left:2688px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            18
+                        </div>
+                        <div style="left:2704px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            19
+                        </div>
+                        <div style="left:2720px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            20
+                        </div>
+                        <div style="left:2736px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            21
+                        </div>
+                        <div style="left:2752px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            22
+                        </div>
+                        <div style="left:2768px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            23
+                        </div>
+                        <div style="left:2784px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            24
+                        </div>
+                        <div style="left:2800px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            25
+                        </div>
+                        <div style="left:2816px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr nwday">
+                            26
+                        </div>
+                        <div style="left:2832px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            27
+                        </div>
+                        <div style="left:2848px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            28
+                        </div>
+                        <div style="left:2864px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            29
+                        </div>
+                        <div style="left:2880px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            30
+                        </div>
+                        <div style="left:2896px;top:37px;width:15px;height:1165px;font-size:0.7em;" class="gantt_hdr">
+                            31
+                        </div>
+                        <div style="left: 0px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 16px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 32px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 48px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 64px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 80px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 96px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 112px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 128px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 144px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 160px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 176px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 192px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 208px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 224px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 240px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 256px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 272px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 288px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 304px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 320px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 336px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 352px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 368px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 384px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 400px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 416px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 432px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 448px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 464px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 480px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 496px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 512px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 528px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 544px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 560px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 576px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 592px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 608px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 624px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 640px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 656px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 672px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 688px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 704px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 720px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 736px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 752px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 768px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 784px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 800px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 816px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 832px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 848px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 864px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 880px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 896px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 912px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 928px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 944px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 960px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 976px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 992px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1008px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1024px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1040px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1056px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1072px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1088px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1104px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1120px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1136px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1152px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1168px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1184px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1200px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1216px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1232px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1248px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1264px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1280px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1296px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1312px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1328px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1344px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1360px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1376px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1392px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1408px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1424px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1440px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1456px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1472px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1488px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1504px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1520px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1536px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1552px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1568px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1584px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1600px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1616px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1632px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1648px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1664px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1680px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1696px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1712px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1728px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1744px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1760px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1776px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1792px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1808px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1824px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1840px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1856px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1872px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 1888px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 1904px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 1920px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 1936px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 1952px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 1968px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 1984px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2000px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2016px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2032px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2048px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2064px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2080px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2096px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2112px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2128px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2144px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2160px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2176px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2192px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2208px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2224px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2240px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2256px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2272px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2288px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2304px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2320px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2336px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2352px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2368px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2384px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2400px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2416px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2432px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2448px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2464px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2480px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2496px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2512px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2528px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2544px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2560px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2576px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2592px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2608px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2624px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2640px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2656px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2672px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2688px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2704px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2720px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2736px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2752px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2768px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2784px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <div style="left: 2800px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            土
+                        </div>
+                        <div style="left: 2816px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr nwday">
+                            日
+                        </div>
+                        <div style="left: 2832px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            月
+                        </div>
+                        <div style="left: 2848px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            火
+                        </div>
+                        <div style="left: 2864px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            水
+                        </div>
+                        <div style="left: 2880px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            木
+                        </div>
+                        <div style="left: 2896px;top: 55px;width: 15px;height: 1147px;font-size:0.7em;" class="gantt_hdr">
+                            金
+                        </div>
+                        <form data-cm-url="/issues/context_menu" action="#" accept-charset="UTF-8" name="form-07ad065a" method="post">
+                            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/><input type="hidden" name="authenticity_token" value="3xDoxq0ZnC4VLywDgCyUKfzR0dGmI5/P8c1+7/o9SaVOoZj3FVC9HostR2Y3AvFifOMS8g4A9hFMcQOg5Lcpbg==" autocomplete="off"/>
+                            <input type="hidden" name="back_url" value="" autocomplete="off"/>
+                            <div style="top:80px;left:0px;width:494px;" class="task project task_todo" data-collapse-expand="project-1" data-number-of-rows="0">&nbsp;</div>
+                            <div style="top:80px;left:0px;width:15px;" class="task project marker starting" data-collapse-expand="project-1" data-number-of-rows="0">&nbsp;</div>
+                            <div style="top:80px;left:496px;width:15px;" class="task project marker ending" data-collapse-expand="project-1" data-number-of-rows="0">&nbsp;</div>
+                            <div style="top:80px;left:504px;width:15px;" class="task project label" data-collapse-expand="project-1" data-number-of-rows="0">test1</div>
+                            <div style="top:100px;left:0px;width:494px;" class="task leaf task_todo" id="task-todo-issue-3" data-collapse-expand="issue-3" data-number-of-rows="1">&nbsp;</div>
+                            <div style="top:100px;left:0px;width:366px;" class="task leaf task_late" data-collapse-expand="issue-3" data-number-of-rows="1">&nbsp;</div>
+                            <div style="top:100px;left:504px;width:15px;" class="task leaf label" data-collapse-expand="issue-3" data-number-of-rows="1">新規 0%</div>
+                            <div style="position: absolute;top:100px;left:0px;width:496px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-3" data-number-of-rows="1">
+                                <span class="tip"><a class="issue tracker-1 status-1 priority-2 priority-default behind-schedule created-by-me" href="#">バグ #3</a>: test3<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/01<br/><strong>期日</strong>: 2022/10/31<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="3" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:120px;left:128px;width:142px;" class="task leaf task_todo" id="task-todo-issue-4" data-collapse-expand="issue-4" data-number-of-rows="2">&nbsp;</div>
+                            <div style="top:120px;left:128px;width:142px;" class="task leaf task_late" data-collapse-expand="issue-4" data-number-of-rows="2">&nbsp;</div>
+                            <div style="top:120px;left:280px;width:15px;" class="task leaf label" data-collapse-expand="issue-4" data-number-of-rows="2">新規 0%</div>
+                            <div style="position: absolute;top:120px;left:128px;width:144px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-4" data-number-of-rows="2">
+                                <span class="tip"><a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #4</a>: issue4<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/09<br/><strong>期日</strong>: 2022/10/17<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="4" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:140px;left:272px;width:46px;" class="task leaf task_todo" id="task-todo-issue-2" data-collapse-expand="issue-2" data-number-of-rows="3">&nbsp;</div>
+                            <div style="top:140px;left:272px;width:46px;" class="task leaf task_late" data-collapse-expand="issue-2" data-number-of-rows="3">&nbsp;</div>
+                            <div style="top:140px;left:328px;width:15px;" class="task leaf label" data-collapse-expand="issue-2" data-number-of-rows="3">新規 0%</div>
+                            <div style="position: absolute;top:140px;left:272px;width:48px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-2" data-number-of-rows="3">
+                                <span class="tip"><a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">バグ #2</a>: test2<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/18<br/><strong>期日</strong>: 2022/10/20<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="2" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:160px;left:320px;width:30px;" class="task parent task_todo" id="task-todo-issue-5" data-collapse-expand="issue-5" data-number-of-rows="4">&nbsp;</div>
+                            <div style="top:160px;left:320px;width:30px;" class="task parent task_late" data-collapse-expand="issue-5" data-number-of-rows="4">&nbsp;</div>
+                            <div style="top:160px;left:320px;width:1px;" class="task parent task_done" id="task-done-issue-5" data-collapse-expand="issue-5" data-number-of-rows="4">&nbsp;</div>
+                            <div style="top:160px;left:320px;width:15px;" class="task parent marker starting" data-collapse-expand="issue-5" data-number-of-rows="4">&nbsp;</div>
+                            <div style="top:160px;left:352px;width:15px;" class="task parent marker ending" data-collapse-expand="issue-5" data-number-of-rows="4">&nbsp;</div>
+                            <div style="top:160px;left:360px;width:15px;" class="task parent label" data-collapse-expand="issue-5" data-number-of-rows="4">新規 10%</div>
+                            <div style="position: absolute;top:160px;left:320px;width:32px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-5" data-number-of-rows="4">
+                                <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue parent behind-schedule created-by-me" href="#">サポート #5</a>: issue5<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/22<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="5" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:180px;left:320px;width:30px;" class="task parent task_todo" id="task-todo-issue-6" data-collapse-expand="issue-6" data-number-of-rows="5">&nbsp;</div>
+                            <div style="top:180px;left:320px;width:30px;" class="task parent task_late" data-collapse-expand="issue-6" data-number-of-rows="5">&nbsp;</div>
+                            <div style="top:180px;left:320px;width:1px;" class="task parent task_done" id="task-done-issue-6" data-collapse-expand="issue-6" data-number-of-rows="5">&nbsp;</div>
+                            <div style="top:180px;left:320px;width:15px;" class="task parent marker starting" data-collapse-expand="issue-6" data-number-of-rows="5">&nbsp;</div>
+                            <div style="top:180px;left:352px;width:15px;" class="task parent marker ending" data-collapse-expand="issue-6" data-number-of-rows="5">&nbsp;</div>
+                            <div style="top:180px;left:360px;width:15px;" class="task parent label" data-collapse-expand="issue-6" data-number-of-rows="5">新規 10%</div>
+                            <div style="position: absolute;top:180px;left:320px;width:32px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-6" data-number-of-rows="5">
+                                <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue child parent behind-schedule created-by-me" href="#">サポート #6</a>: issue6<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/22<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="6" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:200px;left:320px;width:30px;" class="task leaf task_todo" id="task-todo-issue-7" data-collapse-expand="issue-7" data-number-of-rows="6">&nbsp;</div>
+                            <div style="top:200px;left:320px;width:30px;" class="task leaf task_late" data-collapse-expand="issue-7" data-number-of-rows="6">&nbsp;</div>
+                            <div style="top:200px;left:320px;width:4px;" class="task leaf task_done" id="task-done-issue-7" data-collapse-expand="issue-7" data-number-of-rows="6">&nbsp;</div>
+                            <div style="top:200px;left:360px;width:15px;" class="task leaf label" data-collapse-expand="issue-7" data-number-of-rows="6">新規 20%</div>
+                            <div style="position: absolute;top:200px;left:320px;width:32px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-7" data-number-of-rows="6">
+                                <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue child behind-schedule created-by-me" href="#">サポート #7</a>: issue7<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/22<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="7" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:240px;left:320px;width:174px;" class="task leaf task_todo" id="task-todo-issue-9" data-collapse-expand="issue-9" data-number-of-rows="8">&nbsp;</div>
+                            <div style="top:240px;left:320px;width:138px;" class="task leaf task_done" id="task-done-issue-9" data-collapse-expand="issue-9" data-number-of-rows="8">&nbsp;</div>
+                            <div style="top:240px;left:504px;width:15px;" class="task leaf label" data-collapse-expand="issue-9" data-number-of-rows="8">新規 80%</div>
+                            <div style="position: absolute;top:240px;left:320px;width:176px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-9" data-number-of-rows="8">
+                                <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #9</a>: issue9<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: 2022/10/31<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="9" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:800px;left:384px;width:46px;" class="task leaf task_todo" id="task-todo-issue-11" data-collapse-expand="issue-11" data-number-of-rows="36">&nbsp;</div>
+                            <div style="top:800px;left:440px;width:15px;" class="task leaf label" data-collapse-expand="issue-11" data-number-of-rows="36">新規 0%</div>
+                            <div style="position: absolute;top:800px;left:384px;width:48px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-11" data-number-of-rows="36">
+                                <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #11</a>: issue11<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/25<br/><strong>期日</strong>: 2022/10/27<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="11" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:820px;left:384px;width:78px;" class="task leaf task_todo" id="task-todo-issue-14" data-collapse-expand="issue-14" data-number-of-rows="37">&nbsp;</div>
+                            <div style="top:820px;left:472px;width:15px;" class="task leaf label" data-collapse-expand="issue-14" data-number-of-rows="37">新規 0%</div>
+                            <div style="position: absolute;top:820px;left:384px;width:80px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-14" data-number-of-rows="37">
+                                <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default created-by-me" href="#">サポート #14</a>: issue14<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/25<br/><strong>期日</strong>: 2022/10/29<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="14" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:840px;left:272px;width:-18px;" class="task version task_todo" id="task-todo-version-1" data-collapse-expand="version-1" data-number-of-rows="38">&nbsp;</div>
+                            <div style="top:840px;left:272px;width:15px;" class="task version marker starting" data-collapse-expand="version-1" data-number-of-rows="38">&nbsp;</div>
+                            <div style="top:840px;left:256px;width:15px;" class="task version marker ending" data-collapse-expand="version-1" data-number-of-rows="38">&nbsp;</div>
+                            <div style="top:840px;left:264px;width:15px;" class="task version label" data-collapse-expand="version-1" data-number-of-rows="38">version1 50%</div>
+                            <div style="top:860px;left:272px;width:-18px;" class="task leaf task_todo" id="task-todo-issue-1" data-collapse-expand="issue-1" data-number-of-rows="39">&nbsp;</div>
+                            <div style="top:860px;left:264px;width:15px;" class="task leaf label" data-collapse-expand="issue-1" data-number-of-rows="39">新規 0%</div>
+                            <div style="position: absolute;top:860px;left:272px;width:-16px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-1" data-number-of-rows="39">
+                                <span class="tip"><a class="issue tracker-2 status-1 priority-2 priority-default created-by-me" href="#">機能 #1</a>: ticket1<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/18<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="1" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:880px;left:272px;width:30px;" class="task leaf task_todo" id="task-todo-issue-12" data-collapse-expand="issue-12" data-number-of-rows="40">&nbsp;</div>
+                            <div style="top:880px;left:272px;width:30px;" class="task leaf task_late" data-collapse-expand="issue-12" data-number-of-rows="40">&nbsp;</div>
+                            <div style="top:880px;left:272px;width:30px;" class="task leaf task_done" id="task-done-issue-12" data-collapse-expand="issue-12" data-number-of-rows="40">&nbsp;</div>
+                            <div style="top:880px;left:312px;width:15px;" class="task leaf label" data-collapse-expand="issue-12" data-number-of-rows="40">新規 100%</div>
+                            <div style="position: absolute;top:880px;left:272px;width:32px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-12" data-number-of-rows="40">
+                                <span class="tip"><a class="issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me" href="#">サポート #12</a>: issue12<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 新規<br/><strong>開始日</strong>: 2022/10/18<br/><strong>期日</strong>: 2022/10/19<br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="12" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                            <div style="top:900px;left:320px;width:174px;" class="task version task_todo" id="task-todo-version-2" data-collapse-expand="version-2" data-number-of-rows="41">&nbsp;</div>
+                            <div style="top:900px;left:320px;width:46px;" class="task version task_late" data-collapse-expand="version-2" data-number-of-rows="41">&nbsp;</div>
+                            <div style="top:900px;left:320px;width:15px;" class="task version marker starting" data-collapse-expand="version-2" data-number-of-rows="41">&nbsp;</div>
+                            <div style="top:900px;left:496px;width:15px;" class="task version marker ending" data-collapse-expand="version-2" data-number-of-rows="41">&nbsp;</div>
+                            <div style="top:900px;left:504px;width:15px;" class="task version label" data-collapse-expand="version-2" data-number-of-rows="41">version2 0%</div>
+                            <div style="top:920px;left:320px;width:174px;" class="task leaf task_todo" id="task-todo-issue-10" data-collapse-expand="issue-10" data-number-of-rows="42">&nbsp;</div>
+                            <div style="top:920px;left:320px;width:46px;" class="task leaf task_late" data-collapse-expand="issue-10" data-number-of-rows="42">&nbsp;</div>
+                            <div style="top:920px;left:504px;width:15px;" class="task leaf label" data-collapse-expand="issue-10" data-number-of-rows="42">解決 0%</div>
+                            <div style="position: absolute;top:920px;left:320px;width:176px;height:12px;" class="tooltip hascontextmenu" data-collapse-expand="issue-10" data-number-of-rows="42">
+                                <span class="tip"><a class="issue tracker-3 status-3 priority-2 priority-default created-by-me" href="#">サポート #10</a>: issue10<br/><br/><strong>プロジェクト</strong>: <a href="#">test1</a><br/><strong>ステータス</strong>: 解決<br/><strong>開始日</strong>: 2022/10/21<br/><strong>期日</strong>: <br/><strong>担当者</strong>:  <br/><strong>優先度</strong>: 通常</span><input type="checkbox" name="ids[]" value="10" style="display:none;" class="toggle-selection"></input>
+                            </div>
+                        </form>
+                        <div style="position: absolute;height: 1130px;top: 73px;left: 367px;width:10px;border-left: 1px dashed red;" id="today_line">&nbsp;</div>
+                        <div style="position: absolute;height: 1130px;top: 73px;left: 0px;width: 2911px;" id="gantt_draw_area"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <span class="pagination">
+          <ul class="pages">
+            <li class="previous page">
+              <a href="#">« 前</a>
+            </li><li class="next page">
+              <a href="#">次 »</a>
+            </li>
+          </ul>
+        </span>
+
+        <p class="other-formats">他の形式にエクスポート:
+            <span><a class="pdf" rel="nofollow" href="#">PDF</a></span>
+            <span><a class="png" rel="nofollow" href="#">PNG</a></span>
+        </p>
+
+        <script>
+          //<![CDATA[
+          var issue_relation_type = {
+            "blocks": {"landscape_margin": 16, "color": "#F34F4F"},
+            "precedes": {"landscape_margin": 20, "color": "#628FEA"}
+          };
+          $(function () {
+            disable_unavailable_columns('tracker,id,subject'.split(','));
+            drawGanttHandler();
+            resizableSubjectColumn();
+            drawSelectedColumns();
+            $("#draw_relations, #draw_progress_line, #draw_selected_columns").change(drawGanttHandler);
+            $('div.gantt_subjects .expander').on('click', ganttEntryClick);
+          });
+          $(window).resize(function () {
+            drawGanttHandler();
+            resizableSubjectColumn();
+          });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

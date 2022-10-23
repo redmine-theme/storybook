@@ -1,0 +1,307 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>カスタムクエリ</h3>
+        <ul class="queries"><li><a class="query" href="#">作業時間</a></li></ul>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-time-add" href="#">時間を記録</a>
+            <span class="drdn">
+                <span class="drdn-trigger">
+                    <span class="icon-only icon-actions" title="操作">操作</span>
+                </span>
+                <div class="drdn-content">
+                    <div class="drdn-items">
+                        <a class="icon icon-import" href="#">インポート</a>
+                        <a class="icon icon-settings" href="#">設定</a>
+                    </div>
+                </div>
+            </span>
+        </div>
+
+        <h2>作業時間</h2>
+
+        <form id="query_form" action="#" accept-charset="UTF-8" name="query_form-b0ad190e" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="set_filter" id="set_filter" value="1" autocomplete="off" />
+            <input type="hidden" name="type" id="query_type" value="TimeEntryQuery" disabled="disabled" autocomplete="off" />
+            <input type="hidden" name="sort" value="spent_on:desc" autocomplete="off" />
+
+            <div id="query_form_with_buttons" class="hide-when-print">
+                <div id="query_form_content">
+                    <fieldset id="filters" class="collapsible ">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-expanded">フィルタ</legend>
+                        <div style="">
+                            <script>
+                              //<![CDATA[
+
+                              var operatorLabels = {"=":"等しい","!":"等しくない","o":"未完了","c":"完了","!*":"なし","*":"すべて","\u003e=":"以上","\u003c=":"以下","\u003e\u003c":"次の範囲内","\u003ct+":"N日後以前","\u003et+":"N日後以降","\u003e\u003ct+":"今後N日","t+":"N日後","nd":"明日","t":"今日","ld":"昨日","nw":"来週","w":"今週","lw":"先週","l2w":"直近2週間","nm":"来月","m":"今月","lm":"先月","y":"今年","\u003et-":"N日前以降","\u003ct-":"N日前以前","\u003e\u003ct-":"過去N日","t-":"N日前","~":"含む","!~":"含まない","^":"前方一致","$":"後方一致","=p":"次のプロジェクト内のチケット","=!p":"次のプロジェクト外のチケット","!p":"次のプロジェクト内のチケットを除く","*o":"未完了のチケット","!o":"なし または完了したチケット"};
+                              var operatorByType = {"list":["=","!"],"list_status":["o","=","!","c","*"],"list_optional":["=","!","!*","*"],"list_subprojects":["*","!*","=","!"],"date":["=","\u003e=","\u003c=","\u003e\u003c","\u003ct+","\u003et+","\u003e\u003ct+","t+","nd","t","ld","nw","w","lw","l2w","nm","m","lm","y","\u003et-","\u003ct-","\u003e\u003ct-","t-","!*","*"],"date_past":["=","\u003e=","\u003c=","\u003e\u003c","\u003et-","\u003ct-","\u003e\u003ct-","t-","t","ld","w","lw","l2w","m","lm","y","!*","*"],"string":["~","=","!~","!","^","$","!*","*"],"text":["~","!~","^","$","!*","*"],"integer":["=","\u003e=","\u003c=","\u003e\u003c","!*","*"],"float":["=","\u003e=","\u003c=","\u003e\u003c","!*","*"],"relation":["=","!","=p","=!p","!p","*o","!o","!*","*"],"tree":["=","~","!*","*"]};
+                              var availableFilters = {"spent_on":{"type":"date_past","name":"日付","values":null},"subproject_id":{"type":"list_subprojects","name":"サブプロジェクト","remote":true},"issue_id":{"type":"tree","name":"チケット","values":null},"issue.tracker_id":{"type":"list","name":"チケットの トラッカー","remote":true},"issue.status_id":{"type":"list","name":"チケットの ステータス","remote":true},"issue.fixed_version_id":{"type":"list","name":"チケットの 対象バージョン","remote":true},"issue.category_id":{"type":"list_optional","name":"チケットの カテゴリ","remote":true},"user_id":{"type":"list_optional","name":"ユーザー","remote":true},"author_id":{"type":"list_optional","name":"作成者","remote":true},"activity_id":{"type":"list","name":"作業分類","values":[["設計作業","8"],["開発作業","9"]]},"project.status":{"type":"list","name":"プロジェクトの ステータス","remote":true},"comments":{"type":"text","name":"コメント","values":null},"hours":{"type":"float","name":"時間","values":null}};
+                              var labelDayPlural = "日";
+
+                              var filtersUrl = "\/queries\/filter?project_id=1\u0026type=TimeEntryQuery";
+
+                              $(document).ready(function(){
+                                initFilters();
+                                addFilter("spent_on", "*", []);
+                              });
+
+                              //]]>
+                            </script>
+                            <table id="filters-table">
+                            </table>
+
+                            <div class="add-filter">
+                                <label for="add_filter_select">フィルタ追加</label>
+                                <select id="add_filter_select"><option value="">&nbsp;</option>
+                                    <option value="subproject_id">サブプロジェクト</option>
+                                    <option value="issue_id">チケット</option>
+                                    <option value="user_id">ユーザー</option>
+                                    <option value="author_id">作成者</option>
+                                    <option value="activity_id">作業分類</option>
+                                    <option value="comments">コメント</option>
+                                    <option value="hours">時間</option>
+                                    <option value="spent_on">日付</option><optgroup label="チケット"><option value="issue.tracker_id">チケットの トラッカー</option>
+                                        <option value="issue.status_id">チケットの ステータス</option>
+                                        <option value="issue.fixed_version_id">チケットの 対象バージョン</option>
+                                        <option value="issue.category_id">チケットの カテゴリ</option></optgroup><optgroup label="プロジェクト"><option value="project.status">プロジェクトの ステータス</option></optgroup></select>
+                            </div>
+
+                            <input type="hidden" name="f[]" id="f_" value="" autocomplete="off" />
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="options" class="collapsible collapsed">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-collapsed">オプション</legend>
+                        <div class="hidden">
+                            <table id="list-definition" class="">
+                                <tr>
+                                    <td class="field">項目</td>
+                                    <td>
+                                        <span class="query-columns">
+                                            <span>
+                                                <label for="available_c">利用できる項目</label>
+                                                <select name="available_columns[]" id="available_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.available_c, this.form.selected_c);"><option value="project">プロジェクト</option>
+                                                    <option value="created_on">作成日</option>
+                                                    <option value="tweek">週</option>
+                                                    <option value="author">作成者</option>
+                                                    <option value="issue.tracker">トラッカー</option>
+                                                    <option value="issue.status">ステータス</option>
+                                                    <option value="issue.category">カテゴリ</option>
+                                                    <option value="issue.fixed_version">対象バージョン</option>
+                                                </select>
+                                            </span>
+                                            <span class="buttons">
+                                                <input type="button" value="&#8594;" class="move-right"
+                                                         onclick="moveOptions(this.form.available_c, this.form.selected_c);" />
+                                                <input type="button" value="&#8592;" class="move-left"
+                                                         onclick="moveOptions(this.form.selected_c, this.form.available_c);" />
+                                            </span>
+                                            <span>
+                                                <label for="selected_c">選択された項目</label>
+                                                <select name="c[]" id="selected_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.selected_c, this.form.available_c);"><option value="spent_on">日付</option>
+                                                    <option value="user">ユーザー</option>
+                                                    <option value="activity">作業分類</option>
+                                                    <option value="issue">チケット</option>
+                                                    <option value="comments">コメント</option>
+                                                    <option value="hours">時間</option>
+                                                </select>
+                                            </span>
+                                            <span class="buttons">
+                                                <input type="button" value="&#8648;" onclick="moveOptionTop(this.form.selected_c);" />
+                                                <input type="button" value="&#8593;" onclick="moveOptionUp(this.form.selected_c);" />
+                                                <input type="button" value="&#8595;" onclick="moveOptionDown(this.form.selected_c);" />
+                                                <input type="button" value="&#8650;" onclick="moveOptionBottom(this.form.selected_c);" />
+                                            </span>
+                                        </span>
+
+                                        <script>
+                                          //<![CDATA[
+
+                                          $(document).ready(function(){
+                                            $('.query-columns').closest('form').submit(function(){
+                                              $('#selected_c option:not(:disabled)').prop('selected', true);
+                                            });
+                                          });
+
+                                          //]]>
+                                        </script></td>
+                                </tr>
+                                <tr>
+                                    <td class="field"><label for='group_by'>グループ条件</label></td>
+                                    <td><select name="group_by" id="group_by"><option value="">&nbsp;</option>
+                                        <option value="project">プロジェクト</option>
+                                        <option value="spent_on">日付</option>
+                                        <option value="created_on">作成日</option>
+                                        <option value="user">ユーザー</option>
+                                        <option value="activity">作業分類</option>
+                                        <option value="issue">チケット</option></select></td>
+                                </tr>
+                                <tr>
+                                    <td>合計</td>
+                                    <td><label class="inline"><input type="checkbox" name="t[]" value="hours" checked="checked" /> 時間</label><input type="hidden" name="t[]" id="t_" value="" autocomplete="off" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <p class="buttons">
+                    <a href="#" onclick="$(&quot;#query_form&quot;).submit(); return false;" class="icon icon-checked">適用</a>
+                    <a class="icon icon-reload" href="#">クリア</a>
+                    <a href="#" onclick="$(&#39;#query_type&#39;).prop(&#39;disabled&#39;,false);$(&#39;#query_form&#39;).attr(&#39;action&#39;, &#39;/projects/test1/queries/new&#39;).submit(); return false;" class="icon icon-save">カスタムクエリを保存</a>
+                </p>
+            </div>
+
+
+
+            <script>
+              //<![CDATA[
+
+              $(function ($) {
+                $('input[name=display_type]').change(function (e) {
+                  if ($("#display_type_list").is(':checked')) {
+                    $('table#list-definition').show();
+                  } else {
+                    $('table#list-definition').hide();
+                  }
+
+                })
+              });
+
+
+              //]]>
+            </script>
+
+            <div class="tabs hide-when-print">
+                <ul>
+                    <li><a class="selected" href="#">詳細</a></li>
+                    <li><a href="#">レポート</a></li>
+                </ul>
+            </div>
+
+        </form>
+        <p class="query-totals"><span class="total-for-hours"><span>時間:</span> <span class="value">8:00</span></span></p>
+        <form data-cm-url="/time_entries/context_menu" action="/projects/test1/time_entries" accept-charset="UTF-8" name="form-3bcb1606" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" /><input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <input type="hidden" name="back_url" value="" autocomplete="off" />
+            <div class="autoscroll">
+                <table class="list odd-even time-entries">
+                    <thead>
+                    <tr>
+                        <th class="checkbox hide-when-print">
+                            <input type="checkbox" name="check_all" id="check_all" value="" class="toggle-selection" title="すべてにチェックをつける/すべてのチェックを外す" />
+                        </th>
+                        <th class="spent_on"><a title="並べ替え &quot;日付&quot;" class="sort desc icon icon-sorted-asc" href="#">日付</a></th>
+                        <th class="user"><a title="並べ替え &quot;ユーザー&quot;" href="#">ユーザー</a></th>
+                        <th class="activity"><a title="並べ替え &quot;作業分類&quot;" href="#">作業分類</a></th>
+                        <th class="issue"><a title="並べ替え &quot;チケット&quot;" href="#">チケット</a></th>
+                        <th class="comments">コメント</th>
+                        <th class="hours"><a title="並べ替え &quot;時間&quot;" href="#">時間</a></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="time-entry-4" class="time-entry odd hascontextmenu">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="4" /></td>
+                        <td class="spent_on">2022/10/21</td>
+                        <td class="user"><a class="user active" href="#">Redmine Admin</a></td>
+                        <td class="activity">開発作業</td>
+                        <td class="issue"></td>
+                        <td class="comments"></td>
+                        <td class="hours">2:00</td>
+                        <td class="buttons">
+                            <a title="編集" class="icon-only icon-edit" href="#">編集</a>
+                            <a data-confirm="よろしいですか？" title="削除" class="icon-only icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a>
+                        </td>
+                    </tr>
+
+                    <tr id="time-entry-3" class="time-entry even hascontextmenu">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="3" /></td>
+                        <td class="spent_on">2022/10/18</td>
+                        <td class="user"><a class="user active" href="#">Redmine Admin</a></td>
+                        <td class="activity">設計作業</td>
+                        <td class="issue"><a class="issue tracker-2 status-1 priority-2 priority-default created-by-me" href="#">機能 #1</a>: ticket1</td>
+                        <td class="comments"></td>
+                        <td class="hours">3:00</td>
+                        <td class="buttons">
+                            <a title="編集" class="icon-only icon-edit" href="#">編集</a>
+                            <a data-confirm="よろしいですか？" title="削除" class="icon-only icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a>
+                        </td>
+                    </tr>
+
+                    <tr id="time-entry-2" class="time-entry odd hascontextmenu">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="2" /></td>
+                        <td class="spent_on">2022/10/18</td>
+                        <td class="user"><a class="user active" href="#">Redmine Admin</a></td>
+                        <td class="activity">開発作業</td>
+                        <td class="issue"></td>
+                        <td class="comments"></td>
+                        <td class="hours">2:00</td>
+                        <td class="buttons">
+                            <a title="編集" class="icon-only icon-edit" href="#">編集</a>
+                            <a data-confirm="よろしいですか？" title="削除" class="icon-only icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a>
+                        </td>
+                    </tr>
+
+                    <tr id="time-entry-1" class="time-entry even hascontextmenu">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="1" /></td>
+                        <td class="spent_on">2022/10/18</td>
+                        <td class="user"><a class="user active" href="#">Redmine Admin</a></td>
+                        <td class="activity">設計作業</td>
+                        <td class="issue"></td>
+                        <td class="comments"></td>
+                        <td class="hours">1:00</td>
+                        <td class="buttons">
+                            <a title="編集" class="icon-only icon-edit" href="#">編集</a>
+                            <a data-confirm="よろしいですか？" title="削除" class="icon-only icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+        <span class="pagination"><ul class="pages"></ul><span><span class="items">(1-4/4)</span> </span></span>
+
+        <p class="other-formats">他の形式にエクスポート:  <span><a class="atom" rel="nofollow" href="#">Atom</a></span>
+            <span><a class="csv" rel="nofollow" onclick="showModal(&#39;csv-export-options&#39;, &#39;330px&#39;); return false;" href="#">CSV</a></span>
+        </p>
+        <div id="csv-export-options" style="display:none;">
+            <h3 class="title">CSV エクスポート設定</h3>
+            <form id="csv-export-form" action="#" accept-charset="UTF-8" name="csv-export-form-b242c68f" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+                <input type="hidden" name="set_filter" value="1" autocomplete="off" />
+                <input type="hidden" name="f[]" value="spent_on" autocomplete="off" />
+                <input type="hidden" name="op[spent_on]" value="*" autocomplete="off" />
+                <input type="hidden" name="c[]" value="spent_on" autocomplete="off" />
+                <input type="hidden" name="c[]" value="user" autocomplete="off" />
+                <input type="hidden" name="c[]" value="activity" autocomplete="off" />
+                <input type="hidden" name="c[]" value="issue" autocomplete="off" />
+                <input type="hidden" name="c[]" value="comments" autocomplete="off" />
+                <input type="hidden" name="c[]" value="hours" autocomplete="off" />
+                <input type="hidden" name="t[]" value="hours" autocomplete="off" />
+                <input type="hidden" name="sort" value="spent_on:desc" autocomplete="off" />
+                <p>
+                    <label><input type="radio" name="c[]" id="c__" value="" checked="checked" /> 選択された項目</label><br />
+                    <label><input type="radio" name="c[]" id="c__all_inline" value="all_inline" /> すべての項目</label>
+                </p>
+                <p><label>エンコーディング <select name="encoding" id="encoding"><option selected="selected" value="CP932">CP932</option>
+                    <option value="UTF-8">UTF-8</option>
+                </select></label></p>
+                <p class="buttons">
+                    <input type="submit" value="エクスポート" onclick="hideModal(this);" />
+                    <a href="#" onclick="hideModal(this);; return false;">キャンセル</a>
+                </p>
+            </form>
+        </div>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

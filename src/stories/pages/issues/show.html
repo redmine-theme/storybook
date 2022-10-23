@@ -1,0 +1,852 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>カスタムクエリ</h3>
+        <ul class="queries">
+            <li><a class="query" href="#">ウォッチしているチケット</a></li>
+            <li><a class="query" href="#">報告したチケット</a></li>
+            <li><a class="query" href="#">担当しているチケット</a></li>
+            <li><a class="query" href="#">更新したチケット</a></li>
+        </ul>
+
+        <div id="watchers">
+            <div class="contextual">
+                <a data-remote="true" data-method="get" href="#">追加</a>
+            </div>
+
+            <h3>ウォッチャー (1)</h3>
+
+            <ul class="watchers">
+                <li class="user-1">
+                    <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=32&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=16&amp;default=retro"/><a class="user active user" href="#">Redmine Admin</a>
+                    <a class="delete icon-only icon-del" title="削除" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="flash notice" id="flash_notice">更新しました。</div>
+        <div class="contextual">
+            <a onclick="showAndScrollTo(&quot;update&quot;, &quot;issue_notes&quot;); return false;" class="icon icon-edit" accesskey="e" href="#">編集</a>
+            <a class="icon icon-time-add" href="#">時間を記録</a>
+            <a class="issue-1-watcher icon icon-fav" data-remote="true" rel="nofollow" data-method="delete" href="#">ウォッチをやめる</a>
+            <a class="icon icon-copy" href="#">コピー</a>
+            <span class="drdn">
+                <span class="drdn-trigger">
+                    <span class="icon-only icon-actions" title="操作">操作</span>
+                </span>
+                <div class="drdn-content">
+                    <div class="drdn-items">
+                        <a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#">リンクをコピー</a>
+                        <a data-confirm="本当に選択したチケットを削除しますか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">チケットを削除</a>
+                    </div>
+                </div>
+            </span>
+        </div>
+
+
+        <h2 class="inline-flex">機能 #1</h2>
+        <span class="badge badge-status-open">未完了</span>
+
+        <div class="issue tracker-2 status-2 priority-3 priority-high3 created-by-me details">
+            <div class="next-prev-links contextual">
+                <a title="#12" accesskey="p" href="#">« 前</a> |
+                <span class="position">
+          2/40
+        </span> |
+                <a title="#10" accesskey="n" href="#">次 »</a>
+            </div>
+
+            <div class="gravatar-with-child">
+                <img alt="" title="作成者: Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=100&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=50&amp;default=retro"/>
+                <img alt="" title="担当者: user1 user1" class="gravatar gravatar-child" srcset="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=44&amp;default=retro 2x" src="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=22&amp;default=retro"/>
+            </div>
+
+            <div class="subject">
+                <div><h3>ticket1</h3></div>
+            </div>
+            <p class="author">
+                <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/18 12:10" href="#">5日</a>前に追加.
+                <a title="2022/10/23 04:02" href="#">1分未満</a>前に更新.
+            </p>
+
+            <div class="attributes">
+                <div class="splitcontent">
+                    <div class="splitcontentleft">
+                        <div class="status attribute">
+                            <div class="label">ステータス:</div>
+                            <div class="value">進行中</div>
+                        </div>
+                        <div class="priority attribute">
+                            <div class="label">優先度:</div>
+                            <div class="value">高め</div>
+                        </div>
+                        <div class="assigned-to attribute">
+                            <div class="label">担当者:</div>
+                            <div class="value"><a class="user active" href="#">user1 user1</a></div>
+                        </div>
+                        <div class="category attribute">
+                            <div class="label">カテゴリ:</div>
+                            <div class="value">category1</div>
+                        </div>
+                        <div class="fixed-version attribute">
+                            <div class="label">対象バージョン:</div>
+                            <div class="value"><a title="2022/10/16" href="#">version1</a></div>
+                        </div>
+                    </div>
+                    <div class="splitcontentleft">
+                        <div class="start-date attribute">
+                            <div class="label">開始日:</div>
+                            <div class="value">2022/10/18</div>
+                        </div>
+                        <div class="due-date attribute">
+                            <div class="label">期日:</div>
+                            <div class="value"></div>
+                        </div>
+                        <div class="progress attribute">
+                            <div class="label">進捗率:</div>
+                            <div class="value">
+                                <table class="progress progress-0">
+                                    <tr>
+                                        <td style="width: 100%;" class="todo"></td>
+                                    </tr>
+                                </table>
+                                <p class="percent">0%</p></div>
+                        </div>
+                        <div class="estimated-hours attribute">
+                            <div class="label">予定工数:</div>
+                            <div class="value"></div>
+                        </div>
+                        <div class="spent-time attribute">
+                            <div class="label">作業時間:</div>
+                            <div class="value"><a href="#">3:00時間</a></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <hr/>
+            <div class="description">
+                <div class="contextual">
+                    <a class="icon icon-comment" data-remote="true" rel="nofollow" data-method="post" href="#">引用</a>
+                </div>
+
+                <p><strong>説明</strong></p>
+                <div class="wiki">
+                    <p>チケット1</p>
+                </div>
+            </div>
+            <hr/>
+            <p><strong>ファイル</strong></p>
+            <div class="attachments">
+                <div class="contextual">
+                    <a title="添付ファイルの編集" class="icon-only icon-edit" href="#">添付ファイルの編集</a>
+                    <a title="一括ダウンロード" class="icon-only icon-download" href="#">一括ダウンロード</a>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <a class="icon icon-attachment" href="#">200x200.png</a>
+                            <span class="size">(1.56 KB)</span>
+                            <a class="icon-only icon-download" title="ダウンロード" href="#">200x200.png</a>
+                        </td>
+                        <td></td>
+                        <td>
+                            <span class="author">Redmine Admin, 2022/10/23 04:00</span>
+                        </td>
+                        <td>
+                            <a data-confirm="よろしいですか？" class="delete icon-only icon-del" title="削除" rel="nofollow" data-method="delete" href="#">削除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="icon icon-attachment" href="#">640x200.png</a>
+                            <span class="size">(1.44 KB)</span>
+                            <a class="icon-only icon-download" title="ダウンロード" href="#">640x200.png</a>
+                        </td>
+                        <td></td>
+                        <td>
+                            <span class="author">Redmine Admin, 2022/10/23 04:00</span>
+                        </td>
+                        <td>
+                            <a data-confirm="よろしいですか？" class="delete icon-only icon-del" title="削除" rel="nofollow" data-method="delete" href="#">削除</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="thumbnails">
+                    <div>
+                        <a title="200x200.png" href="#"><img srcset="/attachments/thumbnail/640x200_200.png 2x" style="max-width: 100px; max-height: 100px;" loading="lazy" src="/attachments/thumbnail/640x200.png"/></a>
+                    </div>
+                    <div>
+                        <a title="640x200.png" href="#"><img srcset="/attachments/thumbnail/200x200_200.png 2x" style="max-width: 100px; max-height: 100px;" loading="lazy" src="/attachments/thumbnail/200x200.png"/></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr/>
+            <div id="issue_tree">
+                <div class="contextual">
+                    <a href="#">追加</a>
+                </div>
+
+                <p>
+                    <strong>子チケット</strong>
+                    <span class="issues-stat"><span class="badge badge-issues-count"><a href="#">2</a></span> (<span class="open"><a href="#">2件未完了</a></span> &#8212; <span class="closed">0件完了</span>)</span>
+                </p>
+
+                <form data-cm-url="/issues/context_menu" action="#" accept-charset="UTF-8" name="form-b229f29e" method="post">
+                    <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/><input type="hidden" name="authenticity_token" value="81jV7YribBr+3Cs4m4bVlhWFQMcQ1ZAHFCstP1EgDgpi6aXcMqtNKmDeQF0sqLDdlbeD5Lj2+dmpl1BwT6puwQ==" autocomplete="off"/>
+                    <table class="list issues odd-even">
+                        <tr class="issue issue-10 hascontextmenu issue tracker-3 status-3 priority-2 priority-default child created-by-me">
+                            <td class="checkbox"><input type="checkbox" name="ids[]" value="10"/></td>
+                            <td class="subject">
+                                <a class="issue tracker-3 status-3 priority-2 priority-default child created-by-me" href="#">サポート #10</a>: issue10
+                            </td>
+                            <td class="status">解決</td>
+                            <td class="assigned_to"></td>
+                            <td class="start_date">2022/10/21</td>
+                            <td class="due_date"></td>
+                            <td class="done_ratio">
+                                <table class="progress progress-0">
+                                    <tr>
+                                        <td style="width: 100%;" class="todo"></td>
+                                    </tr>
+                                </table>
+                                <p class="percent"></p></td>
+                            <td class="buttons">
+                                <a data-confirm="よろしいですか？" title="関連の削除" class="icon-only icon-link-break" rel="nofollow" data-method="put" href="#">関連の削除</a><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a>
+                            </td>
+                        </tr>
+                        <tr class="issue issue-40 hascontextmenu issue tracker-3 status-1 priority-2 priority-default child created-by-me">
+                            <td class="checkbox"><input type="checkbox" name="ids[]" value="40"/></td>
+                            <td class="subject">
+                                <a class="issue tracker-3 status-1 priority-2 priority-default child created-by-me" href="#">サポート #40</a>: issue40
+                            </td>
+                            <td class="status">新規</td>
+                            <td class="assigned_to"></td>
+                            <td class="start_date">2022/10/21</td>
+                            <td class="due_date"></td>
+                            <td class="done_ratio">
+                                <table class="progress progress-0">
+                                    <tr>
+                                        <td style="width: 100%;" class="todo"></td>
+                                    </tr>
+                                </table>
+                                <p class="percent"></p></td>
+                            <td class="buttons">
+                                <a data-confirm="よろしいですか？" title="関連の削除" class="icon-only icon-link-break" rel="nofollow" data-method="put" href="#">関連の削除</a><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <hr/>
+            <div id="relations">
+                <div class="contextual">
+                    <a onclick="$(&#39;#new-relation-form&#39;).toggle(); $(&#39;#relation_issue_to_id&#39;).focus(); return false;" href="#">追加</a>
+                </div>
+
+                <p>
+                    <strong>関連するチケット</strong>
+                    <span class="issues-stat"><span class="badge badge-issues-count"><a href="#">1</a></span> (<span class="open"><a href="#">1件未完了</a></span> &#8212; <span class="closed">0件完了</span>)</span>
+                </p>
+
+                <form data-cm-url="/issues/context_menu" action="/issues/2" accept-charset="UTF-8" name="form-51bd83e9" method="post">
+                    <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+                    <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+                    <table class="list issues odd-even">
+                        <tr id="relation-1" class="issue hascontextmenu issue tracker-2 status-2 priority-3 priority-high3 created-by-me">
+                            <td class="checkbox"><input type="checkbox" name="ids[]" value="1"/></td>
+                            <td class="subject">関連している
+                                <a class="issue tracker-2 status-2 priority-3 priority-high3 created-by-me" href="#">機能 #1</a>: ticket1
+                            </td>
+                            <td class="status">進行中</td>
+                            <td class="assigned_to"><a class="user active" href="#">user1 user1</a></td>
+                            <td class="start_date">2022/10/18</td>
+                            <td class="due_date"></td>
+                            <td class="done_ratio">
+                                <table class="progress progress-0">
+                                    <tr>
+                                        <td style="width: 100%;" class="todo"></td>
+                                    </tr>
+                                </table>
+                                <p class="percent"></p></td>
+                            <td class="buttons">
+                                <a data-confirm="よろしいですか？" title="関連の削除" class="icon-only icon-link-break" data-remote="true" rel="nofollow" data-method="delete" href="#">関連の削除</a><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form class="new_relation" id="new-relation-form" style="display: none;" action="/issues/2/relations" accept-charset="UTF-8" data-remote="true" name="new-relation-form-cf518e96" method="post"><input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+                    <p><select onchange="setPredecessorFieldsVisibility();" name="relation[relation_type]" id="relation_relation_type"><option selected="selected" value="relates">関連している</option>
+                        <option value="duplicates">次のチケットと重複</option>
+                        <option value="duplicated">次のチケットが重複</option>
+                        <option value="blocks">ブロック先</option>
+                        <option value="blocked">ブロック元</option>
+                        <option value="precedes">次のチケットに先行</option>
+                        <option value="follows">次のチケットに後続</option>
+                        <option value="copied_to">コピー先</option>
+                        <option value="copied_from">コピー元</option></select>
+                        チケット #<input value="" size="10" type="text" name="relation[issue_to_id]" id="relation_issue_to_id" />
+                        <span id="predecessor_fields" style="display:none;">
+                            遅延: <input size="3" type="text" name="relation[delay]" id="relation_delay" /> 日
+                        </span>
+                        <input type="submit" name="commit" value="追加" data-disable-with="追加" />
+                        <a href="#" onclick="$(&quot;#new-relation-form&quot;).hide();; return false;">キャンセル</a>
+                    </p>
+
+                    <script>
+                      //<![CDATA[
+                      multipleAutocompleteField('relation_issue_to_id', '/issues/auto_complete?issue_id=1&project_id=test1')
+                      //]]>
+                    </script>
+
+                    <script>
+                      //<![CDATA[
+                      setPredecessorFieldsVisibility();
+                      //]]>
+                    </script>
+                </form>
+            </div>
+        </div>
+
+        <div id="history">
+            <div class="tabs">
+                <ul>
+                    <li>
+                        <a id="tab-history" class="selected" onclick="showIssueHistory(&quot;history&quot;, this.href); return false;" href="#">履歴</a>
+                    </li>
+                    <li>
+                        <a id="tab-notes" onclick="showIssueHistory(&quot;notes&quot;, this.href); return false;" href="#">コメント</a>
+                    </li>
+                    <li>
+                        <a id="tab-properties" onclick="showIssueHistory(&quot;properties&quot;, this.href); return false;" href="#">プロパティ更新履歴</a>
+                    </li>
+                    <li>
+                        <a id="tab-time_entries" onclick="getRemoteTab(&#39;time_entries&#39;, &#39;/issues/1/tab/time_entries&#39;, &#39;/issues/1?tab=time_entries&#39;); return false;" href="#">作業時間</a>
+                    </li>
+                </ul>
+                <div class="tabs-buttons" style="display:none;">
+                    <button class="tab-left" type="button" onclick="moveTabLeft(this);"></button>
+                    <button class="tab-right" type="button" onclick="moveTabRight(this);"></button>
+                </div>
+            </div>
+
+            <div id="tab-content-history" class="tab-content">
+                <div id="change-1" class="journal has-details">
+                    <div id="note-1" class="note">
+                        <div class="contextual">
+                            <span class="journal-actions"><span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items"><a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#note-1">リンクをコピー</a></div></div></span></span>
+                            <a href="#note-1" class="journal-link">#1</a>
+                        </div>
+                        <h4 class='note-header'>
+                            <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                            <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/18 12:10" href="#">5日</a>前に更新
+                            <span id="journal-1-private_notes" class=""></span>
+                        </h4>
+
+                        <ul class="details">
+                            <li><strong>カテゴリ</strong> を <i>category1</i> にセット</li>
+                            <li><strong>対象バージョン</strong> を <i>version1</i> にセット</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div id="change-2" class="journal has-notes">
+                    <div id="note-2" class="note">
+                        <div class="contextual">
+                            <span class="journal-actions"><a title="引用" class="icon-only icon-comment" data-remote="true" rel="nofollow" data-method="post" href="#">引用</a> <a title="編集" class="icon-only icon-edit" data-remote="true" data-method="get" href="#">編集</a><span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items"><a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#note-2">リンクをコピー</a> <a data-confirm="よろしいですか？" class="icon icon-del" data-remote="true" rel="nofollow" data-method="put" href="#">削除</a></div></div></span></span>
+                            <a href="#note-2" class="journal-link">#2</a>
+                        </div>
+                        <h4 class='note-header'>
+                            <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                            <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/18 17:05" href="#">4日</a>前に更新
+                            <span id="journal-2-private_notes" class=""></span>
+                        </h4>
+
+                        <div id="journal-2-notes" class="wiki"><p>comment1</p></div>
+                    </div>
+                </div>
+
+                <div id="change-3" class="journal has-notes">
+                    <div id="note-3" class="note">
+                        <div class="contextual">
+                            <span class="journal-actions"><a title="引用" class="icon-only icon-comment" data-remote="true" rel="nofollow" data-method="post" href="#">引用</a> <a title="編集" class="icon-only icon-edit" data-remote="true" data-method="get" href="#">編集</a><span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items"><a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#note-3">リンクをコピー</a> <a data-confirm="よろしいですか？" class="icon icon-del" data-remote="true" rel="nofollow" data-method="put" href="#">削除</a></div></div></span></span>
+                            <a href="#note-3" class="journal-link">#3</a>
+                        </div>
+                        <h4 class='note-header'>
+                            <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                            <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/18 17:05" href="#">4日</a>前に更新
+                            <span id="journal-3-private_notes" class=""></span>
+                        </h4>
+
+                        <div id="journal-3-notes" class="wiki"><p>comment2</p></div>
+                    </div>
+                </div>
+
+                <div id="change-21" class="journal has-details">
+                    <div id="note-4" class="note">
+                        <div class="contextual">
+                            <span class="journal-actions"><span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items"><a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#note-4">リンクをコピー</a> <a title="一括ダウンロード" class="icon icon-download" href="#">一括ダウンロード</a></div></div></span></span>
+                            <a href="#note-4" class="journal-link">#4</a>
+                        </div>
+                        <h4 class='note-header'>
+                            <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                            <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/23 04:00" href="#">2分</a>前に更新
+                            <span id="journal-21-private_notes" class=""></span>
+                        </h4>
+
+                        <ul class="details">
+                            <li><strong>ファイル</strong> <a href="#">200x200.png</a>
+                                <a class="icon-only icon-download" title="ダウンロード" href="#">200x200.png</a> を追加
+                            </li>
+                            <li><strong>ファイル</strong> <a href="#">640x200.png</a>
+                                <a class="icon-only icon-download" title="ダウンロード" href="#">640x200.png</a> を追加
+                            </li>
+                        </ul>
+                        <div class="thumbnails">
+                            <div>
+                                <a title="200x200.png" href="#"><img srcset="/attachments/thumbnail/640x200_200.png 2x" style="max-width: 100px; max-height: 100px;" loading="lazy" src="/attachments/thumbnail/640x200.png"/></a>
+                            </div>
+                            <div>
+                                <a title="640x200.png" href="#"><img srcset="/attachments/thumbnail/200x200_200.png 2x" style="max-width: 100px; max-height: 100px;" loading="lazy" src="/attachments/thumbnail/200x200.png"/></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="change-22" class="journal has-notes">
+                    <div id="note-5" class="note">
+                        <div class="contextual">
+                            <span class="journal-actions"><a title="引用" class="icon-only icon-comment" data-remote="true" rel="nofollow" data-method="post" href="#">引用</a> <a title="編集" class="icon-only icon-edit" data-remote="true" data-method="get" href="#">編集</a><span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items"><a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#note-5">リンクをコピー</a> <a data-confirm="よろしいですか？" class="icon icon-del" data-remote="true" rel="nofollow" data-method="put" href="#">削除</a></div></div></span></span>
+                            <a href="#note-5" class="journal-link">#5</a>
+                        </div>
+                        <h4 class='note-header'>
+                            <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                            <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/23 04:01" href="#">1分</a>前に更新
+                            <span id="journal-22-private_notes" class=""></span>
+                        </h4>
+
+                        <div id="journal-22-notes" class="wiki"><p>comment3</p>
+                            <a name="title-h1"></a>
+                            <h1>title h1<a href="#title-h1" class="wiki-anchor">&para;</a></h1>
+                            <a name="title-h2"></a>
+                            <h2>title h2<a href="#title-h2" class="wiki-anchor">&para;</a></h2>
+                            <a name="title-3"></a>
+                            <h3>title 3<a href="#title-3" class="wiki-anchor">&para;</a></h3>
+                            <p>
+                                <a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" title="バグ: test2 (新規)" href="#">#2</a>
+                            </p>
+                            <p>
+                                <a class="issue tracker-1 status-1 priority-2 priority-default overdue behind-schedule created-by-me" title="ステータス: 新規" href="#">バグ #2: test2</a>
+                            </p>
+                            <ul>
+                                <li>list1</li>
+                                <li>list2</li>
+                                <li>list3</li>
+                            </ul>
+                            <ol>
+                                <li>list1</li>
+                                <li>list2</li>
+                                <li>list3</li>
+                            </ol>
+                            <blockquote>
+                                <p>pre<br>
+                                    pre</p>
+                                <blockquote>
+                                    <p>pre2</p>
+                                </blockquote>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="change-23" class="journal has-details">
+                    <div id="note-6" class="note">
+                        <div class="contextual">
+                            <span class="journal-actions"><span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items"><a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#note-6">リンクをコピー</a></div></div></span></span>
+                            <a href="#note-6" class="journal-link">#6</a>
+                        </div>
+                        <h4 class='note-header'>
+                            <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=48&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=24&amp;default=retro"/>
+                            <a class="user active" href="#">Redmine Admin</a> さんが<a title="2022/10/23 04:02" href="#">1分未満</a>前に更新
+                            <span id="journal-23-private_notes" class=""></span>
+                        </h4>
+
+                        <ul class="details">
+                            <li><strong>ステータス</strong> を <i>新規</i> から <i>進行中</i> に変更</li>
+                            <li><strong>担当者</strong> を <i>user1 user1</i> にセット</li>
+                            <li><strong>優先度</strong> を <i>通常</i> から <i>高め</i> に変更</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div id="tab-content-time_entries" style="display:none" class="tab-content"></div>
+
+            <script>
+              //<![CDATA[
+              showIssueHistory("history", this.href)
+              //]]>
+            </script>
+
+        </div>
+
+        <div style="clear: both;"></div>
+        <div class="contextual">
+            <a onclick="showAndScrollTo(&quot;update&quot;, &quot;issue_notes&quot;); return false;" class="icon icon-edit" href="#">編集</a>
+            <a class="icon icon-time-add" href="#">時間を記録</a>
+            <a class="issue-1-watcher icon icon-fav" data-remote="true" rel="nofollow" data-method="delete" href="#">ウォッチをやめる</a>
+            <a class="icon icon-copy" href="#">コピー</a>
+            <span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items">
+  <a href="#" onclick="copyTextToClipboard(this);; return false;" class="icon icon-copy-link" data-clipboard-text="#">リンクをコピー</a>
+    <a data-confirm="本当に選択したチケットを削除しますか？
+2個の子チケットも削除されます。" class="icon icon-del" rel="nofollow" data-method="delete" href="#">チケットを削除</a>
+</div></div></span></div>
+
+        <div style="clear: both;"></div>
+
+        <div id="update" style="display:none;">
+            <h3>編集</h3>
+            <form class="edit_issue" id="issue-form" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="issue-form-34ef73b3" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="_method" value="patch" autocomplete="off"/>
+                <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+                <div class="box">
+                    <fieldset class="tabular">
+                        <legend>プロパティの変更</legend>
+                        <div id="all_attributes">
+
+
+                            <input type="hidden" name="form_update_triggered_by" id="form_update_triggered_by" value="" autocomplete="off"/>
+
+
+                            <p id="issue_is_private_wrap">
+                                <input name="issue[is_private]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="issue[is_private]" id="issue_is_private"/><label class="inline" for="issue_is_private" id="issue_is_private_label">プライベート</label>
+                            </p>
+
+                            <p>
+                                <label for="issue_project_id">プロジェクト<span class="required"> *</span></label><select onchange="updateIssueFrom(&#39;/issues/1/edit.js&#39;, this)" name="issue[project_id]" id="issue_project_id">
+                                <option value="1" selected="selected">test1</option>
+                                <option value="6">&nbsp;&nbsp;&#187; test1-1</option>
+                                <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&#187; test1-1-1</option>
+                                <option value="7">&nbsp;&nbsp;&#187; test1-2</option>
+                                <option value="2">test2</option>
+                                <option value="14">&nbsp;&nbsp;&#187; test2-1</option>
+                                <option value="3">test3</option>
+                                <option value="15">&nbsp;&nbsp;&#187; test3-1</option>
+                                <option value="4">test4</option>
+                                <option value="5">test5</option>
+                                <option value="9">test6</option>
+                                <option value="10">test7</option>
+                                <option value="11">test8</option>
+                                <option value="12">test9</option>
+                            </select></p>
+
+                            <p>
+                                <label for="issue_tracker_id">トラッカー<span class="required"> *</span></label><select onchange="updateIssueFrom(&#39;/issues/1/edit.js&#39;, this)" name="issue[tracker_id]" id="issue_tracker_id">
+                                <option value="1">バグ</option>
+                                <option selected="selected" value="2">機能</option>
+                                <option value="3">サポート</option>
+                            </select>
+
+                            </p>
+                            <script>
+                              //<![CDATA[
+
+                              function selectTracker(id) {
+                                var target = $('#issue_tracker_id');
+                                target.attr("selected", false);
+                                target.find('option[value="' + id + '"]').prop('selected', true);
+                                target.trigger('change');
+                                hideModal('#trackers_description h3');
+                              }
+
+                              //]]>
+                            </script>
+
+                            <p>
+                                <label for="issue_subject">題名<span class="required"> *</span></label><input size="80" maxlength="255" type="text" value="ticket1" name="issue[subject]" id="issue_subject"/>
+                            </p>
+
+                            <p>
+                                <label for="issue_description">説明</label>
+                                <a href="#" onclick="$(this).hide(); $(&quot;#issue_description_and_toolbar&quot;).show(); return false;"><span class="icon icon-edit">編集</span></a>
+                                <span id="issue_description_and_toolbar" style="display:none">
+    <textarea cols="60" class="wiki-edit" rows="10" data-auto-complete="true" name="issue[description]" id="issue_description">
+チケット1</textarea>
+</span></p>
+                            <script>
+                              //<![CDATA[
+                              var wikiToolbar = new jsToolBar(document.getElementById('issue_description'));
+                              wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+                              wikiToolbar.setPreviewUrl('/issues/preview?issue_id=1&project_id=test1');
+                              wikiToolbar.draw();
+                              //]]>
+                            </script>
+
+                            <div id="attributes" class="attributes">
+                                <div class="splitcontent">
+                                    <div class="splitcontentleft">
+                                        <p>
+                                            <label for="issue_status_id">ステータス<span class="required"> *</span></label><select onchange="updateIssueFrom(&#39;/issues/1/edit.js&#39;, this)" name="issue[status_id]" id="issue_status_id">
+                                            <option value="1">新規</option>
+                                            <option selected="selected" value="2">進行中</option>
+                                            <option value="3">解決</option>
+                                            <option value="4">フィードバック</option>
+                                            <option value="5">終了</option>
+                                            <option value="6">却下</option>
+                                        </select>
+                                        </p>
+
+
+                                        <p><label for="issue_priority_id">優先度<span class="required"> *</span></label><select name="issue[priority_id]" id="issue_priority_id">
+                                            <option value="1">低め</option>
+                                            <option value="2">通常</option>
+                                            <option selected="selected" value="3">高め</option>
+                                            <option value="4">急いで</option>
+                                            <option value="5">今すぐ</option>
+                                        </select></p>
+
+                                        <p>
+                                            <label for="issue_assigned_to_id">担当者</label><select name="issue[assigned_to_id]" id="issue_assigned_to_id">
+                                            <option value="">&nbsp;</option>
+                                            <option value="1">&lt;&lt; 自分 &gt;&gt;</option>
+                                            <option value="1">Redmine Admin</option>
+                                            <option value="5" selected="selected">user1 user1</option>
+                                            <option value="6">user2 user2</option>
+                                            <option value="7">user3 user3</option>
+                                            <option value="8">user4 user4</option>
+                                            <option value="9">user5 user5</option>
+                                        </select>
+                                            <a class="assign-to-me-link" href="#" data-id="1">自分に割り当て</a>
+                                        </p>
+
+                                        <p>
+                                            <label for="issue_category_id">カテゴリ</label><select name="issue[category_id]" id="issue_category_id">
+                                            <option value="">&nbsp;</option>
+                                            <option selected="selected" value="1">category1</option>
+                                            <option value="2">category2</option>
+                                        </select>
+                                            <a title="新しいカテゴリ" tabindex="200" class="icon-only icon-add" data-remote="true" data-method="get" href="#">新しいカテゴリ</a>
+                                        </p>
+
+                                        <p>
+                                            <label for="issue_fixed_version_id">対象バージョン</label><select name="issue[fixed_version_id]" id="issue_fixed_version_id">
+                                            <option value="">&nbsp;</option>
+                                            <option selected="selected" value="1">version1</option>
+                                            <option value="2">version2</option>
+                                            <option value="3">version3</option>
+                                            <option value="4">version4</option>
+                                            <option value="7">version7</option>
+                                        </select>
+                                            <a title="新しいバージョン" tabindex="200" class="icon-only icon-add" data-remote="true" data-method="get" href="#">新しいバージョン</a>
+                                        </p>
+                                    </div>
+
+                                    <div class="splitcontentright">
+                                        <p id="parent_issue">
+                                            <label for="issue_parent_issue_id">親チケット</label><input size="10" onchange="updateIssueFrom(&#39;/issues/1/edit.js&#39;, this)" type="text" name="issue[parent_issue_id]" id="issue_parent_issue_id"/>
+                                        </p>
+                                        <script>
+                                          //<![CDATA[
+                                          observeAutocompleteField('issue_parent_issue_id', '/issues/auto_complete?issue_id=1&project_id=test1&scope=tree&status=o')
+                                          //]]>
+                                        </script>
+
+                                        <p id="start_date_area">
+                                            <label for="issue_start_date">開始日</label><input size="10" value="2022-10-18" type="date" name="issue[start_date]" id="issue_start_date"/>
+                                            <script>
+                                              //<![CDATA[
+                                              $(function () {
+                                                $('#issue_start_date').addClass('date').datepickerFallback(datepickerOptions);
+                                              });
+                                              //]]>
+                                            </script>
+                                        </p>
+
+                                        <p id="due_date_area">
+                                            <label for="issue_due_date">期日</label><input size="10" type="date" name="issue[due_date]" id="issue_due_date"/>
+                                            <script>
+                                              //<![CDATA[
+                                              $(function () {
+                                                $('#issue_due_date').addClass('date').datepickerFallback(datepickerOptions);
+                                              });
+                                              //]]>
+                                            </script>
+                                        </p>
+
+                                        <p>
+                                            <label for="issue_estimated_hours">予定工数</label><input size="3" value="" type="text" name="issue[estimated_hours]" id="issue_estimated_hours"/> 時間
+                                        </p>
+
+                                        <p>
+                                            <label for="issue_done_ratio">進捗率</label><select name="issue[done_ratio]" id="issue_done_ratio">
+                                            <option selected="selected" value="0">0 %</option>
+                                            <option value="10">10 %</option>
+                                            <option value="20">20 %</option>
+                                            <option value="30">30 %</option>
+                                            <option value="40">40 %</option>
+                                            <option value="50">50 %</option>
+                                            <option value="60">60 %</option>
+                                            <option value="70">70 %</option>
+                                            <option value="80">80 %</option>
+                                            <option value="90">90 %</option>
+                                            <option value="100">100 %</option>
+                                        </select></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                              //<![CDATA[
+                              rm = window.rm || {};
+                              rm.AutoComplete = rm.AutoComplete || {};
+                              rm.AutoComplete.dataSources = JSON.parse('{"issues":"/issues/auto_complete?project_id=test1\u0026q=","wiki_pages":"/wiki_pages/auto_complete?project_id=test1\u0026q="}');
+                              //]]>
+                            </script>
+
+                            <script>
+                              //<![CDATA[
+                              rm.AutoComplete.dataSources = Object.assign(rm.AutoComplete.dataSources, JSON.parse('{"users":"/watchers/autocomplete_for_mention?object_id=1\u0026object_type=issue\u0026project_id=test1\u0026q="}'));
+                              //]]>
+                            </script>
+
+                            <script>
+                              //<![CDATA[
+
+                              $(document).ready(function () {
+                                $("#issue_tracker_id, #issue_status_id").each(function () {
+                                  $(this).val($(this).find("option[selected=selected]").val());
+                                });
+                                $(".assign-to-me-link").click(function (event) {
+                                  event.preventDefault();
+                                  var element = $(event.target);
+                                  $('#issue_assigned_to_id').val(element.data('id'));
+                                  element.hide();
+                                });
+                                $('#issue_assigned_to_id').change(function (event) {
+                                  var assign_to_me_link = $(".assign-to-me-link");
+
+                                  if (assign_to_me_link.length > 0) {
+                                    var user_id = $(event.target).val();
+                                    var current_user_id = assign_to_me_link.data('id');
+
+                                    if (user_id == current_user_id) {
+                                      assign_to_me_link.hide();
+                                    } else {
+                                      assign_to_me_link.show();
+                                    }
+                                  }
+                                });
+                              });
+
+                              //]]>
+                            </script>
+                        </div>
+                    </fieldset>
+                    <fieldset class="tabular" id="log_time">
+                        <legend>時間を記録</legend>
+
+                        <div class="splitcontent">
+                            <div class="splitcontentleft">
+                                <p>
+                                    <label for="time_entry_hours">作業時間</label><input size="6" value="" type="text" name="time_entry[hours]" id="time_entry_hours"/> 時間
+                                </p>
+                            </div>
+                            <div class="splitcontentright">
+                                <p>
+                                    <label for="time_entry_activity_id">作業分類</label><select name="time_entry[activity_id]" id="time_entry_activity_id">
+                                    <option selected="selected" value="">--- 選んでください ---</option>
+                                    <option value="8">設計作業</option>
+                                    <option value="9">開発作業</option>
+                                </select></p>
+                            </div>
+                        </div>
+                        <p>
+                            <label for="time_entry_comments">コメント</label><input size="60" type="text" name="time_entry[comments]" id="time_entry_comments"/>
+                        </p>
+                    </fieldset>
+                    <fieldset id="add_notes">
+                        <legend>コメント</legend>
+                        <textarea cols="60" rows="10" class="wiki-edit" data-auto-complete="true" name="issue[notes]" id="issue_notes">
+</textarea>
+                        <script>
+                          //<![CDATA[
+                          var wikiToolbar = new jsToolBar(document.getElementById('issue_notes'));
+                          wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+                          wikiToolbar.setPreviewUrl('/issues/preview?issue_id=1&project_id=test1');
+                          wikiToolbar.draw();
+                          //]]>
+                        </script>
+
+                        <input name="issue[private_notes]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="issue[private_notes]" id="issue_private_notes"/>
+                        <label for="issue_private_notes">プライベートコメント</label>
+
+
+                    </fieldset>
+
+                    <fieldset id="add_attachments">
+                        <legend>ファイル</legend>
+                        <div class="contextual">
+                            <a onclick="$(&#39;#existing-attachments&#39;).toggle(); return false;" href="#">添付ファイルの編集</a>
+                        </div>
+                        <div id="existing-attachments" style="display:none;">
+          <span class="existing-attachment">
+            <input type="text" name="" id="" value="200x200.png" class="icon icon-attachment filename" disabled="disabled"/>
+            <label>
+              <input type="checkbox" name="issue[deleted_attachment_ids][]" value="3" class="deleted_attachment"/> 削除
+            </label>
+          </span>
+                            <span class="existing-attachment">
+            <input type="text" name="" id="" value="640x200.png" class="icon icon-attachment filename" disabled="disabled"/>
+            <label>
+              <input type="checkbox" name="issue[deleted_attachment_ids][]" value="4" class="deleted_attachment"/> 削除
+            </label>
+          </span>
+                            <hr/>
+                        </div>
+
+                        <div id="new-attachments" style="display:inline-block;">
+<span class="attachments_form">
+  <span class="attachments_fields">
+  </span>
+  <span class="add_attachment" style="">
+    <input type="file" name="attachments[dummy][file]" class="file_selector filedrop" multiple="multiple" onchange="addInputFiles(this);" data-max-number-of-files-message="このファイルはアップロードできません。同時にアップロードできるファイル数の上限(10)を超えています。" data-max-file-size="5242880" data-max-file-size-message="このファイルはアップロードできません。添付ファイルサイズの上限(5 MB)を超えています。" data-max-concurrent-uploads="2" data-upload-path="/uploads.js" data-param="attachments" data-description="true" data-description-placeholder="説明 (任意)"/>
+    (サイズの上限: 5 MB)
+  </span>
+</span>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <input autocomplete="off" type="hidden" value="7" name="issue[lock_version]" id="issue_lock_version"/>
+                <input type="hidden" name="last_journal_id" id="last_journal_id" value="23" autocomplete="off"/>
+                <input type="submit" name="commit" value="送信" data-disable-with="送信"/>
+                <a onclick="$(&#39;#update&#39;).hide(); return false;" href="#">キャンセル</a>
+                <input type="hidden" name="prev_issue_id" id="prev_issue_id" value="12" autocomplete="off"/>
+                <input type="hidden" name="next_issue_id" id="next_issue_id" value="10" autocomplete="off"/>
+                <input type="hidden" name="issue_position" id="issue_position" value="2" autocomplete="off"/>
+                <input type="hidden" name="issue_count" id="issue_count" value="40" autocomplete="off"/>
+            </form>
+        </div>
+
+        <p class="other-formats">他の形式にエクスポート:
+            <span><a class="atom" rel="nofollow" href="#">Atom</a></span>
+            <span><a class="pdf" rel="nofollow" href="#">PDF</a></span>
+        </p>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

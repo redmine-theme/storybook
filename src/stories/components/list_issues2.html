@@ -1,0 +1,152 @@
+<div class="autoscroll">
+    <table class="list issues odd-even sort-by-id sort-desc">
+        <thead>
+        <tr>
+            <th class="checkbox hide-when-print">
+                <input type="checkbox" name="check_all" id="check_all" value="" class="toggle-selection" title="すべてにチェックをつける/すべてのチェックを外す" />
+            </th>
+            <th class="id"><a title="並べ替え &quot;#&quot;" class="sort desc icon icon-sorted-asc" href="#">#</a></th>
+            <th class="tracker"><a title="並べ替え &quot;トラッカー&quot;" href="#">トラッカー</a></th>
+            <th class="status"><a title="並べ替え &quot;ステータス&quot;" href="#">ステータス</a></th>
+            <th class="priority"><a title="並べ替え &quot;優先度&quot;" href="#">優先度</a></th>
+            <th class="subject"><a title="並べ替え &quot;題名&quot;" href="#">題名</a></th>
+            <th class="assigned_to"><a title="並べ替え &quot;担当者&quot;" href="#">担当者</a></th>
+            <th class="updated_on"><a title="並べ替え &quot;更新日&quot;" href="#">更新日</a></th>
+            <th class="buttons"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="group open">
+            <td colspan="9">
+                <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                <span class="name"><a title="2022/10/16" href="#">version1</a></span> <span class="badge badge-count count">2</span> <span class="totals"></span>
+                <a href="#" onclick="toggleAllRowGroups(this); return false;" class="toggle-all">折りたたみ/展開</a>
+            </td>
+        </tr>
+        <tr id="issue-12" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="12" /></td>
+            <td class="id"><a href="#">12</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue12</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 19:06</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr id="issue-1" class="hascontextmenu even issue tracker-2 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="1" /></td>
+            <td class="id"><a href="#">1</a></td>
+            <td class="tracker">機能</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">ticket1</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/18 17:05</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr class="group open">
+            <td colspan="9">
+                <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                <span class="name"><a title="2022/10/31" href="#">version2</a></span> <span class="badge badge-count count">1</span> <span class="totals"></span>
+                <a href="#" onclick="toggleAllRowGroups(this); return false;" class="toggle-all">折りたたみ/展開</a>
+            </td>
+        </tr>
+        <tr id="issue-10" class="hascontextmenu odd issue tracker-3 status-3 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="10" /></td>
+            <td class="id"><a href="#">10</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">解決</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue10</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 19:09</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr class="group open">
+            <td colspan="9">
+                <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                <span class="name">(空)</span> <span class="badge badge-count count">37</span> <span class="totals"></span>
+                <a href="#" onclick="toggleAllRowGroups(this); return false;" class="toggle-all">折りたたみ/展開</a>
+            </td>
+        </tr>
+        <tr id="issue-40" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="40" /></td>
+            <td class="id"><a href="#">40</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue40</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 08:02</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr id="issue-39" class="hascontextmenu even issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="39" /></td>
+            <td class="id"><a href="#">39</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue39</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 08:02</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr id="issue-38" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="38" /></td>
+            <td class="id"><a href="#">38</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue38</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 08:02</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr id="issue-37" class="hascontextmenu even issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="37" /></td>
+            <td class="id"><a href="#">37</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue37</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 08:02</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr id="issue-36" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="36" /></td>
+            <td class="id"><a href="#">36</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue36</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 08:02</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr id="issue-35" class="hascontextmenu even issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="35" /></td>
+            <td class="id"><a href="#">35</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue35</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 08:01</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        <tr id="issue-34" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+            <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="34" /></td>
+            <td class="id"><a href="#">34</a></td>
+            <td class="tracker">サポート</td>
+            <td class="status">新規</td>
+            <td class="priority">通常</td>
+            <td class="subject"><a href="#">issue34</a></td>
+            <td class="assigned_to"></td>
+            <td class="updated_on">2022/10/21 08:01</td>
+            <td class="buttons"><a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

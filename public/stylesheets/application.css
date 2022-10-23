@@ -340,7 +340,7 @@ tr.message td.created_on { white-space: nowrap; }
 tr.message td.last_message { font-size: 80%; white-space: nowrap; }
 tr.message.sticky td.subject { font-weight: bold; }
 
-body.avatars-on #replies .message.reply {padding-left: 32px;}
+.avatars-on #replies .message.reply {padding-left: 32px;}
 #replies .reply:target h4.reply-header {background-color:#DDEEFF;}
 #replies h4 img.gravatar {margin-left:-32px;}
 
@@ -430,7 +430,7 @@ div.table-list.boards .table-list-cell.name {width: 30%;}
 .query-totals {text-align:right; margin-top:-2.3em;}
 .query-totals>span:not(:first-child) {margin-left:0.6em;}
 .query-totals .value {font-weight:bold;}
-body.controller-timelog .query-totals {margin-top:initial;}
+.controller-timelog .query-totals {margin-top:initial;}
 
 td.center {text-align:center;}
 
@@ -535,8 +535,8 @@ blockquote { font-style: italic; border-left: 3px solid #e0e0e0; padding-left: 0
 blockquote blockquote { margin-left: 0;}
 abbr, span.field-description[title] { border-bottom: 1px dotted #aaa; cursor: help; }
 textarea.wiki-edit {width:99%; resize:vertical; box-sizing: border-box;}
-body.textarea-monospace textarea.wiki-edit {font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace; font-size: 12px;}
-body.textarea-proportional textarea.wiki-edit {font-family: Verdana, sans-serif; font-size: 12px;}
+.textarea-monospace textarea.wiki-edit {font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace; font-size: 12px;}
+.textarea-proportional textarea.wiki-edit {font-family: Verdana, sans-serif; font-size: 12px;}
 li p {margin-top: 0;}
 div.issue {background:#ffffdd; padding:6px; margin-bottom:6px; border: 1px solid #d7d7d7; border-radius:3px;}
 p.breadcrumb { font-size: 0.9em; margin: 4px 0 4px 0;}
@@ -559,7 +559,7 @@ div.issue .attribute .value {overflow:auto; text-overflow: ellipsis;}
 div.issue .attribute.string_cf .value .wiki p {margin-top: 0; margin-bottom: 0;}
 div.issue .attribute.text_cf .value .wiki p:first-of-type {margin-top: 0;}
 div.issue.overdue .due-date .value { color: #c22; }
-body.controller-issues h2.inline-flex {padding-right: 0}
+.controller-issues h2.inline-flex {padding-right: 0}
 
 #issue_tree table.issues, #relations table.issues { border: 0; }
 #issue_tree td.checkbox, #relations td.checkbox {display:none;}
@@ -615,7 +615,7 @@ div.journal.private-notes .wiki {border-left:2px solid #d22; padding-left:4px; m
 div.journal ul.details, ul.revision-info {color:#959595; margin-bottom: 1.5em;}
 div.journal ul.details a, ul.revision-info a {color:#70A7CD;}
 div.journal ul.details a:hover, ul.revision-info a:hover {color:#D14848;}
-body.avatars-on div.journal {padding-left:32px;}
+.avatars-on div.journal {padding-left:32px;}
 div.journal h4 img.gravatar {margin-left:-32px;}
 div.journal span.update-info {color: #666; font-size: 0.9em;}
 
@@ -667,7 +667,7 @@ div#roadmap .wiki h1:first-child { display: none; }
 div#roadmap .wiki h1 { font-size: 120%; }
 div#roadmap .wiki h2 { font-size: 110%; }
 div#roadmap h2, div#roadmap h3 {padding-right: 0;}
-body.controller-versions.action-show div#roadmap .related-issues {width:70%;}
+.controller-versions.action-show div#roadmap .related-issues {width:70%;}
 
 div#roadmap .version-article {padding-bottom: 12px;}
 

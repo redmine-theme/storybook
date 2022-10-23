@@ -1,0 +1,617 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>カスタムクエリ</h3>
+        <ul class="queries">
+            <li><a class="query" href="#">ウォッチしているチケット</a></li>
+            <li><a class="query" href="#">報告したチケット</a></li>
+            <li><a class="query" href="#">担当しているチケット</a></li>
+            <li><a class="query" href="#">更新したチケット</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-add new-issue" href="#">新しいチケット</a>
+            <span class="drdn">
+                <span class="drdn-trigger">
+                    <span class="icon-only icon-actions" title="操作">操作</span>
+                </span>
+                <div class="drdn-content">
+                    <div class="drdn-items">
+                        <a class="icon icon-stats" href="#">サマリー</a>
+                        <a class="icon icon-import" href="#">インポート</a>
+                        <a class="icon icon-settings" href="#">設定</a>
+                    </div>
+                </div>
+            </span>
+        </div>
+
+        <h2>チケット</h2>
+
+        <form id="query_form" action="#" accept-charset="UTF-8" name="query_form-04d35a24" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="set_filter" id="set_filter" value="1" autocomplete="off"/>
+            <input type="hidden" name="type" id="query_type" value="IssueQuery" disabled="disabled" autocomplete="off"/>
+            <input type="hidden" name="sort" value="id:desc" autocomplete="off"/>
+
+            <div id="query_form_with_buttons" class="hide-when-print">
+                <div id="query_form_content">
+                    <fieldset id="filters" class="collapsible ">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-expanded">フィルタ</legend>
+                        <div style="">
+                            <script>
+                              //<![CDATA[
+
+                              var operatorLabels = {
+                                "=": "等しい",
+                                "!": "等しくない",
+                                "o": "未完了",
+                                "c": "完了",
+                                "!*": "なし",
+                                "*": "すべて",
+                                "\u003e=": "以上",
+                                "\u003c=": "以下",
+                                "\u003e\u003c": "次の範囲内",
+                                "\u003ct+": "N日後以前",
+                                "\u003et+": "N日後以降",
+                                "\u003e\u003ct+": "今後N日",
+                                "t+": "N日後",
+                                "nd": "明日",
+                                "t": "今日",
+                                "ld": "昨日",
+                                "nw": "来週",
+                                "w": "今週",
+                                "lw": "先週",
+                                "l2w": "直近2週間",
+                                "nm": "来月",
+                                "m": "今月",
+                                "lm": "先月",
+                                "y": "今年",
+                                "\u003et-": "N日前以降",
+                                "\u003ct-": "N日前以前",
+                                "\u003e\u003ct-": "過去N日",
+                                "t-": "N日前",
+                                "~": "含む",
+                                "!~": "含まない",
+                                "^": "前方一致",
+                                "$": "後方一致",
+                                "=p": "次のプロジェクト内のチケット",
+                                "=!p": "次のプロジェクト外のチケット",
+                                "!p": "次のプロジェクト内のチケットを除く",
+                                "*o": "未完了のチケット",
+                                "!o": "なし または完了したチケット"
+                              };
+                              var operatorByType = {
+                                "list": ["=", "!"],
+                                "list_status": ["o", "=", "!", "c", "*"],
+                                "list_optional": ["=", "!", "!*", "*"],
+                                "list_subprojects": ["*", "!*", "=", "!"],
+                                "date": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003ct+", "\u003et+", "\u003e\u003ct+", "t+", "nd", "t", "ld", "nw", "w", "lw", "l2w", "nm", "m", "lm", "y", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "!*", "*"],
+                                "date_past": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "t", "ld", "w", "lw", "l2w", "m", "lm", "y", "!*", "*"],
+                                "string": ["~", "=", "!~", "!", "^", "$", "!*", "*"],
+                                "text": ["~", "!~", "^", "$", "!*", "*"],
+                                "integer": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "float": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "relation": ["=", "!", "=p", "=!p", "!p", "*o", "!o", "!*", "*"],
+                                "tree": ["=", "~", "!*", "*"]
+                              };
+                              var availableFilters = {
+                                "status_id": {
+                                  "type": "list_status",
+                                  "name": "ステータス",
+                                  "remote": true,
+                                  "values": [["新規", "1"], ["進行中", "2"], ["解決", "3"], ["フィードバック", "4"], ["終了", "5"], ["却下", "6"]]
+                                },
+                                "tracker_id": {
+                                  "type": "list",
+                                  "name": "トラッカー",
+                                  "values": [["バグ", "1"], ["機能", "2"], ["サポート", "3"]]
+                                },
+                                "priority_id": {
+                                  "type": "list",
+                                  "name": "優先度",
+                                  "values": [["低め", "1"], ["通常", "2"], ["高め", "3"], ["急いで", "4"], ["今すぐ", "5"]]
+                                },
+                                "author_id": {"type": "list", "name": "作成者", "remote": true},
+                                "assigned_to_id": {"type": "list_optional", "name": "担当者", "remote": true},
+                                "member_of_group": {"type": "list_optional", "name": "担当者のグループ", "remote": true},
+                                "assigned_to_role": {"type": "list_optional", "name": "担当者のロール", "remote": true},
+                                "fixed_version_id": {"type": "list_optional", "name": "対象バージョン", "remote": true},
+                                "fixed_version.due_date": {"type": "date", "name": "対象バージョンの 期日", "values": null},
+                                "fixed_version.status": {
+                                  "type": "list",
+                                  "name": "対象バージョンの ステータス",
+                                  "values": [["進行中", "open"], ["ロック中", "locked"], ["終了", "closed"]]
+                                },
+                                "category_id": {"type": "list_optional", "name": "カテゴリ", "remote": true},
+                                "subject": {"type": "text", "name": "題名", "values": null},
+                                "description": {"type": "text", "name": "説明", "values": null},
+                                "notes": {"type": "text", "name": "コメント", "values": null},
+                                "created_on": {"type": "date_past", "name": "作成日", "values": null},
+                                "updated_on": {"type": "date_past", "name": "更新日", "values": null},
+                                "closed_on": {"type": "date_past", "name": "終了日", "values": null},
+                                "start_date": {"type": "date", "name": "開始日", "values": null},
+                                "due_date": {"type": "date", "name": "期日", "values": null},
+                                "estimated_hours": {"type": "float", "name": "予定工数", "values": null},
+                                "spent_time": {"type": "float", "name": "作業時間", "values": null},
+                                "done_ratio": {"type": "integer", "name": "進捗率", "values": null},
+                                "is_private": {"type": "list", "name": "プライベート", "values": [["はい", "1"], ["いいえ", "0"]]},
+                                "attachment": {"type": "text", "name": "ファイル", "values": null},
+                                "attachment_description": {"type": "text", "name": "ファイルの説明", "values": null},
+                                "watcher_id": {"type": "list", "name": "ウォッチャー", "remote": true},
+                                "updated_by": {"type": "list", "name": "更新者", "remote": true},
+                                "last_updated_by": {"type": "list", "name": "最終更新者", "remote": true},
+                                "subproject_id": {"type": "list_subprojects", "name": "サブプロジェクト", "remote": true},
+                                "project.status": {"type": "list", "name": "プロジェクトの ステータス", "remote": true},
+                                "relates": {"type": "relation", "name": "関連している", "remote": true},
+                                "duplicates": {"type": "relation", "name": "次のチケットと重複", "remote": true},
+                                "duplicated": {"type": "relation", "name": "次のチケットが重複", "remote": true},
+                                "blocks": {"type": "relation", "name": "ブロック先", "remote": true},
+                                "blocked": {"type": "relation", "name": "ブロック元", "remote": true},
+                                "precedes": {"type": "relation", "name": "次のチケットに先行", "remote": true},
+                                "follows": {"type": "relation", "name": "次のチケットに後続", "remote": true},
+                                "copied_to": {"type": "relation", "name": "コピー先", "remote": true},
+                                "copied_from": {"type": "relation", "name": "コピー元", "remote": true},
+                                "parent_id": {"type": "tree", "name": "親チケット", "values": null},
+                                "child_id": {"type": "tree", "name": "子チケット", "values": null},
+                                "issue_id": {"type": "integer", "name": "チケット", "values": null}
+                              };
+                              var labelDayPlural = "日";
+
+                              var filtersUrl = "\/queries\/filter?project_id=1\u0026type=IssueQuery";
+
+                              $(document).ready(function () {
+                                initFilters();
+                                addFilter("status_id", "o", [""]);
+                                addFilter("priority_id", "=", ["1", "2", "3", "4", "5"]);
+                                addFilter("tracker_id", "=", ["1", "2", "3"]);
+                              });
+
+                              //]]>
+                            </script>
+                            <table id="filters-table">
+                            </table>
+
+                            <div class="add-filter">
+                                <label for="add_filter_select">フィルタ追加</label>
+                                <select id="add_filter_select">
+                                    <option value="">&nbsp;</option>
+                                    <option value="status_id">ステータス</option>
+                                    <option value="tracker_id">トラッカー</option>
+                                    <option value="priority_id">優先度</option>
+                                    <option value="author_id">作成者</option>
+                                    <option value="assigned_to_id">担当者</option>
+                                    <option value="fixed_version_id">対象バージョン</option>
+                                    <option value="category_id">カテゴリ</option>
+                                    <option value="subject">題名</option>
+                                    <option value="description">説明</option>
+                                    <option value="notes">コメント</option>
+                                    <option value="done_ratio">進捗率</option>
+                                    <option value="is_private">プライベート</option>
+                                    <option value="watcher_id">ウォッチャー</option>
+                                    <option value="updated_by">更新者</option>
+                                    <option value="last_updated_by">最終更新者</option>
+                                    <option value="subproject_id">サブプロジェクト</option>
+                                    <option value="issue_id">チケット</option>
+                                    <optgroup label="担当者">
+                                        <option value="member_of_group">担当者のグループ</option>
+                                        <option value="assigned_to_role">担当者のロール</option>
+                                    </optgroup>
+                                    <optgroup label="対象バージョン">
+                                        <option value="fixed_version.due_date">対象バージョンの 期日</option>
+                                        <option value="fixed_version.status">対象バージョンの ステータス</option>
+                                    </optgroup>
+                                    <optgroup label="日付">
+                                        <option value="created_on">作成日</option>
+                                        <option value="updated_on">更新日</option>
+                                        <option value="closed_on">終了日</option>
+                                        <option value="start_date">開始日</option>
+                                        <option value="due_date">期日</option>
+                                    </optgroup>
+                                    <optgroup label="時間管理">
+                                        <option value="estimated_hours">予定工数</option>
+                                        <option value="spent_time">作業時間</option>
+                                    </optgroup>
+                                    <optgroup label="ファイル">
+                                        <option value="attachment">ファイル</option>
+                                        <option value="attachment_description">ファイルの説明</option>
+                                    </optgroup>
+                                    <optgroup label="プロジェクト">
+                                        <option value="project.status">プロジェクトの ステータス</option>
+                                    </optgroup>
+                                    <optgroup label="関係">
+                                        <option value="relates">関連している</option>
+                                        <option value="duplicates">次のチケットと重複</option>
+                                        <option value="duplicated">次のチケットが重複</option>
+                                        <option value="blocks">ブロック先</option>
+                                        <option value="blocked">ブロック元</option>
+                                        <option value="precedes">次のチケットに先行</option>
+                                        <option value="follows">次のチケットに後続</option>
+                                        <option value="copied_to">コピー先</option>
+                                        <option value="copied_from">コピー元</option>
+                                        <option value="parent_id">親チケット</option>
+                                        <option value="child_id">子チケット</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="f[]" id="f_" value="" autocomplete="off"/>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="options" class="collapsible collapsed">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-collapsed">オプション</legend>
+                        <div class="hidden">
+                            <table id="list-definition" class="">
+                                <tr>
+                                    <td class="field">項目</td>
+                                    <td>
+                                        <span class="query-columns">
+                                          <span>
+                                              <label for="available_c">利用できる項目</label>
+                                              <select name="available_columns[]" id="available_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.available_c, this.form.selected_c);"><option value="project">プロジェクト</option>
+                                        <option value="parent">親チケット</option>
+                                        <option value="parent.subject">親チケットの題名</option>
+                                        <option value="author">作成者</option>
+                                        <option value="category">カテゴリ</option>
+                                        <option value="fixed_version">対象バージョン</option>
+                                        <option value="start_date">開始日</option>
+                                        <option value="due_date">期日</option>
+                                        <option value="estimated_hours">予定工数</option>
+                                        <option value="total_estimated_hours">合計予定工数</option>
+                                        <option value="spent_hours">作業時間</option>
+                                        <option value="total_spent_hours">合計作業時間</option>
+                                        <option value="done_ratio">進捗率</option>
+                                        <option value="created_on">作成日</option>
+                                        <option value="closed_on">終了日</option>
+                                        <option value="last_updated_by">最終更新者</option>
+                                        <option value="relations">関連するチケット</option>
+                                        <option value="attachments">ファイル</option>
+                                        <option value="is_private">プライベート</option></select>
+                                          </span>
+                                          <span class="buttons">
+                                              <input type="button" value="&#8594;" class="move-right"
+                                                     onclick="moveOptions(this.form.available_c, this.form.selected_c);"/>
+                                              <input type="button" value="&#8592;" class="move-left"
+                                                     onclick="moveOptions(this.form.selected_c, this.form.available_c);"/>
+                                          </span>
+                                          <span>
+                                              <label for="selected_c">選択された項目</label>
+                                              <select name="c[]" id="selected_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.selected_c, this.form.available_c);"><option value="tracker">トラッカー</option>
+                                        <option value="status">ステータス</option>
+                                        <option value="priority">優先度</option>
+                                        <option value="subject">題名</option>
+                                        <option value="assigned_to">担当者</option>
+                                        <option value="updated_on">更新日</option></select>
+                                          </span>
+                                          <span class="buttons">
+                                              <input type="button" value="&#8648;" onclick="moveOptionTop(this.form.selected_c);"/>
+                                              <input type="button" value="&#8593;" onclick="moveOptionUp(this.form.selected_c);"/>
+                                              <input type="button" value="&#8595;" onclick="moveOptionDown(this.form.selected_c);"/>
+                                              <input type="button" value="&#8650;" onclick="moveOptionBottom(this.form.selected_c);"/>
+                                          </span>
+                                        </span>
+
+                                        <script>
+                                          //<![CDATA[
+
+                                          $(document).ready(function () {
+                                            $('.query-columns').closest('form').submit(function () {
+                                              $('#selected_c option:not(:disabled)').prop('selected', true);
+                                            });
+                                          });
+
+                                          //]]>
+                                        </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="field"><label for='group_by'>グループ条件</label></td>
+                                    <td><select name="group_by" id="group_by">
+                                        <option value="">&nbsp;</option>
+                                        <option value="project">プロジェクト</option>
+                                        <option value="tracker">トラッカー</option>
+                                        <option value="status">ステータス</option>
+                                        <option value="priority">優先度</option>
+                                        <option value="author">作成者</option>
+                                        <option value="assigned_to">担当者</option>
+                                        <option value="updated_on">更新日</option>
+                                        <option value="category">カテゴリ</option>
+                                        <option selected="selected" value="fixed_version">対象バージョン</option>
+                                        <option value="start_date">開始日</option>
+                                        <option value="due_date">期日</option>
+                                        <option value="done_ratio">進捗率</option>
+                                        <option value="created_on">作成日</option>
+                                        <option value="closed_on">終了日</option>
+                                        <option value="is_private">プライベート</option>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <td class="field">表示</td>
+                                    <td><label class="inline"><input type="checkbox" name="c[]" value="description"/> 説明</label><label class="inline"><input type="checkbox" name="c[]" value="last_notes"/> 最新のコメント</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>合計</td>
+                                    <td>
+                                        <label class="inline"><input type="checkbox" name="t[]" value="estimated_hours"/> 予定工数</label><label class="inline"><input type="checkbox" name="t[]" value="spent_hours"/> 作業時間</label><input type="hidden" name="t[]" id="t_" value="" autocomplete="off"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <p class="buttons">
+                    <a href="#" onclick="$(&quot;#query_form&quot;).submit(); return false;" class="icon icon-checked">適用</a>
+                    <a class="icon icon-reload" href="#">クリア</a>
+                    <a href="#" onclick="$(&#39;#query_type&#39;).prop(&#39;disabled&#39;,false);$(&#39;#query_form&#39;).attr(&#39;action&#39;, &#39;/projects/test1/queries/new&#39;).submit(); return false;" class="icon icon-save">カスタムクエリを保存</a>
+                </p>
+            </div>
+
+            <script>
+              //<![CDATA[
+              $(function ($) {
+                $('input[name=display_type]').change(function (e) {
+                  if ($("#display_type_list").is(':checked')) {
+                    $('table#list-definition').show();
+                  } else {
+                    $('table#list-definition').hide();
+                  }
+
+                })
+              });
+              //]]>
+            </script>
+        </form>
+
+
+        <form data-cm-url="/issues/context_menu" action="/projects/test1/issues" accept-charset="UTF-8" name="form-c16e6dbd" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+            <input type="hidden" name="back_url" value="" autocomplete="off"/>
+            <input type="hidden" name="c[]" value="id" autocomplete="off"/>
+            <input type="hidden" name="c[]" value="tracker" autocomplete="off"/>
+            <input type="hidden" name="c[]" value="status" autocomplete="off"/><input type="hidden" name="c[]" value="priority" autocomplete="off"/><input type="hidden" name="c[]" value="subject" autocomplete="off"/><input type="hidden" name="c[]" value="assigned_to" autocomplete="off"/><input type="hidden" name="c[]" value="updated_on" autocomplete="off"/>
+            <div class="autoscroll">
+                <table class="list issues odd-even sort-by-id sort-desc">
+                    <thead>
+                    <tr>
+                        <th class="checkbox hide-when-print">
+                            <input type="checkbox" name="check_all" id="check_all" value="" class="toggle-selection" title="すべてにチェックをつける/すべてのチェックを外す"/>
+                        </th>
+                        <th class="id">
+                            <a title="並べ替え &quot;#&quot;" class="sort desc icon icon-sorted-asc" href="#">#</a>
+                        </th>
+                        <th class="tracker">
+                            <a title="並べ替え &quot;トラッカー&quot;" href="#">トラッカー</a>
+                        </th>
+                        <th class="status">
+                            <a title="並べ替え &quot;ステータス&quot;" href="#">ステータス</a>
+                        </th>
+                        <th class="priority">
+                            <a title="並べ替え &quot;優先度&quot;" href="#">優先度</a>
+                        </th>
+                        <th class="subject">
+                            <a title="並べ替え &quot;題名&quot;" href="#">題名</a>
+                        </th>
+                        <th class="assigned_to">
+                            <a title="並べ替え &quot;担当者&quot;" href="#">担当者</a>
+                        </th>
+                        <th class="updated_on">
+                            <a title="並べ替え &quot;更新日&quot;" href="#">更新日</a>
+                        </th>
+                        <th class="buttons"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="group open">
+                        <td colspan="9">
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            <span class="name"><a title="2022/10/16" href="#">version1</a></span>
+                            <span class="badge badge-count count">2</span> <span class="totals"></span>
+                            <a href="#" onclick="toggleAllRowGroups(this); return false;" class="toggle-all">折りたたみ/展開</a>
+                        </td>
+                    </tr>
+                    <tr id="issue-12" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default overdue behind-schedule created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="12"/></td>
+                        <td class="id"><a href="#">12</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue12</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 19:06</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr id="issue-1" class="hascontextmenu even issue tracker-2 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="1"/></td>
+                        <td class="id"><a href="#">1</a></td>
+                        <td class="tracker">機能</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">ticket1</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/18 17:05</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr class="group open">
+                        <td colspan="9">
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            <span class="name"><a title="2022/10/31" href="#">version2</a></span>
+                            <span class="badge badge-count count">1</span> <span class="totals"></span>
+                            <a href="#" onclick="toggleAllRowGroups(this); return false;" class="toggle-all">折りたたみ/展開</a>
+                        </td>
+                    </tr>
+                    <tr id="issue-10" class="hascontextmenu odd issue tracker-3 status-3 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="10"/></td>
+                        <td class="id"><a href="#">10</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">解決</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue10</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 19:09</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr class="group open">
+                        <td colspan="9">
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            <span class="name">(空)</span> <span class="badge badge-count count">37</span>
+                            <span class="totals"></span>
+                            <a href="#" onclick="toggleAllRowGroups(this); return false;" class="toggle-all">折りたたみ/展開</a>
+                        </td>
+                    </tr>
+                    <tr id="issue-40" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="40"/></td>
+                        <td class="id"><a href="#">40</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue40</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 08:02</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr id="issue-39" class="hascontextmenu even issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="39"/></td>
+                        <td class="id"><a href="#">39</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue39</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 08:02</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr id="issue-38" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="38"/></td>
+                        <td class="id"><a href="#">38</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue38</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 08:02</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr id="issue-37" class="hascontextmenu even issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="37"/></td>
+                        <td class="id"><a href="#">37</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue37</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 08:02</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr id="issue-36" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="36"/></td>
+                        <td class="id"><a href="#">36</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue36</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 08:02</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr id="issue-35" class="hascontextmenu even issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="35"/></td>
+                        <td class="id"><a href="#">35</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue35</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 08:01</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    <tr id="issue-34" class="hascontextmenu odd issue tracker-3 status-1 priority-2 priority-default created-by-me ">
+                        <td class="checkbox hide-when-print"><input type="checkbox" name="ids[]" value="34"/></td>
+                        <td class="id"><a href="#">34</a></td>
+                        <td class="tracker">サポート</td>
+                        <td class="status">新規</td>
+                        <td class="priority">通常</td>
+                        <td class="subject"><a href="#">issue34</a></td>
+                        <td class="assigned_to"></td>
+                        <td class="updated_on">2022/10/21 08:01</td>
+                        <td class="buttons">
+                            <a title="操作" class="icon-only icon-actions js-contextmenu" href="#">操作</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+        <span class="pagination"><ul class="pages"><li class="previous"><span>« 前</span></li><li class="current"><span>1</span></li><li class="page"><a href="#">2</a></li><li class="page"><a href="#">3</a></li><li class="page"><a href="#">4</a></li><li class="next page"><a accesskey="n" href="#">次 »</a></li></ul><span><span class="items">(1-10/40)</span> <span class="per-page">1ページに: <span class="selected">10</span>, <a href="#">25</a>, <a href="#">50</a></span></span></span>
+
+        <p class="other-formats">他の形式にエクスポート:
+            <span><a class="atom" rel="nofollow" href="#">Atom</a></span>
+            <span><a class="csv" rel="nofollow" onclick="showModal(&#39;csv-export-options&#39;, &#39;350px&#39;); return false;" href="#">CSV</a></span>
+            <span><a class="pdf" rel="nofollow" href="#">PDF</a></span>
+        </p>
+        <div id="csv-export-options" style="display:none;">
+            <h3 class="title">CSV エクスポート設定</h3>
+            <form id="csv-export-form" action="#" accept-charset="UTF-8" name="csv-export-form-8e2e7bda" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="set_filter" value="1" autocomplete="off"/>
+                <input type="hidden" name="f[]" value="status_id" autocomplete="off"/>
+                <input type="hidden" name="op[status_id]" value="o" autocomplete="off"/>
+                <input type="hidden" name="v[status_id][]" value="" autocomplete="off"/>
+                <input type="hidden" name="f[]" value="priority_id" autocomplete="off"/>
+                <input type="hidden" name="op[priority_id]" value="=" autocomplete="off"/>
+                <input type="hidden" name="v[priority_id][]" value="1" autocomplete="off"/>
+                <input type="hidden" name="v[priority_id][]" value="2" autocomplete="off"/>
+                <input type="hidden" name="v[priority_id][]" value="3" autocomplete="off"/>
+                <input type="hidden" name="v[priority_id][]" value="4" autocomplete="off"/>
+                <input type="hidden" name="v[priority_id][]" value="5" autocomplete="off"/>
+                <input type="hidden" name="f[]" value="tracker_id" autocomplete="off"/>
+                <input type="hidden" name="op[tracker_id]" value="=" autocomplete="off"/>
+                <input type="hidden" name="v[tracker_id][]" value="1" autocomplete="off"/>
+                <input type="hidden" name="v[tracker_id][]" value="2" autocomplete="off"/>
+                <input type="hidden" name="v[tracker_id][]" value="3" autocomplete="off"/>
+                <input type="hidden" name="c[]" value="id" autocomplete="off"/>
+                <input type="hidden" name="c[]" value="tracker" autocomplete="off"/>
+                <input type="hidden" name="c[]" value="status" autocomplete="off"/>
+                <input type="hidden" name="c[]" value="priority" autocomplete="off"/>
+                <input type="hidden" name="c[]" value="subject" autocomplete="off"/>
+                <input type="hidden" name="c[]" value="assigned_to" autocomplete="off"/>
+                <input type="hidden" name="c[]" value="updated_on" autocomplete="off"/>
+                <input type="hidden" name="group_by" value="fixed_version" autocomplete="off"/>
+                <input type="hidden" name="sort" value="id:desc" autocomplete="off"/>
+                <p>
+                    <label><input type="radio" name="c[]" id="c__" value="" checked="checked"/> 選択された項目</label><br/>
+                    <label><input type="radio" name="c[]" id="c__all_inline" value="all_inline"/> すべての項目</label>
+                </p>
+                <fieldset id="csv-export-block-columns">
+                    <legend>
+                        <a href="#" onclick="toggleCheckboxesBySelector(&#39;#csv-export-block-columns input[type=checkbox]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>
+                    </legend>
+                    <label><input type="checkbox" name="c[]" value="description"/> 説明</label>
+                    <label><input type="checkbox" name="c[]" value="last_notes"/> 最新のコメント</label>
+                </fieldset>
+                <p><label>エンコーディング <select name="encoding" id="encoding">
+                    <option selected="selected" value="CP932">CP932</option>
+                    <option value="UTF-8">UTF-8</option>
+                </select></label></p>
+                <p class="buttons">
+                    <input type="submit" value="エクスポート" onclick="hideModal(this);"/>
+                    <a href="#" onclick="hideModal(this);; return false;">キャンセル</a>
+                </p>
+            </form>
+        </div>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>
