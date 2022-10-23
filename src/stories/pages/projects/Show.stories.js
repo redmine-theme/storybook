@@ -3,6 +3,9 @@ import html from './show.html';
 
 export default {
   title: "Pages/Projects/Show",
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Show = () => html;

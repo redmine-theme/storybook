@@ -3,6 +3,9 @@ import html from './wiki.html';
 
 export default {
   title: "Pages/Projects/Wiki",
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Wiki = () => html;
