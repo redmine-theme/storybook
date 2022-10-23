@@ -1,0 +1,123 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>新しいプロジェクト</h2>
+
+        <form class="new_project" id="new_project" enctype="multipart/form-data" action="/projects" accept-charset="UTF-8" name="new_project-311941d0" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+            <div class="box tabular">
+                <!--[form:project]-->
+                <p>
+                    <label for="project_name">名称<span class="required"> *</span></label><input size="60" type="text" value="" name="project[name]" id="project_name"/>
+                </p>
+
+                <p>
+                    <label for="project_description">説明</label><textarea rows="8" class="wiki-edit" name="project[description]" id="project_description">
+</textarea></p>
+                <p>
+                    <label for="project_identifier">識別子<span class="required"> *</span></label><input size="60" maxlength="100" type="text" name="project[identifier]" id="project_identifier"/>
+                    <em class="info">長さは1から100文字までです。 アルファベット小文字(a-z)・数字・ハイフン・アンダースコアが使えます。<br/>識別子は後で変更することはできません。</em>
+                </p>
+                <p>
+                    <label for="project_homepage">ホームページ</label><input size="60" type="text" value="" name="project[homepage]" id="project_homepage"/>
+                </p>
+                <p>
+                    <label for="project_is_public">公開</label><input name="project[is_public]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" checked="checked" name="project[is_public]" id="project_is_public"/>
+                    <em class="info">公開プロジェクトとその中の情報にはネットワーク上の全ユーザーがアクセスできます。</em>
+                </p>
+
+                <p>
+                    <label for="project_parent_id">親プロジェクト名</label><select name="project[parent_id]" id="project_parent_id">
+                    <option value=''>&nbsp;</option>
+                    <option value="1">test1</option>
+                    <option value="6">&nbsp;&nbsp;&#187; test1-1</option>
+                    <option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&#187; test1-1-1</option>
+                    <option value="7">&nbsp;&nbsp;&#187; test1-2</option>
+                    <option value="13">test10</option>
+                    <option value="2">test2</option>
+                    <option value="14">&nbsp;&nbsp;&#187; test2-1</option>
+                    <option value="3">test3</option>
+                    <option value="15">&nbsp;&nbsp;&#187; test3-1</option>
+                    <option value="4">test4</option>
+                    <option value="5">test5</option>
+                    <option value="9">test6</option>
+                    <option value="10">test7</option>
+                    <option value="11">test8</option>
+                    <option value="12">test9</option>
+                </select></p>
+
+                <p>
+                    <label for="project_inherit_members">メンバーを継承</label><input name="project[inherit_members]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="project[inherit_members]" id="project_inherit_members"/>
+                </p>
+
+                <script>
+                  //<![CDATA[
+                  var wikiToolbar = new jsToolBar(document.getElementById('project_description'));
+                  wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+                  wikiToolbar.setPreviewUrl('/preview/text');
+                  wikiToolbar.draw();
+                  //]]>
+                </script>
+
+
+            </div>
+
+            <fieldset class="box tabular" id="project_modules">
+                <legend>
+                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;#project_modules input[type=&quot;checkbox&quot;]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>モジュール
+                </legend>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_issue_tracking" value="issue_tracking" checked="checked"/>
+                    チケットトラッキング
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_time_tracking" value="time_tracking" checked="checked"/>
+                    時間管理
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_news" value="news" checked="checked"/>
+                    ニュース
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_documents" value="documents" checked="checked"/>
+                    文書
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_files" value="files" checked="checked"/>
+                    ファイル
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_wiki" value="wiki" checked="checked"/>
+                    Wiki
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_repository" value="repository" checked="checked"/>
+                    リポジトリ
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_boards" value="boards" checked="checked"/>
+                    フォーラム
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_calendar" value="calendar" checked="checked"/>
+                    カレンダー
+                </label>
+                <label class="floating">
+                    <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_gantt" value="gantt" checked="checked"/>
+                    ガントチャート
+                </label>
+                <input type="hidden" name="project[enabled_module_names][]" id="project_enabled_module_names_" value="" autocomplete="off"/>
+            </fieldset>
+            <!--[eoform:project]-->
+
+            <input type="submit" name="commit" value="作成" data-disable-with="作成"/>
+            <input type="submit" name="continue" value="連続作成" data-disable-with="連続作成"/>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations selected" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+
+        <h2><a href="#">作業分類 (時間管理)</a> &#187; 新しい値</h2>
+
+        <form class="new_enumeration" id="new_enumeration" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="new_enumeration-1b3ed244" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <input autocomplete="off" type="hidden" value="TimeEntryActivity" name="enumeration[type]" id="enumeration_type" />
+
+            <div class="box tabular">
+                <p><label for="enumeration_name">名称</label><input type="text" value="" name="enumeration[name]" id="enumeration_name" /></p>
+                <p><label for="enumeration_active">有効</label><input name="enumeration[active]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" checked="checked" name="enumeration[active]" id="enumeration_active" /></p>
+                <p><label for="enumeration_is_default">デフォルト値</label><input name="enumeration[is_default]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" name="enumeration[is_default]" id="enumeration_is_default" /></p>
+            </div>
+
+            <input type="submit" name="commit" value="作成" data-disable-with="作成" />
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

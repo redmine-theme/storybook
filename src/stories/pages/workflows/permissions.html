@@ -1,0 +1,657 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows selected" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-copy" href="#">コピー</a>
+            <a class="icon icon-summary" href="#">サマリー</a>
+        </div>
+
+        <h2>ワークフロー</h2>
+
+        <div class="tabs">
+            <ul>
+                <li><a href="#">ステータスの遷移</a></li>
+                <li><a class="selected" href="#">フィールドに対する権限</a></li>
+            </ul>
+        </div>
+
+        <p>ワークフローを編集するロールとトラッカーを選んでください:</p>
+
+        <form action="#" accept-charset="UTF-8" name="form-58481f3b" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <p>
+                <label>ロール:
+                    <select name="role_id[]" id="role_id" class="expandable"><option value="all">すべて</option><option selected="selected" value="3">管理者</option>
+                        <option value="4">開発者</option>
+                        <option value="5">報告者</option>
+                        <option value="1">非メンバー</option></select>
+                    <span class="toggle-multiselect icon-only"></span>
+                </label>
+
+                <label>トラッカー:
+                    <select name="tracker_id[]" id="tracker_id" class="expandable"><option value="all">すべて</option><option selected="selected" value="1">バグ</option>
+                        <option value="2">機能</option>
+                        <option value="3">サポート</option></select>
+                    <span class="toggle-multiselect icon-only"></span>
+                </label>
+                <input type="submit" value="編集" data-disable-with="編集" />
+
+                <input type="hidden" name="used_statuses_only" value="0" autocomplete="off" />
+                <label><input type="checkbox" name="used_statuses_only" id="used_statuses_only" value="1" checked="checked" /> このトラッカーで使用中のステータスのみ表示</label>
+            </p>
+        </form>
+        <form id="workflow_form" action="#" accept-charset="UTF-8" name="workflow_form-d7d0ebff" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="_method" value="patch" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <input type="hidden" name="tracker_id[]" value="1" autocomplete="off" />
+            <input type="hidden" name="role_id[]" value="3" autocomplete="off" />
+            <input type="hidden" name="used_statuses_only" autocomplete="off" />
+            <div class="autoscroll">
+                <table class="list workflows fields_permissions">
+                    <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th colspan="6">チケットのステータス</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="width:12%;">
+                            新規
+                        </td>
+                        <td style="width:12%;">
+                            進行中
+                        </td>
+                        <td style="width:12%;">
+                            解決
+                        </td>
+                        <td style="width:12%;">
+                            フィードバック
+                        </td>
+                        <td style="width:12%;">
+                            終了
+                        </td>
+                        <td style="width:12%;">
+                            却下
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="group open">
+                        <td colspan="7">
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            標準フィールド
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            プロジェクト <span class="required">*</span>
+                        </td>
+                        <td class="" title="プロジェクト (新規)">
+                            <select name="permissions[1][project_id]" id="permissions_1_project_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プロジェクト (進行中)">
+                            <select name="permissions[2][project_id]" id="permissions_2_project_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プロジェクト (解決)">
+                            <select name="permissions[3][project_id]" id="permissions_3_project_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プロジェクト (フィードバック)">
+                            <select name="permissions[4][project_id]" id="permissions_4_project_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プロジェクト (終了)">
+                            <select name="permissions[5][project_id]" id="permissions_5_project_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プロジェクト (却下)">
+                            <select name="permissions[6][project_id]" id="permissions_6_project_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            トラッカー <span class="required">*</span>
+                        </td>
+                        <td class="" title="トラッカー (新規)">
+                            <select name="permissions[1][tracker_id]" id="permissions_1_tracker_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="トラッカー (進行中)">
+                            <select name="permissions[2][tracker_id]" id="permissions_2_tracker_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="トラッカー (解決)">
+                            <select name="permissions[3][tracker_id]" id="permissions_3_tracker_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="トラッカー (フィードバック)">
+                            <select name="permissions[4][tracker_id]" id="permissions_4_tracker_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="トラッカー (終了)">
+                            <select name="permissions[5][tracker_id]" id="permissions_5_tracker_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="トラッカー (却下)">
+                            <select name="permissions[6][tracker_id]" id="permissions_6_tracker_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            題名 <span class="required">*</span>
+                        </td>
+                        <td class="" title="題名 (新規)">
+                            <select name="permissions[1][subject]" id="permissions_1_subject"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="題名 (進行中)">
+                            <select name="permissions[2][subject]" id="permissions_2_subject"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="題名 (解決)">
+                            <select name="permissions[3][subject]" id="permissions_3_subject"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="題名 (フィードバック)">
+                            <select name="permissions[4][subject]" id="permissions_4_subject"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="題名 (終了)">
+                            <select name="permissions[5][subject]" id="permissions_5_subject"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="題名 (却下)">
+                            <select name="permissions[6][subject]" id="permissions_6_subject"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            優先度 <span class="required">*</span>
+                        </td>
+                        <td class="" title="優先度 (新規)">
+                            <select name="permissions[1][priority_id]" id="permissions_1_priority_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="優先度 (進行中)">
+                            <select name="permissions[2][priority_id]" id="permissions_2_priority_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="優先度 (解決)">
+                            <select name="permissions[3][priority_id]" id="permissions_3_priority_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="優先度 (フィードバック)">
+                            <select name="permissions[4][priority_id]" id="permissions_4_priority_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="優先度 (終了)">
+                            <select name="permissions[5][priority_id]" id="permissions_5_priority_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="優先度 (却下)">
+                            <select name="permissions[6][priority_id]" id="permissions_6_priority_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            プライベート <span class="required">*</span>
+                        </td>
+                        <td class="" title="プライベート (新規)">
+                            <select name="permissions[1][is_private]" id="permissions_1_is_private"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プライベート (進行中)">
+                            <select name="permissions[2][is_private]" id="permissions_2_is_private"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プライベート (解決)">
+                            <select name="permissions[3][is_private]" id="permissions_3_is_private"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プライベート (フィードバック)">
+                            <select name="permissions[4][is_private]" id="permissions_4_is_private"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プライベート (終了)">
+                            <select name="permissions[5][is_private]" id="permissions_5_is_private"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="プライベート (却下)">
+                            <select name="permissions[6][is_private]" id="permissions_6_is_private"><option value=""></option>
+                                <option value="readonly">読み取り専用</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            担当者
+                        </td>
+                        <td class="" title="担当者 (新規)">
+                            <select name="permissions[1][assigned_to_id]" id="permissions_1_assigned_to_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="担当者 (進行中)">
+                            <select name="permissions[2][assigned_to_id]" id="permissions_2_assigned_to_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="担当者 (解決)">
+                            <select name="permissions[3][assigned_to_id]" id="permissions_3_assigned_to_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="担当者 (フィードバック)">
+                            <select name="permissions[4][assigned_to_id]" id="permissions_4_assigned_to_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="担当者 (終了)">
+                            <select name="permissions[5][assigned_to_id]" id="permissions_5_assigned_to_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="担当者 (却下)">
+                            <select name="permissions[6][assigned_to_id]" id="permissions_6_assigned_to_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            カテゴリ
+                        </td>
+                        <td class="" title="カテゴリ (新規)">
+                            <select name="permissions[1][category_id]" id="permissions_1_category_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="カテゴリ (進行中)">
+                            <select name="permissions[2][category_id]" id="permissions_2_category_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="カテゴリ (解決)">
+                            <select name="permissions[3][category_id]" id="permissions_3_category_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="カテゴリ (フィードバック)">
+                            <select name="permissions[4][category_id]" id="permissions_4_category_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="カテゴリ (終了)">
+                            <select name="permissions[5][category_id]" id="permissions_5_category_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="カテゴリ (却下)">
+                            <select name="permissions[6][category_id]" id="permissions_6_category_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            対象バージョン
+                        </td>
+                        <td class="" title="対象バージョン (新規)">
+                            <select name="permissions[1][fixed_version_id]" id="permissions_1_fixed_version_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="対象バージョン (進行中)">
+                            <select name="permissions[2][fixed_version_id]" id="permissions_2_fixed_version_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="対象バージョン (解決)">
+                            <select name="permissions[3][fixed_version_id]" id="permissions_3_fixed_version_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="対象バージョン (フィードバック)">
+                            <select name="permissions[4][fixed_version_id]" id="permissions_4_fixed_version_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="対象バージョン (終了)">
+                            <select name="permissions[5][fixed_version_id]" id="permissions_5_fixed_version_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="対象バージョン (却下)">
+                            <select name="permissions[6][fixed_version_id]" id="permissions_6_fixed_version_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            親チケット
+                        </td>
+                        <td class="" title="親チケット (新規)">
+                            <select name="permissions[1][parent_issue_id]" id="permissions_1_parent_issue_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="親チケット (進行中)">
+                            <select name="permissions[2][parent_issue_id]" id="permissions_2_parent_issue_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="親チケット (解決)">
+                            <select name="permissions[3][parent_issue_id]" id="permissions_3_parent_issue_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="親チケット (フィードバック)">
+                            <select name="permissions[4][parent_issue_id]" id="permissions_4_parent_issue_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="親チケット (終了)">
+                            <select name="permissions[5][parent_issue_id]" id="permissions_5_parent_issue_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="親チケット (却下)">
+                            <select name="permissions[6][parent_issue_id]" id="permissions_6_parent_issue_id"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            開始日
+                        </td>
+                        <td class="" title="開始日 (新規)">
+                            <select name="permissions[1][start_date]" id="permissions_1_start_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="開始日 (進行中)">
+                            <select name="permissions[2][start_date]" id="permissions_2_start_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="開始日 (解決)">
+                            <select name="permissions[3][start_date]" id="permissions_3_start_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="開始日 (フィードバック)">
+                            <select name="permissions[4][start_date]" id="permissions_4_start_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="開始日 (終了)">
+                            <select name="permissions[5][start_date]" id="permissions_5_start_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="開始日 (却下)">
+                            <select name="permissions[6][start_date]" id="permissions_6_start_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            期日
+                        </td>
+                        <td class="" title="期日 (新規)">
+                            <select name="permissions[1][due_date]" id="permissions_1_due_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="期日 (進行中)">
+                            <select name="permissions[2][due_date]" id="permissions_2_due_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="期日 (解決)">
+                            <select name="permissions[3][due_date]" id="permissions_3_due_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="期日 (フィードバック)">
+                            <select name="permissions[4][due_date]" id="permissions_4_due_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="期日 (終了)">
+                            <select name="permissions[5][due_date]" id="permissions_5_due_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="期日 (却下)">
+                            <select name="permissions[6][due_date]" id="permissions_6_due_date"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            予定工数
+                        </td>
+                        <td class="" title="予定工数 (新規)">
+                            <select name="permissions[1][estimated_hours]" id="permissions_1_estimated_hours"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="予定工数 (進行中)">
+                            <select name="permissions[2][estimated_hours]" id="permissions_2_estimated_hours"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="予定工数 (解決)">
+                            <select name="permissions[3][estimated_hours]" id="permissions_3_estimated_hours"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="予定工数 (フィードバック)">
+                            <select name="permissions[4][estimated_hours]" id="permissions_4_estimated_hours"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="予定工数 (終了)">
+                            <select name="permissions[5][estimated_hours]" id="permissions_5_estimated_hours"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="予定工数 (却下)">
+                            <select name="permissions[6][estimated_hours]" id="permissions_6_estimated_hours"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            進捗率
+                        </td>
+                        <td class="" title="進捗率 (新規)">
+                            <select name="permissions[1][done_ratio]" id="permissions_1_done_ratio"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="進捗率 (進行中)">
+                            <select name="permissions[2][done_ratio]" id="permissions_2_done_ratio"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="進捗率 (解決)">
+                            <select name="permissions[3][done_ratio]" id="permissions_3_done_ratio"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="進捗率 (フィードバック)">
+                            <select name="permissions[4][done_ratio]" id="permissions_4_done_ratio"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="進捗率 (終了)">
+                            <select name="permissions[5][done_ratio]" id="permissions_5_done_ratio"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="進捗率 (却下)">
+                            <select name="permissions[6][done_ratio]" id="permissions_6_done_ratio"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            説明
+                        </td>
+                        <td class="" title="説明 (新規)">
+                            <select name="permissions[1][description]" id="permissions_1_description"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="説明 (進行中)">
+                            <select name="permissions[2][description]" id="permissions_2_description"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="説明 (解決)">
+                            <select name="permissions[3][description]" id="permissions_3_description"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="説明 (フィードバック)">
+                            <select name="permissions[4][description]" id="permissions_4_description"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="説明 (終了)">
+                            <select name="permissions[5][description]" id="permissions_5_description"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+                            <a href="#" class="repeat-value" title="コピー">&#187;</a>
+                        </td>
+                        <td class="" title="説明 (却下)">
+                            <select name="permissions[6][description]" id="permissions_6_description"><option value=""></option>
+                                <option value="readonly">読み取り専用</option>
+                                <option value="required">必須</option></select>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <input type="submit" name="commit" value="保存" data-disable-with="保存" />
+        </form>
+        <script>
+          //<![CDATA[
+
+          $("a.repeat-value").click(function(e){
+            e.preventDefault();
+            var td = $(this).closest('td');
+            var selected = td.find("select").find(":selected").val();
+            td.nextAll('td').find("select").val(selected);
+          });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

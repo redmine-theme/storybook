@@ -1,0 +1,1700 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles selected" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+
+
+
+    </div>
+
+    <div id="content">
+
+        <h2><a href="#">ロール</a> &#187; 権限レポート</h2>
+
+        <div class="hide-when-print">
+            <fieldset id="filters" class="collapsible collapsed">
+                <legend onclick="toggleFieldset(this);" class="icon icon-collapsed">フィルタ</legend>
+                <div style="display: none;">
+                    <form action="#" accept-charset="UTF-8" name="form-2ae631e9" method="get"><input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+                        <fieldset>
+                            <legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#filters input[type=checkbox]:enabled&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a></legend>
+                            <label>
+                                <input type="checkbox" name="ids[]" id="ids_" value="3" checked="checked" />
+                                管理者
+                            </label>
+                            <label>
+                                <input type="checkbox" name="ids[]" id="ids_" value="4" checked="checked" />
+                                開発者
+                            </label>
+                            <label>
+                                <input type="checkbox" name="ids[]" id="ids_" value="5" checked="checked" />
+                                報告者
+                            </label>
+                            <label>
+                                <input type="checkbox" name="ids[]" id="ids_" value="1" checked="checked" />
+                                非メンバー
+                            </label>
+                            <label>
+                                <input type="checkbox" name="ids[]" id="ids_" value="2" checked="checked" />
+                                匿名ユーザー
+                            </label>
+                        </fieldset>
+                        <p>
+                            <input type="submit" value="適用" data-disable-with="適用" />
+                            <a class="icon icon-reload" href="#">クリア</a>
+                        </p>
+                    </form>    </div>
+            </fieldset>
+        </div>
+
+        <form id="permissions_form" action="#" accept-charset="UTF-8" name="permissions_form-285e90e8" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <input type="hidden" name="permissions[3][]" value="" autocomplete="off" />
+            <input type="hidden" name="permissions[4][]" value="" autocomplete="off" />
+            <input type="hidden" name="permissions[5][]" value="" autocomplete="off" />
+            <input type="hidden" name="permissions[1][]" value="" autocomplete="off" />
+            <input type="hidden" name="permissions[2][]" value="" autocomplete="off" />
+            <div class="autoscroll">
+                <table class="list permissions">
+                    <thead>
+                    <tr>
+                        <th>権限</th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.role-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            <span>管理者</span>
+                        </th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.role-4&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            <span>開発者</span>
+                        </th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.role-5&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            <span>報告者</span>
+                        </th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.role-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            <em>非メンバー</em>
+                        </th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.role-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            <em>匿名ユーザー</em>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="permission-add_project">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_project input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            プロジェクトの追加
+                        </td>
+                        <td title="プロジェクトの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_project" class="role-3" checked="checked" />
+                        </td>
+                        <td title="プロジェクトの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_project" class="role-4" />
+                        </td>
+                        <td title="プロジェクトの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_project" class="role-5" />
+                        </td>
+                        <td title="プロジェクトの追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_project" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-edit_project">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_project input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            プロジェクトの編集
+                        </td>
+                        <td title="プロジェクトの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_project" class="role-3" checked="checked" />
+                        </td>
+                        <td title="プロジェクトの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_project" class="role-4" />
+                        </td>
+                        <td title="プロジェクトの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_project" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-close_project">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-close_project input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            プロジェクトの終了/再開
+                        </td>
+                        <td title="プロジェクトの終了/再開 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="close_project" class="role-3" checked="checked" />
+                        </td>
+                        <td title="プロジェクトの終了/再開 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="close_project" class="role-4" />
+                        </td>
+                        <td title="プロジェクトの終了/再開 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="close_project" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-delete_project">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_project input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            プロジェクトの削除
+                        </td>
+                        <td title="プロジェクトの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_project" class="role-3" checked="checked" />
+                        </td>
+                        <td title="プロジェクトの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_project" class="role-4" />
+                        </td>
+                        <td title="プロジェクトの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_project" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-select_project_modules">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-select_project_modules input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            モジュールの選択
+                        </td>
+                        <td title="モジュールの選択 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="select_project_modules" class="role-3" checked="checked" />
+                        </td>
+                        <td title="モジュールの選択 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="select_project_modules" class="role-4" />
+                        </td>
+                        <td title="モジュールの選択 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="select_project_modules" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-manage_members">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_members input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メンバーの管理
+                        </td>
+                        <td title="メンバーの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_members" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メンバーの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_members" class="role-4" />
+                        </td>
+                        <td title="メンバーの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_members" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-manage_versions">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_versions input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            バージョンの管理
+                        </td>
+                        <td title="バージョンの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_versions" class="role-3" checked="checked" />
+                        </td>
+                        <td title="バージョンの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_versions" class="role-4" checked="checked" />
+                        </td>
+                        <td title="バージョンの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_versions" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-add_subprojects">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_subprojects input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            サブプロジェクトの追加
+                        </td>
+                        <td title="サブプロジェクトの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_subprojects" class="role-3" checked="checked" />
+                        </td>
+                        <td title="サブプロジェクトの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_subprojects" class="role-4" />
+                        </td>
+                        <td title="サブプロジェクトの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_subprojects" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-manage_public_queries">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_public_queries input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            公開クエリの管理
+                        </td>
+                        <td title="公開クエリの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_public_queries" class="role-3" checked="checked" />
+                        </td>
+                        <td title="公開クエリの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_public_queries" class="role-4" />
+                        </td>
+                        <td title="公開クエリの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_public_queries" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-save_queries">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-save_queries input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            クエリの保存
+                        </td>
+                        <td title="クエリの保存 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="save_queries" class="role-3" checked="checked" />
+                        </td>
+                        <td title="クエリの保存 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="save_queries" class="role-4" checked="checked" />
+                        </td>
+                        <td title="クエリの保存 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="save_queries" class="role-5" checked="checked" />
+                        </td>
+                        <td title="クエリの保存 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="save_queries" class="role-1" checked="checked" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            フォーラム
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_messages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_messages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メッセージの閲覧
+                        </td>
+                        <td title="メッセージの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_messages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メッセージの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_messages" class="role-4" checked="checked" />
+                        </td>
+                        <td title="メッセージの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_messages" class="role-5" checked="checked" />
+                        </td>
+                        <td title="メッセージの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_messages" class="role-1" checked="checked" />
+                        </td>
+                        <td title="メッセージの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_messages" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-add_messages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_messages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メッセージの追加
+                        </td>
+                        <td title="メッセージの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_messages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メッセージの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_messages" class="role-4" checked="checked" />
+                        </td>
+                        <td title="メッセージの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_messages" class="role-5" checked="checked" />
+                        </td>
+                        <td title="メッセージの追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_messages" class="role-1" checked="checked" />
+                        </td>
+                        <td title="メッセージの追加 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="add_messages" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-edit_messages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_messages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メッセージの編集
+                        </td>
+                        <td title="メッセージの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_messages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メッセージの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_messages" class="role-4" />
+                        </td>
+                        <td title="メッセージの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_messages" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-edit_own_messages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_own_messages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            自分が追加したメッセージの編集
+                        </td>
+                        <td title="自分が追加したメッセージの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_own_messages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="自分が追加したメッセージの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_own_messages" class="role-4" checked="checked" />
+                        </td>
+                        <td title="自分が追加したメッセージの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_own_messages" class="role-5" checked="checked" />
+                        </td>
+                        <td title="自分が追加したメッセージの編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_own_messages" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-delete_messages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_messages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メッセージの削除
+                        </td>
+                        <td title="メッセージの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_messages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メッセージの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_messages" class="role-4" />
+                        </td>
+                        <td title="メッセージの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_messages" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-delete_own_messages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_own_messages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            自分が追加したメッセージの削除
+                        </td>
+                        <td title="自分が追加したメッセージの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_own_messages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="自分が追加したメッセージの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_own_messages" class="role-4" />
+                        </td>
+                        <td title="自分が追加したメッセージの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_own_messages" class="role-5" />
+                        </td>
+                        <td title="自分が追加したメッセージの削除 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="delete_own_messages" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-view_message_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_message_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メッセージのウォッチャー一覧の閲覧
+                        </td>
+                        <td title="メッセージのウォッチャー一覧の閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_message_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メッセージのウォッチャー一覧の閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_message_watchers" class="role-4" />
+                        </td>
+                        <td title="メッセージのウォッチャー一覧の閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_message_watchers" class="role-5" />
+                        </td>
+                        <td title="メッセージのウォッチャー一覧の閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_message_watchers" class="role-1" />
+                        </td>
+                        <td title="メッセージのウォッチャー一覧の閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_message_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-add_message_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_message_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メッセージのウォッチャーの追加
+                        </td>
+                        <td title="メッセージのウォッチャーの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_message_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メッセージのウォッチャーの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_message_watchers" class="role-4" />
+                        </td>
+                        <td title="メッセージのウォッチャーの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_message_watchers" class="role-5" />
+                        </td>
+                        <td title="メッセージのウォッチャーの追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_message_watchers" class="role-1" />
+                        </td>
+                        <td title="メッセージのウォッチャーの追加 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="add_message_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-delete_message_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_message_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            メッセージのウォッチャーの削除
+                        </td>
+                        <td title="メッセージのウォッチャーの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_message_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="メッセージのウォッチャーの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_message_watchers" class="role-4" />
+                        </td>
+                        <td title="メッセージのウォッチャーの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_message_watchers" class="role-5" />
+                        </td>
+                        <td title="メッセージのウォッチャーの削除 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="delete_message_watchers" class="role-1" />
+                        </td>
+                        <td title="メッセージのウォッチャーの削除 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="delete_message_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_boards">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_boards input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            フォーラムの管理
+                        </td>
+                        <td title="フォーラムの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_boards" class="role-3" checked="checked" />
+                        </td>
+                        <td title="フォーラムの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_boards" class="role-4" />
+                        </td>
+                        <td title="フォーラムの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_boards" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            カレンダー
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_calendar">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_calendar input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            カレンダーの閲覧
+                        </td>
+                        <td title="カレンダーの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_calendar" class="role-3" checked="checked" />
+                        </td>
+                        <td title="カレンダーの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_calendar" class="role-4" checked="checked" />
+                        </td>
+                        <td title="カレンダーの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_calendar" class="role-5" checked="checked" />
+                        </td>
+                        <td title="カレンダーの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_calendar" class="role-1" checked="checked" />
+                        </td>
+                        <td title="カレンダーの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_calendar" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            文書
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_documents">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_documents input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            文書の閲覧
+                        </td>
+                        <td title="文書の閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_documents" class="role-3" checked="checked" />
+                        </td>
+                        <td title="文書の閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_documents" class="role-4" checked="checked" />
+                        </td>
+                        <td title="文書の閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_documents" class="role-5" checked="checked" />
+                        </td>
+                        <td title="文書の閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_documents" class="role-1" checked="checked" />
+                        </td>
+                        <td title="文書の閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_documents" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-add_documents">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_documents input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            文書の追加
+                        </td>
+                        <td title="文書の追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_documents" class="role-3" checked="checked" />
+                        </td>
+                        <td title="文書の追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_documents" class="role-4" />
+                        </td>
+                        <td title="文書の追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_documents" class="role-5" />
+                        </td>
+                        <td title="文書の追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_documents" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-edit_documents">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_documents input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            文書の編集
+                        </td>
+                        <td title="文書の編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_documents" class="role-3" checked="checked" />
+                        </td>
+                        <td title="文書の編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_documents" class="role-4" />
+                        </td>
+                        <td title="文書の編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_documents" class="role-5" />
+                        </td>
+                        <td title="文書の編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_documents" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-delete_documents">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_documents input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            文書の削除
+                        </td>
+                        <td title="文書の削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_documents" class="role-3" checked="checked" />
+                        </td>
+                        <td title="文書の削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_documents" class="role-4" />
+                        </td>
+                        <td title="文書の削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_documents" class="role-5" />
+                        </td>
+                        <td title="文書の削除 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="delete_documents" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            ファイル
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_files">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_files input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ファイルの閲覧
+                        </td>
+                        <td title="ファイルの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_files" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ファイルの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_files" class="role-4" checked="checked" />
+                        </td>
+                        <td title="ファイルの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_files" class="role-5" checked="checked" />
+                        </td>
+                        <td title="ファイルの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_files" class="role-1" checked="checked" />
+                        </td>
+                        <td title="ファイルの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_files" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_files">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_files input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ファイルの管理
+                        </td>
+                        <td title="ファイルの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_files" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ファイルの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_files" class="role-4" checked="checked" />
+                        </td>
+                        <td title="ファイルの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_files" class="role-5" />
+                        </td>
+                        <td title="ファイルの管理 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="manage_files" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            ガントチャート
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_gantt">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_gantt input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ガントチャートの閲覧
+                        </td>
+                        <td title="ガントチャートの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_gantt" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ガントチャートの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_gantt" class="role-4" checked="checked" />
+                        </td>
+                        <td title="ガントチャートの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_gantt" class="role-5" checked="checked" />
+                        </td>
+                        <td title="ガントチャートの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_gantt" class="role-1" checked="checked" />
+                        </td>
+                        <td title="ガントチャートの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_gantt" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            チケットトラッキング
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットの閲覧
+                        </td>
+                        <td title="チケットの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_issues" class="role-4" checked="checked" />
+                        </td>
+                        <td title="チケットの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_issues" class="role-5" checked="checked" />
+                        </td>
+                        <td title="チケットの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_issues" class="role-1" checked="checked" />
+                        </td>
+                        <td title="チケットの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_issues" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-add_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットの追加
+                        </td>
+                        <td title="チケットの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_issues" class="role-4" checked="checked" />
+                        </td>
+                        <td title="チケットの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_issues" class="role-5" checked="checked" />
+                        </td>
+                        <td title="チケットの追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_issues" class="role-1" checked="checked" />
+                        </td>
+                        <td title="チケットの追加 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="add_issues" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-edit_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットの編集
+                        </td>
+                        <td title="チケットの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_issues" class="role-4" checked="checked" />
+                        </td>
+                        <td title="チケットの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_issues" class="role-5" />
+                        </td>
+                        <td title="チケットの編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_issues" class="role-1" />
+                        </td>
+                        <td title="チケットの編集 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="edit_issues" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-edit_own_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_own_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            自分が追加したチケットの編集
+                        </td>
+                        <td title="自分が追加したチケットの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_own_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="自分が追加したチケットの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_own_issues" class="role-4" />
+                        </td>
+                        <td title="自分が追加したチケットの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_own_issues" class="role-5" />
+                        </td>
+                        <td title="自分が追加したチケットの編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_own_issues" class="role-1" />
+                        </td>
+                        <td title="自分が追加したチケットの編集 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="edit_own_issues" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-copy_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-copy_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットのコピー
+                        </td>
+                        <td title="チケットのコピー (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="copy_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットのコピー (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="copy_issues" class="role-4" />
+                        </td>
+                        <td title="チケットのコピー (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="copy_issues" class="role-5" />
+                        </td>
+                        <td title="チケットのコピー (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="copy_issues" class="role-1" />
+                        </td>
+                        <td title="チケットのコピー (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="copy_issues" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_issue_relations">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_issue_relations input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            関連するチケットの管理
+                        </td>
+                        <td title="関連するチケットの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_issue_relations" class="role-3" checked="checked" />
+                        </td>
+                        <td title="関連するチケットの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_issue_relations" class="role-4" checked="checked" />
+                        </td>
+                        <td title="関連するチケットの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_issue_relations" class="role-5" />
+                        </td>
+                        <td title="関連するチケットの管理 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="manage_issue_relations" class="role-1" />
+                        </td>
+                        <td title="関連するチケットの管理 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="manage_issue_relations" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_subtasks">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_subtasks input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            子チケットの管理
+                        </td>
+                        <td title="子チケットの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_subtasks" class="role-3" checked="checked" />
+                        </td>
+                        <td title="子チケットの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_subtasks" class="role-4" checked="checked" />
+                        </td>
+                        <td title="子チケットの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_subtasks" class="role-5" />
+                        </td>
+                        <td title="子チケットの管理 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="manage_subtasks" class="role-1" />
+                        </td>
+                        <td title="子チケットの管理 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="manage_subtasks" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-set_issues_private">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-set_issues_private input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットのプライベート設定
+                        </td>
+                        <td title="チケットのプライベート設定 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="set_issues_private" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットのプライベート設定 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="set_issues_private" class="role-4" />
+                        </td>
+                        <td title="チケットのプライベート設定 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="set_issues_private" class="role-5" />
+                        </td>
+                        <td title="チケットのプライベート設定 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="set_issues_private" class="role-1" />
+                        </td>
+                        <td title="チケットのプライベート設定 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="set_issues_private" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-set_own_issues_private">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-set_own_issues_private input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            自分が追加したチケットのプライベート設定
+                        </td>
+                        <td title="自分が追加したチケットのプライベート設定 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="set_own_issues_private" class="role-3" checked="checked" />
+                        </td>
+                        <td title="自分が追加したチケットのプライベート設定 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="set_own_issues_private" class="role-4" />
+                        </td>
+                        <td title="自分が追加したチケットのプライベート設定 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="set_own_issues_private" class="role-5" />
+                        </td>
+                        <td title="自分が追加したチケットのプライベート設定 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="set_own_issues_private" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-add_issue_notes">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_issue_notes input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            コメントの追加
+                        </td>
+                        <td title="コメントの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_issue_notes" class="role-3" checked="checked" />
+                        </td>
+                        <td title="コメントの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_issue_notes" class="role-4" checked="checked" />
+                        </td>
+                        <td title="コメントの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_issue_notes" class="role-5" checked="checked" />
+                        </td>
+                        <td title="コメントの追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_issue_notes" class="role-1" checked="checked" />
+                        </td>
+                        <td title="コメントの追加 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="add_issue_notes" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-edit_issue_notes">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_issue_notes input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            コメントの編集
+                        </td>
+                        <td title="コメントの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_issue_notes" class="role-3" checked="checked" />
+                        </td>
+                        <td title="コメントの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_issue_notes" class="role-4" />
+                        </td>
+                        <td title="コメントの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_issue_notes" class="role-5" />
+                        </td>
+                        <td title="コメントの編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_issue_notes" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-edit_own_issue_notes">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_own_issue_notes input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            自分が追加したコメントの編集
+                        </td>
+                        <td title="自分が追加したコメントの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_own_issue_notes" class="role-3" checked="checked" />
+                        </td>
+                        <td title="自分が追加したコメントの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_own_issue_notes" class="role-4" />
+                        </td>
+                        <td title="自分が追加したコメントの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_own_issue_notes" class="role-5" />
+                        </td>
+                        <td title="自分が追加したコメントの編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_own_issue_notes" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-view_private_notes">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_private_notes input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            プライベートコメントの閲覧
+                        </td>
+                        <td title="プライベートコメントの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_private_notes" class="role-3" checked="checked" />
+                        </td>
+                        <td title="プライベートコメントの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_private_notes" class="role-4" checked="checked" />
+                        </td>
+                        <td title="プライベートコメントの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_private_notes" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-set_notes_private">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-set_notes_private input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            コメントのプライベート設定
+                        </td>
+                        <td title="コメントのプライベート設定 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="set_notes_private" class="role-3" checked="checked" />
+                        </td>
+                        <td title="コメントのプライベート設定 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="set_notes_private" class="role-4" checked="checked" />
+                        </td>
+                        <td title="コメントのプライベート設定 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="set_notes_private" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-delete_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットの削除
+                        </td>
+                        <td title="チケットの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_issues" class="role-4" />
+                        </td>
+                        <td title="チケットの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_issues" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-mention_users">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-mention_users input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Mention users
+                        </td>
+                        <td title="Mention users (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="mention_users" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Mention users (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="mention_users" class="role-4" />
+                        </td>
+                        <td title="Mention users (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="mention_users" class="role-5" />
+                        </td>
+                        <td title="Mention users (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="mention_users" class="role-1" />
+                        </td>
+                        <td title="Mention users (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="mention_users" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-view_issue_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_issue_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ウォッチャー一覧の閲覧
+                        </td>
+                        <td title="ウォッチャー一覧の閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_issue_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ウォッチャー一覧の閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_issue_watchers" class="role-4" />
+                        </td>
+                        <td title="ウォッチャー一覧の閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_issue_watchers" class="role-5" />
+                        </td>
+                        <td title="ウォッチャー一覧の閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_issue_watchers" class="role-1" />
+                        </td>
+                        <td title="ウォッチャー一覧の閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_issue_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-add_issue_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_issue_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ウォッチャーの追加
+                        </td>
+                        <td title="ウォッチャーの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_issue_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ウォッチャーの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_issue_watchers" class="role-4" />
+                        </td>
+                        <td title="ウォッチャーの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_issue_watchers" class="role-5" />
+                        </td>
+                        <td title="ウォッチャーの追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_issue_watchers" class="role-1" />
+                        </td>
+                        <td title="ウォッチャーの追加 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="add_issue_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-delete_issue_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_issue_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ウォッチャーの削除
+                        </td>
+                        <td title="ウォッチャーの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_issue_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ウォッチャーの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_issue_watchers" class="role-4" />
+                        </td>
+                        <td title="ウォッチャーの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_issue_watchers" class="role-5" />
+                        </td>
+                        <td title="ウォッチャーの削除 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="delete_issue_watchers" class="role-1" />
+                        </td>
+                        <td title="ウォッチャーの削除 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="delete_issue_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-import_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-import_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットのインポート
+                        </td>
+                        <td title="チケットのインポート (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="import_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットのインポート (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="import_issues" class="role-4" />
+                        </td>
+                        <td title="チケットのインポート (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="import_issues" class="role-5" />
+                        </td>
+                        <td title="チケットのインポート (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="import_issues" class="role-1" />
+                        </td>
+                        <td title="チケットのインポート (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="import_issues" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_categories">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_categories input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            チケットのカテゴリの管理
+                        </td>
+                        <td title="チケットのカテゴリの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_categories" class="role-3" checked="checked" />
+                        </td>
+                        <td title="チケットのカテゴリの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_categories" class="role-4" checked="checked" />
+                        </td>
+                        <td title="チケットのカテゴリの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_categories" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            ニュース
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_news">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_news input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ニュースの閲覧
+                        </td>
+                        <td title="ニュースの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_news" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ニュースの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_news" class="role-4" checked="checked" />
+                        </td>
+                        <td title="ニュースの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_news" class="role-5" checked="checked" />
+                        </td>
+                        <td title="ニュースの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_news" class="role-1" checked="checked" />
+                        </td>
+                        <td title="ニュースの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_news" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_news">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_news input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ニュースの管理
+                        </td>
+                        <td title="ニュースの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_news" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ニュースの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_news" class="role-4" />
+                        </td>
+                        <td title="ニュースの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_news" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-comment_news">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-comment_news input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            ニュースへのコメント
+                        </td>
+                        <td title="ニュースへのコメント (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="comment_news" class="role-3" checked="checked" />
+                        </td>
+                        <td title="ニュースへのコメント (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="comment_news" class="role-4" checked="checked" />
+                        </td>
+                        <td title="ニュースへのコメント (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="comment_news" class="role-5" checked="checked" />
+                        </td>
+                        <td title="ニュースへのコメント (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="comment_news" class="role-1" checked="checked" />
+                        </td>
+                        <td title="ニュースへのコメント (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="comment_news" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            リポジトリ
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_changesets">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_changesets input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            更新履歴の閲覧
+                        </td>
+                        <td title="更新履歴の閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_changesets" class="role-3" checked="checked" />
+                        </td>
+                        <td title="更新履歴の閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_changesets" class="role-4" checked="checked" />
+                        </td>
+                        <td title="更新履歴の閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_changesets" class="role-5" checked="checked" />
+                        </td>
+                        <td title="更新履歴の閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_changesets" class="role-1" checked="checked" />
+                        </td>
+                        <td title="更新履歴の閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_changesets" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-browse_repository">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-browse_repository input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            リポジトリの閲覧
+                        </td>
+                        <td title="リポジトリの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="browse_repository" class="role-3" checked="checked" />
+                        </td>
+                        <td title="リポジトリの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="browse_repository" class="role-4" checked="checked" />
+                        </td>
+                        <td title="リポジトリの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="browse_repository" class="role-5" checked="checked" />
+                        </td>
+                        <td title="リポジトリの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="browse_repository" class="role-1" checked="checked" />
+                        </td>
+                        <td title="リポジトリの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="browse_repository" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-commit_access">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-commit_access input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            コミット権限
+                        </td>
+                        <td title="コミット権限 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="commit_access" class="role-3" checked="checked" />
+                        </td>
+                        <td title="コミット権限 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="commit_access" class="role-4" checked="checked" />
+                        </td>
+                        <td title="コミット権限 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="commit_access" class="role-5" />
+                        </td>
+                        <td title="コミット権限 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="commit_access" class="role-1" />
+                        </td>
+                        <td title="コミット権限 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="commit_access" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_related_issues">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_related_issues input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            リビジョンとチケットの関連の管理
+                        </td>
+                        <td title="リビジョンとチケットの関連の管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_related_issues" class="role-3" checked="checked" />
+                        </td>
+                        <td title="リビジョンとチケットの関連の管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_related_issues" class="role-4" checked="checked" />
+                        </td>
+                        <td title="リビジョンとチケットの関連の管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_related_issues" class="role-5" />
+                        </td>
+                        <td title="リビジョンとチケットの関連の管理 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="manage_related_issues" class="role-1" />
+                        </td>
+                        <td title="リビジョンとチケットの関連の管理 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="manage_related_issues" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-manage_repository">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_repository input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            リポジトリの管理
+                        </td>
+                        <td title="リポジトリの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_repository" class="role-3" checked="checked" />
+                        </td>
+                        <td title="リポジトリの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_repository" class="role-4" />
+                        </td>
+                        <td title="リポジトリの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_repository" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            時間管理
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_time_entries">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_time_entries input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            作業時間の閲覧
+                        </td>
+                        <td title="作業時間の閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_time_entries" class="role-3" checked="checked" />
+                        </td>
+                        <td title="作業時間の閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_time_entries" class="role-4" checked="checked" />
+                        </td>
+                        <td title="作業時間の閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_time_entries" class="role-5" checked="checked" />
+                        </td>
+                        <td title="作業時間の閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_time_entries" class="role-1" checked="checked" />
+                        </td>
+                        <td title="作業時間の閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_time_entries" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-log_time">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-log_time input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            作業時間の記録
+                        </td>
+                        <td title="作業時間の記録 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="log_time" class="role-3" checked="checked" />
+                        </td>
+                        <td title="作業時間の記録 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="log_time" class="role-4" checked="checked" />
+                        </td>
+                        <td title="作業時間の記録 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="log_time" class="role-5" checked="checked" />
+                        </td>
+                        <td title="作業時間の記録 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="log_time" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-edit_time_entries">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_time_entries input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            作業時間の編集
+                        </td>
+                        <td title="作業時間の編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_time_entries" class="role-3" checked="checked" />
+                        </td>
+                        <td title="作業時間の編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_time_entries" class="role-4" />
+                        </td>
+                        <td title="作業時間の編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_time_entries" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-edit_own_time_entries">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_own_time_entries input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            自分の作業時間の編集
+                        </td>
+                        <td title="自分の作業時間の編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_own_time_entries" class="role-3" checked="checked" />
+                        </td>
+                        <td title="自分の作業時間の編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_own_time_entries" class="role-4" />
+                        </td>
+                        <td title="自分の作業時間の編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_own_time_entries" class="role-5" />
+                        </td>
+                        <td title="自分の作業時間の編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_own_time_entries" class="role-1" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-manage_project_activities">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_project_activities input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            作業分類 (時間管理) の管理
+                        </td>
+                        <td title="作業分類 (時間管理) の管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_project_activities" class="role-3" checked="checked" />
+                        </td>
+                        <td title="作業分類 (時間管理) の管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_project_activities" class="role-4" />
+                        </td>
+                        <td title="作業分類 (時間管理) の管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_project_activities" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-log_time_for_other_users">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-log_time_for_other_users input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            他のユーザーの作業時間の入力
+                        </td>
+                        <td title="他のユーザーの作業時間の入力 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="log_time_for_other_users" class="role-3" checked="checked" />
+                        </td>
+                        <td title="他のユーザーの作業時間の入力 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="log_time_for_other_users" class="role-4" />
+                        </td>
+                        <td title="他のユーザーの作業時間の入力 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="log_time_for_other_users" class="role-5" />
+                        </td>
+                        <td title="他のユーザーの作業時間の入力 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="log_time_for_other_users" class="role-1" />
+                        </td>
+                        <td title="他のユーザーの作業時間の入力 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="log_time_for_other_users" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-import_time_entries">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-import_time_entries input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            作業時間のインポート
+                        </td>
+                        <td title="作業時間のインポート (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="import_time_entries" class="role-3" checked="checked" />
+                        </td>
+                        <td title="作業時間のインポート (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="import_time_entries" class="role-4" />
+                        </td>
+                        <td title="作業時間のインポート (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="import_time_entries" class="role-5" />
+                        </td>
+                        <td title="作業時間のインポート (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="import_time_entries" class="role-1" />
+                        </td>
+                        <td title="作業時間のインポート (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="import_time_entries" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="group open">
+                        <td>
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            Wiki
+                        </td>
+                        <td class="role">管理者</td>
+                        <td class="role">開発者</td>
+                        <td class="role">報告者</td>
+                        <td class="role">非メンバー</td>
+                        <td class="role">匿名ユーザー</td>
+                    </tr>
+                    <tr class="permission-view_wiki_pages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_wiki_pages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiの閲覧
+                        </td>
+                        <td title="Wikiの閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_wiki_pages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiの閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_wiki_pages" class="role-4" checked="checked" />
+                        </td>
+                        <td title="Wikiの閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_wiki_pages" class="role-5" checked="checked" />
+                        </td>
+                        <td title="Wikiの閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_wiki_pages" class="role-1" checked="checked" />
+                        </td>
+                        <td title="Wikiの閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_wiki_pages" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-view_wiki_edits">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_wiki_edits input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wiki履歴の閲覧
+                        </td>
+                        <td title="Wiki履歴の閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_wiki_edits" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wiki履歴の閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_wiki_edits" class="role-4" checked="checked" />
+                        </td>
+                        <td title="Wiki履歴の閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_wiki_edits" class="role-5" checked="checked" />
+                        </td>
+                        <td title="Wiki履歴の閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_wiki_edits" class="role-1" checked="checked" />
+                        </td>
+                        <td title="Wiki履歴の閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_wiki_edits" class="role-2" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr class="permission-export_wiki_pages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-export_wiki_pages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページのエクスポート
+                        </td>
+                        <td title="Wikiページのエクスポート (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="export_wiki_pages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページのエクスポート (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="export_wiki_pages" class="role-4" />
+                        </td>
+                        <td title="Wikiページのエクスポート (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="export_wiki_pages" class="role-5" />
+                        </td>
+                        <td title="Wikiページのエクスポート (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="export_wiki_pages" class="role-1" />
+                        </td>
+                        <td title="Wikiページのエクスポート (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="export_wiki_pages" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-edit_wiki_pages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-edit_wiki_pages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページの編集
+                        </td>
+                        <td title="Wikiページの編集 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="edit_wiki_pages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページの編集 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="edit_wiki_pages" class="role-4" checked="checked" />
+                        </td>
+                        <td title="Wikiページの編集 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="edit_wiki_pages" class="role-5" />
+                        </td>
+                        <td title="Wikiページの編集 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="edit_wiki_pages" class="role-1" />
+                        </td>
+                        <td title="Wikiページの編集 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="edit_wiki_pages" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-rename_wiki_pages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-rename_wiki_pages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページ名の変更
+                        </td>
+                        <td title="Wikiページ名の変更 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="rename_wiki_pages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページ名の変更 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="rename_wiki_pages" class="role-4" />
+                        </td>
+                        <td title="Wikiページ名の変更 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="rename_wiki_pages" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-delete_wiki_pages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_wiki_pages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページの削除
+                        </td>
+                        <td title="Wikiページの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_wiki_pages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_wiki_pages" class="role-4" checked="checked" />
+                        </td>
+                        <td title="Wikiページの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_wiki_pages" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-delete_wiki_pages_attachments">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_wiki_pages_attachments input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            添付ファイルの削除
+                        </td>
+                        <td title="添付ファイルの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_wiki_pages_attachments" class="role-3" checked="checked" />
+                        </td>
+                        <td title="添付ファイルの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_wiki_pages_attachments" class="role-4" />
+                        </td>
+                        <td title="添付ファイルの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_wiki_pages_attachments" class="role-5" />
+                        </td>
+                        <td title="添付ファイルの削除 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="delete_wiki_pages_attachments" class="role-1" />
+                        </td>
+                        <td title="添付ファイルの削除 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="delete_wiki_pages_attachments" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-view_wiki_page_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-view_wiki_page_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページのウォッチャー一覧の閲覧
+                        </td>
+                        <td title="Wikiページのウォッチャー一覧の閲覧 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="view_wiki_page_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページのウォッチャー一覧の閲覧 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="view_wiki_page_watchers" class="role-4" />
+                        </td>
+                        <td title="Wikiページのウォッチャー一覧の閲覧 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="view_wiki_page_watchers" class="role-5" />
+                        </td>
+                        <td title="Wikiページのウォッチャー一覧の閲覧 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="view_wiki_page_watchers" class="role-1" />
+                        </td>
+                        <td title="Wikiページのウォッチャー一覧の閲覧 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="view_wiki_page_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-add_wiki_page_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-add_wiki_page_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページのウォッチャーの追加
+                        </td>
+                        <td title="Wikiページのウォッチャーの追加 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="add_wiki_page_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの追加 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="add_wiki_page_watchers" class="role-4" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの追加 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="add_wiki_page_watchers" class="role-5" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの追加 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="add_wiki_page_watchers" class="role-1" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの追加 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="add_wiki_page_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-delete_wiki_page_watchers">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-delete_wiki_page_watchers input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページのウォッチャーの削除
+                        </td>
+                        <td title="Wikiページのウォッチャーの削除 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="delete_wiki_page_watchers" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの削除 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="delete_wiki_page_watchers" class="role-4" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの削除 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="delete_wiki_page_watchers" class="role-5" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの削除 (非メンバー)">
+                            <input type="checkbox" name="permissions[1][]" value="delete_wiki_page_watchers" class="role-1" />
+                        </td>
+                        <td title="Wikiページのウォッチャーの削除 (匿名ユーザー)">
+                            <input type="checkbox" name="permissions[2][]" value="delete_wiki_page_watchers" class="role-2" />
+                        </td>
+                    </tr>
+                    <tr class="permission-protect_wiki_pages">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-protect_wiki_pages input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiページの保護
+                        </td>
+                        <td title="Wikiページの保護 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="protect_wiki_pages" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiページの保護 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="protect_wiki_pages" class="role-4" />
+                        </td>
+                        <td title="Wikiページの保護 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="protect_wiki_pages" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="permission-manage_wiki">
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;.permission-manage_wiki input&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            Wikiの管理
+                        </td>
+                        <td title="Wikiの管理 (管理者)">
+                            <input type="checkbox" name="permissions[3][]" value="manage_wiki" class="role-3" checked="checked" />
+                        </td>
+                        <td title="Wikiの管理 (開発者)">
+                            <input type="checkbox" name="permissions[4][]" value="manage_wiki" class="role-4" />
+                        </td>
+                        <td title="Wikiの管理 (報告者)">
+                            <input type="checkbox" name="permissions[5][]" value="manage_wiki" class="role-5" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><a href="#" onclick="checkAll(&#39;permissions_form&#39;, true); return false;">すべてにチェックをつける</a> | <a href="#" onclick="checkAll(&#39;permissions_form&#39;, false); return false;">すべてのチェックを外す</a></p>
+            <p><input type="submit" name="commit" value="保存" data-disable-with="保存" /></p>
+        </form>
+
+        <p class="other-formats">他の形式にエクスポート:  <span><a class="csv" rel="nofollow" onclick="showModal(&#39;csv-export-options&#39;, &#39;330px&#39;); return false;" href="#">CSV</a></span></p>
+
+        <div id="csv-export-options" style="display: none;">
+            <h3 class="title">CSV エクスポート設定</h3>
+            <form id="csv-export-form" action="#" accept-charset="UTF-8" name="csv-export-form-9d43c63a" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+                <p><label>エンコーディング <select name="encoding" id="encoding"><option selected="selected" value="CP932">CP932</option>
+                    <option value="UTF-8">UTF-8</option></select></label></p>
+                <p class="buttons">
+                    <input type="submit" value="エクスポート" onclick="hideModal(this);" />
+                    <a href="#" onclick="hideModal(this);; return false;">キャンセル</a>
+                </p>
+            </form>
+        </div>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

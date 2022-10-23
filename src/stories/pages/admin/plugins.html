@@ -1,0 +1,76 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins selected" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2>プラグイン</h2>
+
+        <div class="autoscroll">
+            <table class="list plugins">
+                <tr id="plugin-redmine_wiki_lists">
+                    <td class="name"><span class="name">Redmine plugin</span>
+                        <span class="description">Description.</span>
+                        <span class="url"><a href="#">https://www.example.com/</a></span>
+                    </td>
+                    <td class="author"><a href="#">Foo Bar</a></td>
+                    <td class="version"><span class="icon">0.0.1</span></td>
+                    <td class="configure"></td>
+                </tr>
+            </table>
+        </div>
+        <p><a href="#" id="check-for-updates">アップデートを確認</a></p>
+
+        <script>
+          //<![CDATA[
+
+          $(document).ready(function(){
+            $("#check-for-updates").click(function(e){
+              e.preventDefault();
+              $.ajax({
+                dataType: "jsonp",
+                url: "https://www.redmine.org/plugins/check_updates",
+                data: {"v":"5.0.X.stable","p":{"redmine_plugin":{"v":"0.0.1","n":"Redmine plugin","a":"Foo Bar"}}},
+                timeout: 10000,
+                beforeSend: function(){
+                  $('#ajax-indicator').show();
+                },
+                success: function(data){
+                  $('#ajax-indicator').hide();
+                  $("table.plugins td.version span").addClass("unknown");
+                  $.each(data, function(plugin_id, plugin_data){
+                    var s = $("tr#plugin-"+plugin_id+" td.version span");
+                    s.removeClass("icon-ok icon-warning unknown");
+                    if (plugin_data.url) {
+                      if (s.parent("a").length>0) {
+                        s.unwrap();
+                      }
+                      s.addClass("found");
+                      s.wrap($("<a></a>").attr("href", plugin_data.url).attr("target", "_blank"));
+                    }
+                    if (plugin_data.c == s.text()) {
+                      s.addClass("icon-ok");
+                    } else if (plugin_data.c) {
+                      s.addClass("icon-warning");
+                      s.attr("title", "互換性のある最新バージョン: "+plugin_data.c);
+                    }
+                  });
+                  $("table.plugins td.version span.unknown").addClass("icon-help").attr("title", "不明なプラグイン");
+                },
+                error: function(){
+                  $('#ajax-indicator').hide();
+                  alert("Unable to retrieve plugin informations from www.redmine.org");
+                }
+              });
+            });
+          });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

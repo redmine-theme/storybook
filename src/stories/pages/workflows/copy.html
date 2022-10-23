@@ -1,0 +1,53 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows selected" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2><a href="#">ワークフロー</a> &#187; コピー</h2>
+
+        <form id="workflow_copy_form" action="#" accept-charset="UTF-8" name="workflow_copy_form-21edafd3" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <fieldset class="tabular box">
+                <legend>コピー元</legend>
+                <p>
+                    <label>トラッカー</label>
+                    <select name="source_tracker_id" id="source_tracker_id"><option value="">--- 選んでください ---</option><option value="any">--- 同じコピー先 ---</option><option value="1">バグ</option>
+                        <option value="2">機能</option>
+                        <option value="3">サポート</option></select>
+                </p>
+                <p>
+                    <label>ロール</label>
+                    <select name="source_role_id" id="source_role_id"><option value="">--- 選んでください ---</option><option value="any">--- 同じコピー先 ---</option><option value="3">管理者</option>
+                        <option value="4">開発者</option>
+                        <option value="5">報告者</option>
+                        <option value="1">非メンバー</option></select>
+                </p>
+            </fieldset>
+
+            <fieldset class="tabular box">
+                <legend>コピー先</legend>
+                <p>
+                    <label>トラッカー</label>
+                    <select name="target_tracker_ids[]" id="target_tracker_ids" multiple="multiple"><option value="" disabled="disabled">--- 選んでください ---</option><option value="1">バグ</option>
+                        <option value="2">機能</option>
+                        <option value="3">サポート</option></select>
+                </p>
+                <p>
+                    <label>ロール</label>
+                    <select name="target_role_ids[]" id="target_role_ids" multiple="multiple"><option value="" disabled="disabled">--- 選んでください ---</option><option value="3">管理者</option>
+                        <option value="4">開発者</option>
+                        <option value="5">報告者</option>
+                        <option value="1">非メンバー</option></select>
+                </p>
+            </fieldset>
+            <input type="submit" name="commit" value="コピー" data-disable-with="コピー" />
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

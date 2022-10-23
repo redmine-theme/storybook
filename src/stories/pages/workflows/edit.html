@@ -1,0 +1,671 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows selected" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+
+
+
+    </div>
+
+    <div id="content">
+
+        <div class="contextual">
+            <a class="icon icon-copy" href="#">コピー</a>
+            <a class="icon icon-summary" href="#">サマリー</a>
+        </div>
+
+
+        <h2>ワークフロー</h2>
+
+        <div class="tabs">
+            <ul>
+                <li><a class="selected" href="#">ステータスの遷移</a></li>
+                <li><a href="#">フィールドに対する権限</a></li>
+            </ul>
+        </div>
+
+        <p>ワークフローを編集するロールとトラッカーを選んでください:</p>
+
+        <form action="#" accept-charset="UTF-8" name="form-25a39196" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <p>
+                <label>ロール:
+                    <select name="role_id[]" id="role_id" class="expandable"><option value="all">すべて</option><option selected="selected" value="3">管理者</option>
+                        <option value="4">開発者</option>
+                        <option value="5">報告者</option>
+                        <option value="1">非メンバー</option></select>
+                    <span class="toggle-multiselect icon-only"></span>
+                </label>
+
+                <label>トラッカー:
+                    <select name="tracker_id[]" id="tracker_id" class="expandable"><option value="all">すべて</option><option selected="selected" value="1">バグ</option>
+                        <option value="2">機能</option>
+                        <option value="3">サポート</option></select>
+                    <span class="toggle-multiselect icon-only"></span>
+                </label>
+
+                <input type="submit" value="編集" data-disable-with="編集" />
+
+                <input type="hidden" name="used_statuses_only" value="0" autocomplete="off" />
+                <label><input type="checkbox" name="used_statuses_only" id="used_statuses_only" value="1" checked="checked" /> このトラッカーで使用中のステータスのみ表示</label>
+
+            </p>
+        </form>
+        <form id="workflow_form" action="#" accept-charset="UTF-8" name="workflow_form-84c562c0" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="_method" value="patch" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <input type="hidden" name="tracker_id[]" value="1" autocomplete="off" />
+            <input type="hidden" name="role_id[]" value="3" autocomplete="off" />
+            <input type="hidden" name="used_statuses_only" value="1" autocomplete="off" />
+            <div class="autoscroll">
+                <table class="list workflows transitions transitions-always">
+                    <thead>
+                    <tr>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled)&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            現在のステータス
+                        </th>
+                        <th colspan="6">遷移できるステータス</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="width:12%;">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).new-status-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            新規
+                        </td>
+                        <td style="width:12%;">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).new-status-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            進行中
+                        </td>
+                        <td style="width:12%;">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).new-status-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            解決
+                        </td>
+                        <td style="width:12%;">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).new-status-4&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            フィードバック
+                        </td>
+                        <td style="width:12%;">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).new-status-5&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            終了
+                        </td>
+                        <td style="width:12%;">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).new-status-6&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            却下
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).old-status-0&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            <em>新しいチケット</em>
+                        </td>
+                        <td class="no-tooltip " title="新しいチケット &#187; 新規">
+                            <input type="hidden" name="transitions[0][1][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[0][1][always]" id="transitions_0_1_always" value="1" class="old-status-0 new-status-1" />
+                        </td>
+                        <td class="no-tooltip " title="新しいチケット &#187; 進行中">
+                            <input type="hidden" name="transitions[0][2][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[0][2][always]" id="transitions_0_2_always" value="1" class="old-status-0 new-status-2" />
+                        </td>
+                        <td class="no-tooltip " title="新しいチケット &#187; 解決">
+                            <input type="hidden" name="transitions[0][3][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[0][3][always]" id="transitions_0_3_always" value="1" class="old-status-0 new-status-3" />
+                        </td>
+                        <td class="no-tooltip " title="新しいチケット &#187; フィードバック">
+                            <input type="hidden" name="transitions[0][4][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[0][4][always]" id="transitions_0_4_always" value="1" class="old-status-0 new-status-4" />
+                        </td>
+                        <td class="no-tooltip " title="新しいチケット &#187; 終了">
+                            <input type="hidden" name="transitions[0][5][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[0][5][always]" id="transitions_0_5_always" value="1" class="old-status-0 new-status-5" />
+                        </td>
+                        <td class="no-tooltip " title="新しいチケット &#187; 却下">
+                            <input type="hidden" name="transitions[0][6][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[0][6][always]" id="transitions_0_6_always" value="1" class="old-status-0 new-status-6" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).old-status-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            新規
+                        </td>
+                        <td class="no-tooltip enabled" title="新規 &#187; 新規">
+                            <input type="checkbox" name="transitions[1][1][always]" id="transitions_1_1_always" value="1" disabled="disabled" class="old-status-1 new-status-1" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="新規 &#187; 進行中">
+                            <input type="hidden" name="transitions[1][2][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][2][always]" id="transitions_1_2_always" value="1" class="old-status-1 new-status-2" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="新規 &#187; 解決">
+                            <input type="hidden" name="transitions[1][3][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][3][always]" id="transitions_1_3_always" value="1" class="old-status-1 new-status-3" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="新規 &#187; フィードバック">
+                            <input type="hidden" name="transitions[1][4][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][4][always]" id="transitions_1_4_always" value="1" class="old-status-1 new-status-4" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="新規 &#187; 終了">
+                            <input type="hidden" name="transitions[1][5][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][5][always]" id="transitions_1_5_always" value="1" class="old-status-1 new-status-5" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="新規 &#187; 却下">
+                            <input type="hidden" name="transitions[1][6][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][6][always]" id="transitions_1_6_always" value="1" class="old-status-1 new-status-6" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).old-status-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            進行中
+                        </td>
+                        <td class="no-tooltip enabled" title="進行中 &#187; 新規">
+                            <input type="hidden" name="transitions[2][1][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][1][always]" id="transitions_2_1_always" value="1" class="old-status-2 new-status-1" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="進行中 &#187; 進行中">
+                            <input type="checkbox" name="transitions[2][2][always]" id="transitions_2_2_always" value="1" disabled="disabled" class="old-status-2 new-status-2" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="進行中 &#187; 解決">
+                            <input type="hidden" name="transitions[2][3][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][3][always]" id="transitions_2_3_always" value="1" class="old-status-2 new-status-3" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="進行中 &#187; フィードバック">
+                            <input type="hidden" name="transitions[2][4][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][4][always]" id="transitions_2_4_always" value="1" class="old-status-2 new-status-4" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="進行中 &#187; 終了">
+                            <input type="hidden" name="transitions[2][5][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][5][always]" id="transitions_2_5_always" value="1" class="old-status-2 new-status-5" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="進行中 &#187; 却下">
+                            <input type="hidden" name="transitions[2][6][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][6][always]" id="transitions_2_6_always" value="1" class="old-status-2 new-status-6" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).old-status-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            解決
+                        </td>
+                        <td class="no-tooltip enabled" title="解決 &#187; 新規">
+                            <input type="hidden" name="transitions[3][1][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][1][always]" id="transitions_3_1_always" value="1" class="old-status-3 new-status-1" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="解決 &#187; 進行中">
+                            <input type="hidden" name="transitions[3][2][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][2][always]" id="transitions_3_2_always" value="1" class="old-status-3 new-status-2" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="解決 &#187; 解決">
+                            <input type="checkbox" name="transitions[3][3][always]" id="transitions_3_3_always" value="1" disabled="disabled" class="old-status-3 new-status-3" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="解決 &#187; フィードバック">
+                            <input type="hidden" name="transitions[3][4][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][4][always]" id="transitions_3_4_always" value="1" class="old-status-3 new-status-4" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="解決 &#187; 終了">
+                            <input type="hidden" name="transitions[3][5][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][5][always]" id="transitions_3_5_always" value="1" class="old-status-3 new-status-5" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="解決 &#187; 却下">
+                            <input type="hidden" name="transitions[3][6][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][6][always]" id="transitions_3_6_always" value="1" class="old-status-3 new-status-6" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).old-status-4&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            フィードバック
+                        </td>
+                        <td class="no-tooltip enabled" title="フィードバック &#187; 新規">
+                            <input type="hidden" name="transitions[4][1][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][1][always]" id="transitions_4_1_always" value="1" class="old-status-4 new-status-1" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="フィードバック &#187; 進行中">
+                            <input type="hidden" name="transitions[4][2][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][2][always]" id="transitions_4_2_always" value="1" class="old-status-4 new-status-2" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="フィードバック &#187; 解決">
+                            <input type="hidden" name="transitions[4][3][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][3][always]" id="transitions_4_3_always" value="1" class="old-status-4 new-status-3" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="フィードバック &#187; フィードバック">
+                            <input type="checkbox" name="transitions[4][4][always]" id="transitions_4_4_always" value="1" disabled="disabled" class="old-status-4 new-status-4" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="フィードバック &#187; 終了">
+                            <input type="hidden" name="transitions[4][5][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][5][always]" id="transitions_4_5_always" value="1" class="old-status-4 new-status-5" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="フィードバック &#187; 却下">
+                            <input type="hidden" name="transitions[4][6][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][6][always]" id="transitions_4_6_always" value="1" class="old-status-4 new-status-6" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).old-status-5&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            終了
+                        </td>
+                        <td class="no-tooltip enabled" title="終了 &#187; 新規">
+                            <input type="hidden" name="transitions[5][1][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][1][always]" id="transitions_5_1_always" value="1" class="old-status-5 new-status-1" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="終了 &#187; 進行中">
+                            <input type="hidden" name="transitions[5][2][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][2][always]" id="transitions_5_2_always" value="1" class="old-status-5 new-status-2" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="終了 &#187; 解決">
+                            <input type="hidden" name="transitions[5][3][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][3][always]" id="transitions_5_3_always" value="1" class="old-status-5 new-status-3" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="終了 &#187; フィードバック">
+                            <input type="hidden" name="transitions[5][4][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][4][always]" id="transitions_5_4_always" value="1" class="old-status-5 new-status-4" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="終了 &#187; 終了">
+                            <input type="checkbox" name="transitions[5][5][always]" id="transitions_5_5_always" value="1" disabled="disabled" class="old-status-5 new-status-5" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="終了 &#187; 却下">
+                            <input type="hidden" name="transitions[5][6][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][6][always]" id="transitions_5_6_always" value="1" class="old-status-5 new-status-6" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-always input[type=checkbox]:not(:disabled).old-status-6&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                            却下
+                        </td>
+                        <td class="no-tooltip enabled" title="却下 &#187; 新規">
+                            <input type="hidden" name="transitions[6][1][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][1][always]" id="transitions_6_1_always" value="1" class="old-status-6 new-status-1" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="却下 &#187; 進行中">
+                            <input type="hidden" name="transitions[6][2][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][2][always]" id="transitions_6_2_always" value="1" class="old-status-6 new-status-2" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="却下 &#187; 解決">
+                            <input type="hidden" name="transitions[6][3][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][3][always]" id="transitions_6_3_always" value="1" class="old-status-6 new-status-3" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="却下 &#187; フィードバック">
+                            <input type="hidden" name="transitions[6][4][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][4][always]" id="transitions_6_4_always" value="1" class="old-status-6 new-status-4" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="却下 &#187; 終了">
+                            <input type="hidden" name="transitions[6][5][always]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][5][always]" id="transitions_6_5_always" value="1" class="old-status-6 new-status-5" checked="checked" />
+                        </td>
+                        <td class="no-tooltip enabled" title="却下 &#187; 却下">
+                            <input type="checkbox" name="transitions[6][6][always]" id="transitions_6_6_always" value="1" disabled="disabled" class="old-status-6 new-status-6" checked="checked" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <fieldset class="collapsible" style="padding: 0; margin-top: 0.5em;">
+                    <legend onclick="toggleFieldset(this);" class="icon icon-collapsed">チケット作成者に追加で許可する遷移</legend>
+                    <div id="author_workflows" style="margin: 0.5em 0 0.5em 0;">
+                        <table class="list workflows transitions transitions-author">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled)&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    現在のステータス
+                                </th>
+                                <th colspan="6">遷移できるステータス</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).new-status-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    新規
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).new-status-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    進行中
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).new-status-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    解決
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).new-status-4&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    フィードバック
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).new-status-5&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    終了
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).new-status-6&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    却下
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).old-status-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    新規
+                                </td>
+                                <td class="no-tooltip enabled" title="新規 &#187; 新規">
+                                    <input type="checkbox" name="transitions[1][1][author]" id="transitions_1_1_author" value="1" disabled="disabled" class="old-status-1 new-status-1" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 進行中">
+                                    <input type="hidden" name="transitions[1][2][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][2][author]" id="transitions_1_2_author" value="1" class="old-status-1 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 解決">
+                                    <input type="hidden" name="transitions[1][3][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][3][author]" id="transitions_1_3_author" value="1" class="old-status-1 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[1][4][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][4][author]" id="transitions_1_4_author" value="1" class="old-status-1 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 終了">
+                                    <input type="hidden" name="transitions[1][5][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][5][author]" id="transitions_1_5_author" value="1" class="old-status-1 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 却下">
+                                    <input type="hidden" name="transitions[1][6][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][6][author]" id="transitions_1_6_author" value="1" class="old-status-1 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).old-status-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    進行中
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 新規">
+                                    <input type="hidden" name="transitions[2][1][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][1][author]" id="transitions_2_1_author" value="1" class="old-status-2 new-status-1" />
+                                </td>
+                                <td class="no-tooltip enabled" title="進行中 &#187; 進行中">
+                                    <input type="checkbox" name="transitions[2][2][author]" id="transitions_2_2_author" value="1" disabled="disabled" class="old-status-2 new-status-2" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 解決">
+                                    <input type="hidden" name="transitions[2][3][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][3][author]" id="transitions_2_3_author" value="1" class="old-status-2 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[2][4][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][4][author]" id="transitions_2_4_author" value="1" class="old-status-2 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 終了">
+                                    <input type="hidden" name="transitions[2][5][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][5][author]" id="transitions_2_5_author" value="1" class="old-status-2 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 却下">
+                                    <input type="hidden" name="transitions[2][6][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][6][author]" id="transitions_2_6_author" value="1" class="old-status-2 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).old-status-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    解決
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 新規">
+                                    <input type="hidden" name="transitions[3][1][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][1][author]" id="transitions_3_1_author" value="1" class="old-status-3 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 進行中">
+                                    <input type="hidden" name="transitions[3][2][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][2][author]" id="transitions_3_2_author" value="1" class="old-status-3 new-status-2" />
+                                </td>
+                                <td class="no-tooltip enabled" title="解決 &#187; 解決">
+                                    <input type="checkbox" name="transitions[3][3][author]" id="transitions_3_3_author" value="1" disabled="disabled" class="old-status-3 new-status-3" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[3][4][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][4][author]" id="transitions_3_4_author" value="1" class="old-status-3 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 終了">
+                                    <input type="hidden" name="transitions[3][5][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][5][author]" id="transitions_3_5_author" value="1" class="old-status-3 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 却下">
+                                    <input type="hidden" name="transitions[3][6][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][6][author]" id="transitions_3_6_author" value="1" class="old-status-3 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).old-status-4&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    フィードバック
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 新規">
+                                    <input type="hidden" name="transitions[4][1][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][1][author]" id="transitions_4_1_author" value="1" class="old-status-4 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 進行中">
+                                    <input type="hidden" name="transitions[4][2][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][2][author]" id="transitions_4_2_author" value="1" class="old-status-4 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 解決">
+                                    <input type="hidden" name="transitions[4][3][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][3][author]" id="transitions_4_3_author" value="1" class="old-status-4 new-status-3" />
+                                </td>
+                                <td class="no-tooltip enabled" title="フィードバック &#187; フィードバック">
+                                    <input type="checkbox" name="transitions[4][4][author]" id="transitions_4_4_author" value="1" disabled="disabled" class="old-status-4 new-status-4" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 終了">
+                                    <input type="hidden" name="transitions[4][5][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][5][author]" id="transitions_4_5_author" value="1" class="old-status-4 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 却下">
+                                    <input type="hidden" name="transitions[4][6][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][6][author]" id="transitions_4_6_author" value="1" class="old-status-4 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).old-status-5&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    終了
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 新規">
+                                    <input type="hidden" name="transitions[5][1][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][1][author]" id="transitions_5_1_author" value="1" class="old-status-5 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 進行中">
+                                    <input type="hidden" name="transitions[5][2][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][2][author]" id="transitions_5_2_author" value="1" class="old-status-5 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 解決">
+                                    <input type="hidden" name="transitions[5][3][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][3][author]" id="transitions_5_3_author" value="1" class="old-status-5 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[5][4][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][4][author]" id="transitions_5_4_author" value="1" class="old-status-5 new-status-4" />
+                                </td>
+                                <td class="no-tooltip enabled" title="終了 &#187; 終了">
+                                    <input type="checkbox" name="transitions[5][5][author]" id="transitions_5_5_author" value="1" disabled="disabled" class="old-status-5 new-status-5" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 却下">
+                                    <input type="hidden" name="transitions[5][6][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][6][author]" id="transitions_5_6_author" value="1" class="old-status-5 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-author input[type=checkbox]:not(:disabled).old-status-6&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    却下
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 新規">
+                                    <input type="hidden" name="transitions[6][1][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][1][author]" id="transitions_6_1_author" value="1" class="old-status-6 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 進行中">
+                                    <input type="hidden" name="transitions[6][2][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][2][author]" id="transitions_6_2_author" value="1" class="old-status-6 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 解決">
+                                    <input type="hidden" name="transitions[6][3][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][3][author]" id="transitions_6_3_author" value="1" class="old-status-6 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[6][4][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][4][author]" id="transitions_6_4_author" value="1" class="old-status-6 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 終了">
+                                    <input type="hidden" name="transitions[6][5][author]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][5][author]" id="transitions_6_5_author" value="1" class="old-status-6 new-status-5" />
+                                </td>
+                                <td class="no-tooltip enabled" title="却下 &#187; 却下">
+                                    <input type="checkbox" name="transitions[6][6][author]" id="transitions_6_6_author" value="1" disabled="disabled" class="old-status-6 new-status-6" checked="checked" />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </fieldset>
+                <script>
+                  //<![CDATA[
+                  hideFieldset($('#author_workflows'))
+                  //]]>
+                </script>
+
+                <fieldset class="collapsible" style="padding: 0;">
+                    <legend onclick="toggleFieldset(this);" class="icon icon-collapsed">チケット担当者に追加で許可する遷移</legend>
+                    <div id="assignee_workflows" style="margin: 0.5em 0 0.5em 0;">
+                        <table class="list workflows transitions transitions-assignee">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled)&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    現在のステータス
+                                </th>
+                                <th colspan="6">遷移できるステータス</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).new-status-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    新規
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).new-status-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    進行中
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).new-status-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    解決
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).new-status-4&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    フィードバック
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).new-status-5&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    終了
+                                </td>
+                                <td style="width:12%;">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).new-status-6&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    却下
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).old-status-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    新規
+                                </td>
+                                <td class="no-tooltip enabled" title="新規 &#187; 新規">
+                                    <input type="checkbox" name="transitions[1][1][assignee]" id="transitions_1_1_assignee" value="1" disabled="disabled" class="old-status-1 new-status-1" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 進行中">
+                                    <input type="hidden" name="transitions[1][2][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][2][assignee]" id="transitions_1_2_assignee" value="1" class="old-status-1 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 解決">
+                                    <input type="hidden" name="transitions[1][3][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][3][assignee]" id="transitions_1_3_assignee" value="1" class="old-status-1 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[1][4][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][4][assignee]" id="transitions_1_4_assignee" value="1" class="old-status-1 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 終了">
+                                    <input type="hidden" name="transitions[1][5][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][5][assignee]" id="transitions_1_5_assignee" value="1" class="old-status-1 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="新規 &#187; 却下">
+                                    <input type="hidden" name="transitions[1][6][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[1][6][assignee]" id="transitions_1_6_assignee" value="1" class="old-status-1 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).old-status-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    進行中
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 新規">
+                                    <input type="hidden" name="transitions[2][1][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][1][assignee]" id="transitions_2_1_assignee" value="1" class="old-status-2 new-status-1" />
+                                </td>
+                                <td class="no-tooltip enabled" title="進行中 &#187; 進行中">
+                                    <input type="checkbox" name="transitions[2][2][assignee]" id="transitions_2_2_assignee" value="1" disabled="disabled" class="old-status-2 new-status-2" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 解決">
+                                    <input type="hidden" name="transitions[2][3][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][3][assignee]" id="transitions_2_3_assignee" value="1" class="old-status-2 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[2][4][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][4][assignee]" id="transitions_2_4_assignee" value="1" class="old-status-2 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 終了">
+                                    <input type="hidden" name="transitions[2][5][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][5][assignee]" id="transitions_2_5_assignee" value="1" class="old-status-2 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="進行中 &#187; 却下">
+                                    <input type="hidden" name="transitions[2][6][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[2][6][assignee]" id="transitions_2_6_assignee" value="1" class="old-status-2 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).old-status-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    解決
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 新規">
+                                    <input type="hidden" name="transitions[3][1][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][1][assignee]" id="transitions_3_1_assignee" value="1" class="old-status-3 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 進行中">
+                                    <input type="hidden" name="transitions[3][2][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][2][assignee]" id="transitions_3_2_assignee" value="1" class="old-status-3 new-status-2" />
+                                </td>
+                                <td class="no-tooltip enabled" title="解決 &#187; 解決">
+                                    <input type="checkbox" name="transitions[3][3][assignee]" id="transitions_3_3_assignee" value="1" disabled="disabled" class="old-status-3 new-status-3" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[3][4][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][4][assignee]" id="transitions_3_4_assignee" value="1" class="old-status-3 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 終了">
+                                    <input type="hidden" name="transitions[3][5][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][5][assignee]" id="transitions_3_5_assignee" value="1" class="old-status-3 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="解決 &#187; 却下">
+                                    <input type="hidden" name="transitions[3][6][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[3][6][assignee]" id="transitions_3_6_assignee" value="1" class="old-status-3 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).old-status-4&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    フィードバック
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 新規">
+                                    <input type="hidden" name="transitions[4][1][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][1][assignee]" id="transitions_4_1_assignee" value="1" class="old-status-4 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 進行中">
+                                    <input type="hidden" name="transitions[4][2][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][2][assignee]" id="transitions_4_2_assignee" value="1" class="old-status-4 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 解決">
+                                    <input type="hidden" name="transitions[4][3][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][3][assignee]" id="transitions_4_3_assignee" value="1" class="old-status-4 new-status-3" />
+                                </td>
+                                <td class="no-tooltip enabled" title="フィードバック &#187; フィードバック">
+                                    <input type="checkbox" name="transitions[4][4][assignee]" id="transitions_4_4_assignee" value="1" disabled="disabled" class="old-status-4 new-status-4" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 終了">
+                                    <input type="hidden" name="transitions[4][5][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][5][assignee]" id="transitions_4_5_assignee" value="1" class="old-status-4 new-status-5" />
+                                </td>
+                                <td class="no-tooltip " title="フィードバック &#187; 却下">
+                                    <input type="hidden" name="transitions[4][6][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[4][6][assignee]" id="transitions_4_6_assignee" value="1" class="old-status-4 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).old-status-5&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    終了
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 新規">
+                                    <input type="hidden" name="transitions[5][1][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][1][assignee]" id="transitions_5_1_assignee" value="1" class="old-status-5 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 進行中">
+                                    <input type="hidden" name="transitions[5][2][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][2][assignee]" id="transitions_5_2_assignee" value="1" class="old-status-5 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 解決">
+                                    <input type="hidden" name="transitions[5][3][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][3][assignee]" id="transitions_5_3_assignee" value="1" class="old-status-5 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[5][4][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][4][assignee]" id="transitions_5_4_assignee" value="1" class="old-status-5 new-status-4" />
+                                </td>
+                                <td class="no-tooltip enabled" title="終了 &#187; 終了">
+                                    <input type="checkbox" name="transitions[5][5][assignee]" id="transitions_5_5_assignee" value="1" disabled="disabled" class="old-status-5 new-status-5" checked="checked" />
+                                </td>
+                                <td class="no-tooltip " title="終了 &#187; 却下">
+                                    <input type="hidden" name="transitions[5][6][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[5][6][assignee]" id="transitions_5_6_assignee" value="1" class="old-status-5 new-status-6" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;table.transitions-assignee input[type=checkbox]:not(:disabled).old-status-6&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="no-tooltip icon-only icon-checked"></a>
+                                    却下
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 新規">
+                                    <input type="hidden" name="transitions[6][1][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][1][assignee]" id="transitions_6_1_assignee" value="1" class="old-status-6 new-status-1" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 進行中">
+                                    <input type="hidden" name="transitions[6][2][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][2][assignee]" id="transitions_6_2_assignee" value="1" class="old-status-6 new-status-2" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 解決">
+                                    <input type="hidden" name="transitions[6][3][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][3][assignee]" id="transitions_6_3_assignee" value="1" class="old-status-6 new-status-3" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; フィードバック">
+                                    <input type="hidden" name="transitions[6][4][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][4][assignee]" id="transitions_6_4_assignee" value="1" class="old-status-6 new-status-4" />
+                                </td>
+                                <td class="no-tooltip " title="却下 &#187; 終了">
+                                    <input type="hidden" name="transitions[6][5][assignee]" value="0" autocomplete="off" /><input type="checkbox" name="transitions[6][5][assignee]" id="transitions_6_5_assignee" value="1" class="old-status-6 new-status-5" />
+                                </td>
+                                <td class="no-tooltip enabled" title="却下 &#187; 却下">
+                                    <input type="checkbox" name="transitions[6][6][assignee]" id="transitions_6_6_assignee" value="1" disabled="disabled" class="old-status-6 new-status-6" checked="checked" />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </fieldset>
+                <script>
+                  //<![CDATA[
+                  hideFieldset($('#assignee_workflows'))
+                  //]]>
+                </script>
+            </div>
+            <input type="submit" name="commit" value="保存" data-disable-with="保存" />
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

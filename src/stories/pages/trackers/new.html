@@ -1,0 +1,118 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers selected" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2><a href="#">トラッカー</a> &#187; 新しいトラッカー</h2>
+
+        <form class="new_tracker" id="new_tracker" action="#" accept-charset="UTF-8" name="new_tracker-5f7ef57a" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <div class="splitcontent">
+                <div class="splitcontentleft">
+                    <div class="box tabular">
+                        <!--[form:tracker]-->
+                        <p><label for="tracker_name">名称<span class="required"> *</span></label><input type="text" value="" name="tracker[name]" id="tracker_name" /></p>
+                        <p><label for="tracker_default_status_id">デフォルトのステータス<span class="required"> *</span></label><select name="tracker[default_status_id]" id="tracker_default_status_id"><option selected="selected" value="1">新規</option>
+                            <option value="2">進行中</option>
+                            <option value="3">解決</option>
+                            <option value="4">フィードバック</option>
+                            <option value="5">終了</option>
+                            <option value="6">却下</option></select>
+                        </p>
+                        <p><label for="tracker_is_in_roadmap">チケットをロードマップに表示する</label><input name="tracker[is_in_roadmap]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" checked="checked" name="tracker[is_in_roadmap]" id="tracker_is_in_roadmap" /></p>
+                        <p><label for="tracker_description">説明</label><textarea rows="4" name="tracker[description]" id="tracker_description">
+</textarea></p>
+                        <p>
+                            <label>標準フィールド</label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="assigned_to_id" checked="checked" />
+                                担当者
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="category_id" checked="checked" />
+                                カテゴリ
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="fixed_version_id" checked="checked" />
+                                対象バージョン
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="parent_issue_id" checked="checked" />
+                                親チケット
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="start_date" checked="checked" />
+                                開始日
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="due_date" checked="checked" />
+                                期日
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="estimated_hours" checked="checked" />
+                                予定工数
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="done_ratio" checked="checked" />
+                                進捗率
+                            </label>
+                            <label class="block">
+                                <input type="checkbox" name="tracker[core_fields][]" value="description" checked="checked" />
+                                説明
+                            </label>
+                        </p>
+                        <input type="hidden" name="tracker[core_fields][]" id="tracker_core_fields_" value="" autocomplete="off" />
+
+
+                        <p><label for="copy_workflow_from">ワークフローをここからコピー</label>
+                            <select name="copy_workflow_from" id="copy_workflow_from"><option></option><option value="1">バグ</option>
+                                <option value="2">機能</option>
+                                <option value="3">サポート</option></select></p>
+                        <!--[eoform:tracker]-->
+                    </div>
+                    <input type="submit" name="commit" value="作成" data-disable-with="作成" />
+                </div>
+
+                <div class="splitcontentright">
+                    <fieldset class="box" id="tracker_project_ids"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#tracker_project_ids input[type=checkbox]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>プロジェクト</legend>
+                        <ul class='projects root'>
+                            <li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="1" /> test1</label></div>
+                                <ul class='projects '>
+                                    <li class='child'><div class='child'><label><input type="checkbox" name="tracker[project_ids][]" value="6" /> test1-1</label></div>
+                                        <ul class='projects '>
+                                            <li class='child'><div class='child'><label><input type="checkbox" name="tracker[project_ids][]" value="8" /> test1-1-1</label></div>
+                                            </li></ul></li>
+                                    <li class='child'><div class='child'><label><input type="checkbox" name="tracker[project_ids][]" value="7" /> test1-2</label></div>
+                                    </li></ul></li>
+                            <li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="13" /> test10</label></div>
+                            </li><li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="2" /> test2</label></div>
+                            <ul class='projects '>
+                                <li class='child'><div class='child'><label><input type="checkbox" name="tracker[project_ids][]" value="14" /> test2-1</label></div>
+                                </li></ul></li>
+                            <li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="3" /> test3</label></div>
+                                <ul class='projects '>
+                                    <li class='child'><div class='child'><label><input type="checkbox" name="tracker[project_ids][]" value="15" /> test3-1</label></div>
+                                    </li></ul></li>
+                            <li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="4" /> test4</label></div>
+                            </li><li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="5" /> test5</label></div>
+                        </li><li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="9" /> test6</label></div>
+                        </li><li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="10" /> test7</label></div>
+                        </li><li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="11" /> test8</label></div>
+                        </li><li class='root'><div class='root'><label><input type="checkbox" name="tracker[project_ids][]" value="12" /> test9</label></div>
+                        </li></ul>
+
+                        <input type="hidden" name="tracker[project_ids][]" value="" autocomplete="off" />
+                    </fieldset>
+                </div>
+            </div>
+
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields selected" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a href="#" onclick="location.href = &#39;/custom_fields/new?tab=&#39; + encodeURIComponent(($(&#39;.tabs a.selected&#39;).attr(&#39;id&#39;)||&#39;&#39;).split(&#39;tab-&#39;).pop()); return false;" class="icon icon-add">新しいカスタムフィールド</a>
+        </div>
+
+        <h2>カスタムフィールド</h2>
+
+        <div class="tabs">
+            <ul>
+                <li><a id="tab-IssueCustomField" class="selected" onclick="showTab(&#39;IssueCustomField&#39;, this.href); return false;" href="#">チケット</a></li>
+            </ul>
+            <div class="tabs-buttons" style="display:none;">
+                <button class="tab-left" type="button" onclick="moveTabLeft(this);"></button>
+                <button class="tab-right" type="button" onclick="moveTabRight(this);"></button>
+            </div>
+        </div>
+
+        <div id="tab-content-IssueCustomField" class="tab-content"><table class="list custom_fields">
+            <thead><tr>
+                <th>名称</th>
+                <th>形式</th>
+                <th>必須</th>
+                <th>全プロジェクト向け</th>
+                <th>使用中</th>
+                <th></th>
+            </tr></thead>
+            <tbody>
+            <tr>
+                <td class="name"><a href="#">custom field1</a></td>
+                <td>テキスト</td>
+                <td></td>
+                <td></td>
+                <td>プロジェクトはありません</td>
+                <td class="buttons">
+                    <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/custom_fields/1" data-reorder-param="custom_field" title="ソート"></span>
+                    <a href="#" onclick="location.href = &#39;/custom_fields/new?copy=1&amp;type=&#39; + encodeURIComponent(($(&#39;.tabs a.selected&#39;).attr(&#39;id&#39;)||&#39;&#39;).split(&#39;tab-&#39;).pop()); return false;" class="icon icon-copy">コピー</a>
+                    <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <script>
+          //<![CDATA[
+          showTab('IssueCustomField', this.href)
+          //]]>
+        </script>
+
+        <script>
+          //<![CDATA[
+          $(function() { $("table.custom_fields tbody").positionedItems(); });
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

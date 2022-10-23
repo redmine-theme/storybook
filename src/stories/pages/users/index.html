@@ -1,0 +1,221 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul>
+                <li><a class="icon icon-projects projects" href="#">プロジェクト</a></li>
+                <li><a class="icon icon-user users selected" href="#">ユーザー</a></li>
+                <li><a class="icon icon-group groups" href="#">グループ</a></li>
+                <li><a class="icon icon-roles roles" href="#">ロールと権限</a></li>
+                <li><a class="icon icon-issue trackers" href="#">トラッカー</a></li>
+                <li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li>
+                <li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li>
+                <li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li>
+                <li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li>
+                <li><a class="icon icon-settings settings" href="#">設定</a></li>
+                <li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a>
+                </li>
+                <li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li>
+                <li><a class="icon icon-help info" href="#">情報</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-add" href="#">新しいユーザー</a>
+            <span class="drdn"><span class="drdn-trigger"><span class="icon-only icon-actions" title="操作">操作</span></span><div class="drdn-content"><div class="drdn-items">
+      <a class="icon icon-import" href="#">インポート</a>
+</div></div></span></div>
+
+        <h2>ユーザー</h2>
+
+        <form id="users_form" action="#" accept-charset="UTF-8" name="users_form-698a95e9" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <fieldset>
+                <legend>フィルタ</legend>
+                <label for='status'>ステータス:</label>
+                <select name="status" id="status" class="small" onchange="this.form.submit(); return false;">
+                    <option value="">すべて</option>
+                    <option selected="selected" value="1">有効 (6)</option>
+                    <option value="2">登録 (0)</option>
+                    <option value="3">ロック中 (0)</option>
+                </select>
+
+                <label for='group_id'>グループ:</label>
+                <select name="group_id" id="group_id" onchange="this.form.submit(); return false;">
+                    <option></option>
+                    <option value="10">group1</option>
+                    <option value="11">group2</option>
+                    <option value="12">group3</option>
+                    <option value="13">group4</option>
+                    <option value="14">group5</option>
+                </select>
+
+                <label for='twofa'>二要素認証:</label>
+                <select name="twofa" id="twofa" onchange="this.form.submit(); return false;">
+                    <option value="">&nbsp;</option>
+                    <option value="1">はい</option>
+                    <option value="0">いいえ</option>
+                </select>
+
+                <label for='name'>ユーザー:</label>
+                <input type="text" name="name" id="name" size="30"/>
+                <input type="submit" value="適用" class="small" data-disable-with="適用"/>
+                <a class="icon icon-reload" href="#">クリア</a>
+            </fieldset>
+            <input type="hidden" name="encoding" id="encoding" value="CP932" autocomplete="off"/>
+        </form>&nbsp;
+
+        <div class="autoscroll">
+            <table class="list users">
+                <thead>
+                <tr>
+                    <th title="並べ替え &quot;ログインID&quot;">
+                        <a class="sort asc icon icon-sorted-desc" href="#">ログインID</a></th>
+                    <th title="並べ替え &quot;名&quot;"><a href="#">名</a></th>
+                    <th title="並べ替え &quot;姓&quot;"><a href="#">姓</a></th>
+                    <th>メールアドレス</th>
+                    <th title="並べ替え &quot;システム管理者&quot;"><a href="#">システム管理者</a>
+                    </th>
+                    <th class="whitespace-normal">二要素認証</th>
+                    <th title="並べ替え &quot;作成日&quot;"><a href="#">作成日</a>
+                    </th>
+                    <th title="並べ替え &quot;最終接続日&quot;">
+                        <a href="#">最終接続日</a></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="user active">
+                    <td class="username">
+                        <img alt="" title="Redmine Admin" class="gravatar" srcset="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=28&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&amp;size=14&amp;default=retro"/><a href="#">admin</a>
+                    </td>
+                    <td class="firstname">Redmine</td>
+                    <td class="lastname">Admin</td>
+                    <td class="email"><a href="#">admin@example.net</a></td>
+                    <td class="tick"><span class="icon-only icon-checked"></span></td>
+                    <td class="twofa tick"></td>
+                    <td class="created_on">2022/10/18 03:37</td>
+                    <td class="last_login_on">2022/10/22 23:46</td>
+                    <td class="buttons">
+
+
+                    </td>
+                </tr>
+                <tr class="user active">
+                    <td class="username">
+                        <img alt="" title="user1 user1" class="gravatar" srcset="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=28&amp;default=retro 2x" src="https://www.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808?rating=PG&amp;size=14&amp;default=retro"/><a href="#">user1</a>
+                    </td>
+                    <td class="firstname">user1</td>
+                    <td class="lastname">user1</td>
+                    <td class="email"><a href="#">user1@example.com</a></td>
+                    <td class="tick"></td>
+                    <td class="twofa tick"></td>
+                    <td class="created_on">2022/10/20 00:00</td>
+                    <td class="last_login_on"></td>
+                    <td class="buttons">
+                        <a class="icon icon-lock" rel="nofollow" data-method="put" href="#">ロック</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="user active">
+                    <td class="username">
+                        <img alt="" title="user2 user2" class="gravatar" srcset="https://www.gravatar.com/avatar/ab53a2911ddf9b4817ac01ddcd3d975f?rating=PG&amp;size=28&amp;default=retro 2x" src="https://www.gravatar.com/avatar/ab53a2911ddf9b4817ac01ddcd3d975f?rating=PG&amp;size=14&amp;default=retro"/><a href="#">user2</a>
+                    </td>
+                    <td class="firstname">user2</td>
+                    <td class="lastname">user2</td>
+                    <td class="email"><a href="#">user2@example.com</a></td>
+                    <td class="tick"></td>
+                    <td class="twofa tick"></td>
+                    <td class="created_on">2022/10/20 00:00</td>
+                    <td class="last_login_on"></td>
+                    <td class="buttons">
+                        <a class="icon icon-lock" rel="nofollow" data-method="put" href="#">ロック</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="user active">
+                    <td class="username">
+                        <img alt="" title="user3 user3" class="gravatar" srcset="https://www.gravatar.com/avatar/97d6d9441ff85fdc730e02a6068d267b?rating=PG&amp;size=28&amp;default=retro 2x" src="https://www.gravatar.com/avatar/97d6d9441ff85fdc730e02a6068d267b?rating=PG&amp;size=14&amp;default=retro"/><a href="#">user3</a>
+                    </td>
+                    <td class="firstname">user3</td>
+                    <td class="lastname">user3</td>
+                    <td class="email"><a href="#">user3@example.com</a></td>
+                    <td class="tick"></td>
+                    <td class="twofa tick"></td>
+                    <td class="created_on">2022/10/20 00:01</td>
+                    <td class="last_login_on"></td>
+                    <td class="buttons">
+                        <a class="icon icon-lock" rel="nofollow" data-method="put" href="#">ロック</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="user active">
+                    <td class="username">
+                        <img alt="" title="user4 user4" class="gravatar" srcset="https://www.gravatar.com/avatar/7e65550957227bd38fe2d7fbc6fd2f7b?rating=PG&amp;size=28&amp;default=retro 2x" src="https://www.gravatar.com/avatar/7e65550957227bd38fe2d7fbc6fd2f7b?rating=PG&amp;size=14&amp;default=retro"/><a href="#">user4</a>
+                    </td>
+                    <td class="firstname">user4</td>
+                    <td class="lastname">user4</td>
+                    <td class="email"><a href="#">user4@example.com</a></td>
+                    <td class="tick"></td>
+                    <td class="twofa tick"></td>
+                    <td class="created_on">2022/10/20 00:01</td>
+                    <td class="last_login_on"></td>
+                    <td class="buttons">
+                        <a class="icon icon-lock" rel="nofollow" data-method="put" href="#">ロック</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="user active">
+                    <td class="username">
+                        <img alt="" title="user5 user5" class="gravatar" srcset="https://www.gravatar.com/avatar/cfa35b8cd2ec278026357769582fa563?rating=PG&amp;size=28&amp;default=retro 2x" src="https://www.gravatar.com/avatar/cfa35b8cd2ec278026357769582fa563?rating=PG&amp;size=14&amp;default=retro"/><a href="#">user5</a>
+                    </td>
+                    <td class="firstname">user5</td>
+                    <td class="lastname">user5</td>
+                    <td class="email"><a href="#">user5@example.com</a></td>
+                    <td class="tick"></td>
+                    <td class="twofa tick"></td>
+                    <td class="created_on">2022/10/20 00:01</td>
+                    <td class="last_login_on"></td>
+                    <td class="buttons">
+                        <a class="icon icon-lock" rel="nofollow" data-method="put" href="#">ロック</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <span class="pagination"><ul class="pages"></ul><span><span class="items">(1-6/6)</span> </span></span>
+        <p class="other-formats">他の形式にエクスポート:
+            <span><a class="csv" rel="nofollow" onclick="showModal(&#39;csv-export-options&#39;, &#39;330px&#39;); return false;" href="#">CSV</a></span>
+        </p>
+        <div id="csv-export-options" style="display: none;">
+            <h3 class="title">CSV エクスポート設定</h3>
+            <p><label>エンコーディング <select name="encoding" id="encoding">
+                <option selected="selected" value="CP932">CP932</option>
+                <option value="UTF-8">UTF-8</option>
+            </select></label></p>
+            <p class="buttons">
+                <input type="submit" value="エクスポート" id="csv-export-button" data-disable-with="エクスポート"/>
+                <input type="button" value="キャンセル" onclick="hideModal(this);" data-disable-with="キャンセル"/>
+            </p>
+        </div>
+        <script>
+          //<![CDATA[
+
+          $(document).ready(function () {
+            $('input#csv-export-button').click(function () {
+              $('form input#encoding').val($('select#encoding option:selected').val());
+              $('form#users_form').attr('action', "/users.csv").submit();
+              $('form#users_form').attr('action', '/users');
+              hideModal(this);
+            });
+          });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

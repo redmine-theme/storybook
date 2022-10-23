@@ -1,0 +1,160 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields selected" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2><a href="#">カスタムフィールド</a> &#187; <a href="#">チケット</a> &#187; 新しいカスタムフィールド</h2>
+
+        <form class="new_custom_field" id="custom_field_form" action="#" accept-charset="UTF-8" name="custom_field_form-28b5b4a9" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+
+            <div class="splitcontent">
+                <div class="splitcontentleft">
+                    <div class="box tabular">
+                        <p><label for="custom_field_field_format">形式</label><select name="custom_field[field_format]" id="custom_field_field_format"><option value="enumeration">キー・バリュー リスト</option>
+                            <option selected="selected" value="string">テキスト</option>
+                            <option value="version">バージョン</option>
+                            <option value="attachment">ファイル</option>
+                            <option value="user">ユーザー</option>
+                            <option value="list">リスト</option>
+                            <option value="link">リンク</option>
+                            <option value="float">小数</option>
+                            <option value="int">整数</option>
+                            <option value="date">日付</option>
+                            <option value="bool">真偽値</option>
+                            <option value="text">長いテキスト</option></select></p>
+                        <p><label for="custom_field_name">名称<span class="required"> *</span></label><input size="50" type="text" value="" name="custom_field[name]" id="custom_field_name" /></p>
+                        <p><label for="custom_field_description">説明</label><textarea rows="7" name="custom_field[description]" id="custom_field_description">
+</textarea></p>
+
+                        <p>
+                            <label for="custom_field_min_length">最短 - 最大長</label>
+                            <input size="5" type="text" name="custom_field[min_length]" id="custom_field_min_length" /> -
+                            <input size="5" type="text" name="custom_field[max_length]" id="custom_field_max_length" />
+                        </p>
+                        <p>
+                            <label for="custom_field_regexp">正規表現</label><input size="50" type="text" value="" name="custom_field[regexp]" id="custom_field_regexp" />
+                            <em class="info">例) ^[A-Z0-9]+$</em>
+                        </p>
+
+                        <p><label for="custom_field_text_formatting">テキスト書式</label><input name="custom_field[text_formatting]" type="hidden" value="" autocomplete="off" /><input data-disables="#custom_field_url_pattern" type="checkbox" value="full" name="custom_field[text_formatting]" id="custom_field_text_formatting" /></p>
+                        <p><label for="custom_field_default_value">デフォルト値</label><input type="text" name="custom_field[default_value]" id="custom_field_default_value" /></p>
+                        <p><label for="custom_field_url_pattern">値に設定するリンクURL</label><input size="50" type="text" name="custom_field[url_pattern]" id="custom_field_url_pattern" /></p>
+                    </div>
+                    <p>
+                        <input type="submit" name="commit" value="作成" data-disable-with="作成" />
+                        <input type="submit" name="continue" value="連続作成" data-disable-with="連続作成" />
+                    </p>
+                </div>
+
+                <div class="splitcontentright">
+                    <div class="box tabular">
+                        <p><label for="custom_field_is_required">必須</label><input name="custom_field[is_required]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" name="custom_field[is_required]" id="custom_field_is_required" /></p>
+
+                        <p><label for="custom_field_is_filter">フィルタとして使用</label><input name="custom_field[is_filter]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" name="custom_field[is_filter]" id="custom_field_is_filter" /></p>
+
+                        <p><label for="custom_field_searchable">検索対象</label><input name="custom_field[searchable]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" name="custom_field[searchable]" id="custom_field_searchable" /></p>
+
+                    </div>
+
+                    <fieldset class="box tabular"><legend>表示</legend>
+                        <label class="block">
+                            <input type="radio" name="custom_field[visible]" id="custom_field_visible_on" value="1" data-disables=".custom_field_role input" checked="checked" />
+                            すべてのユーザー
+                        </label>
+                        <label class="block">
+                            <input type="radio" name="custom_field[visible]" id="custom_field_visible_off" value="0" data-enables=".custom_field_role input" />
+                            次のロールのみ:
+                        </label>
+                        <label class="block custom_field_role" style="padding-left:2em;">
+                            <input type="checkbox" name="custom_field[role_ids][]" value="3" />
+                            管理者
+                        </label>
+                        <label class="block custom_field_role" style="padding-left:2em;">
+                            <input type="checkbox" name="custom_field[role_ids][]" value="4" />
+                            開発者
+                        </label>
+                        <label class="block custom_field_role" style="padding-left:2em;">
+                            <input type="checkbox" name="custom_field[role_ids][]" value="5" />
+                            報告者
+                        </label>
+                        <input type="hidden" name="custom_field[role_ids][]" id="custom_field_role_ids_" value="" autocomplete="off" />
+                    </fieldset>
+
+                    <fieldset class="box" id="custom_field_tracker_ids"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#custom_field_tracker_ids input[type=checkbox]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>トラッカー</legend>
+                        <input type="checkbox" name="custom_field[tracker_ids][]" id="custom_field_tracker_ids_1" value="1" />
+                        <label class="no-css" for="custom_field_tracker_ids_1">
+                            バグ
+                        </label>
+                        <input type="checkbox" name="custom_field[tracker_ids][]" id="custom_field_tracker_ids_2" value="2" />
+                        <label class="no-css" for="custom_field_tracker_ids_2">
+                            機能
+                        </label>
+                        <input type="checkbox" name="custom_field[tracker_ids][]" id="custom_field_tracker_ids_3" value="3" />
+                        <label class="no-css" for="custom_field_tracker_ids_3">
+                            サポート
+                        </label>
+                        <input type="hidden" name="custom_field[tracker_ids][]" id="custom_field_tracker_ids_" value="" autocomplete="off" />
+                    </fieldset>
+
+                    <fieldset class="box"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#custom_field_project_ids input[type=checkbox]:enabled&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>プロジェクト</legend>
+                        <p><label for="custom_field_is_for_all">全プロジェクト向け</label><input name="custom_field[is_for_all]" type="hidden" value="0" autocomplete="off" /><input data-disables="#custom_field_project_ids input" type="checkbox" value="1" name="custom_field[is_for_all]" id="custom_field_is_for_all" /></p>
+
+                        <div id="custom_field_project_ids">
+                            <ul class='projects root'>
+                                <li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="1" /> test1</label></div>
+                                    <ul class='projects '>
+                                        <li class='child'><div class='child'><label><input type="checkbox" name="custom_field[project_ids][]" value="6" /> test1-1</label></div>
+                                            <ul class='projects '>
+                                                <li class='child'><div class='child'><label><input type="checkbox" name="custom_field[project_ids][]" value="8" /> test1-1-1</label></div>
+                                                </li></ul></li>
+                                        <li class='child'><div class='child'><label><input type="checkbox" name="custom_field[project_ids][]" value="7" /> test1-2</label></div>
+                                        </li></ul></li>
+                                <li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="13" /> test10</label></div>
+                                </li><li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="2" /> test2</label></div>
+                                <ul class='projects '>
+                                    <li class='child'><div class='child'><label><input type="checkbox" name="custom_field[project_ids][]" value="14" /> test2-1</label></div>
+                                    </li></ul></li>
+                                <li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="3" /> test3</label></div>
+                                    <ul class='projects '>
+                                        <li class='child'><div class='child'><label><input type="checkbox" name="custom_field[project_ids][]" value="15" /> test3-1</label></div>
+                                        </li></ul></li>
+                                <li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="4" /> test4</label></div>
+                                </li><li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="5" /> test5</label></div>
+                            </li><li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="9" /> test6</label></div>
+                            </li><li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="10" /> test7</label></div>
+                            </li><li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="11" /> test8</label></div>
+                            </li><li class='root'><div class='root'><label><input type="checkbox" name="custom_field[project_ids][]" value="12" /> test9</label></div>
+                            </li></ul>
+
+                            <input type="hidden" name="custom_field[project_ids][]" value="" autocomplete="off" />
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <input type="hidden" name="type" id="type" value="IssueCustomField" autocomplete="off" />
+        </form>
+        <script>
+          //<![CDATA[
+
+          $('#custom_field_field_format').change(function(){
+            $.ajax({
+              url: '/custom_fields/new.js',
+              type: 'get',
+              data: $('#custom_field_form').serialize(),
+              complete: toggleDisabledInit
+            });
+          });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

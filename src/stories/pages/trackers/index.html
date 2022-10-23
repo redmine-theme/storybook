@@ -1,0 +1,76 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers selected" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-add" href="#">新しいトラッカー</a>
+            <a class="icon icon-summary" href="#">サマリー</a>
+        </div>
+
+        <h2>トラッカー</h2>
+
+        <table class="list trackers">
+            <thead><tr>
+                <th>トラッカー</th>
+                <th>デフォルトのステータス</th>
+                <th>説明</th>
+                <th></th>
+                <th></th>
+            </tr></thead>
+            <tbody>
+            <tr>
+                <td class="name"><a href="#">バグ</a></td>
+                <td>新規</td>
+                <td class="description"></td>
+                <td>
+                </td>
+                <td class="buttons">
+                    <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/trackers/1" data-reorder-param="tracker" title="ソート"></span>
+                    <a class="icon icon-copy" href="#">コピー</a>
+                    <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="name"><a href="#">機能</a></td>
+                <td>新規</td>
+                <td class="description"></td>
+                <td>
+                </td>
+                <td class="buttons">
+                    <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/trackers/2" data-reorder-param="tracker" title="ソート"></span>
+                    <a class="icon icon-copy" href="#">コピー</a>
+                    <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="name"><a href="#">サポート</a></td>
+                <td>新規</td>
+                <td class="description"></td>
+                <td>
+                </td>
+                <td class="buttons">
+                    <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/trackers/3" data-reorder-param="tracker" title="ソート"></span>
+                    <a class="icon icon-copy" href="#">コピー</a>
+                    <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <script>
+          //<![CDATA[
+
+          $(function() { $("table.trackers tbody").positionedItems(); });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

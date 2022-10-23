@@ -1,0 +1,106 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul>
+                <li><a class="icon icon-projects projects" href="#">プロジェクト</a></li>
+                <li><a class="icon icon-user users" href="#">ユーザー</a></li>
+                <li><a class="icon icon-group groups selected" href="#">グループ</a></li>
+                <li><a class="icon icon-roles roles" href="#">ロールと権限</a></li>
+                <li><a class="icon icon-issue trackers" href="#">トラッカー</a></li>
+                <li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li>
+                <li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li>
+                <li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li>
+                <li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li>
+                <li><a class="icon icon-settings settings" href="#">設定</a></li>
+                <li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li>
+                <li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li>
+                <li><a class="icon icon-help info" href="#">情報</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2><a href="#">グループ</a> &#187; group1</h2>
+
+        <div class="tabs">
+            <ul>
+                <li>
+                    <a id="tab-general" class="selected" onclick="showTab(&#39;general&#39;, this.href); return false;" href="#">全般</a>
+                </li>
+                <li>
+                    <a id="tab-users" onclick="showTab(&#39;users&#39;, this.href); return false;" href="#">ユーザー</a>
+                </li>
+                <li>
+                    <a id="tab-memberships" onclick="showTab(&#39;memberships&#39;, this.href); return false;" href="#">プロジェクト</a>
+                </li>
+            </ul>
+            <div class="tabs-buttons" style="display:none;">
+                <button class="tab-left" type="button" onclick="moveTabLeft(this);"></button>
+                <button class="tab-right" type="button" onclick="moveTabRight(this);"></button>
+            </div>
+        </div>
+
+        <div id="tab-content-general" class="tab-content">
+            <form class="edit_group" id="edit_group_10" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="edit_group_10-7835a2f6" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="_method" value="patch" autocomplete="off"/>
+                <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+                <div class="box tabular">
+                    <p>
+                        <label for="group_name">名称<span class="required"> *</span></label><input size="60" type="text" value="group1" name="group[name]" id="group_name"/>
+                    </p>
+                    <p>
+                        <label for="group_twofa_required">二要素認証必須</label><input name="group[twofa_required]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="group[twofa_required]" id="group_twofa_required"/>
+                    </p>
+
+                </div>
+
+                <input type="submit" name="commit" value="保存" data-disable-with="保存"/>
+            </form>
+        </div>
+        <div id="tab-content-users" style="display:none" class="tab-content"><p>
+            <a class="icon icon-add" data-remote="true" href="#">新しいユーザー</a></p>
+
+            <p class="nodata">表示するデータがありません</p>
+        </div>
+        <div id="tab-content-memberships" style="display:none" class="tab-content">
+            <p><a class="icon icon-add" data-remote="true" href="#">プロジェクトの追加</a></p>
+
+            <table class="list memberships">
+                <thead>
+                <tr>
+                    <th>プロジェクト</th>
+                    <th>ロール</th>
+                    <th style="width:15%"></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="member-8" class="class">
+                    <td class="project name">
+                        <a href="#">test1</a>
+                    </td>
+                    <td class="roles">
+                        <span id="member-8-roles">開発者</span>
+                        <div id="member-8-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+          //<![CDATA[
+          showTab('general', this.href)
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul>
+                <li><a class="icon icon-projects projects" href="#">プロジェクト</a></li>
+                <li><a class="icon icon-user users" href="#">ユーザー</a></li>
+                <li><a class="icon icon-group groups selected" href="#">グループ</a></li>
+                <li><a class="icon icon-roles roles" href="#">ロールと権限</a></li>
+                <li><a class="icon icon-issue trackers" href="#">トラッカー</a></li>
+                <li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li>
+                <li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li>
+                <li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li>
+                <li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li>
+                <li><a class="icon icon-settings settings" href="#">設定</a></li>
+                <li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li>
+                <li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li>
+                <li><a class="icon icon-help info" href="#">情報</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2><a href="#">グループ</a> &#187; 新しいグループ</h2>
+
+        <form class="new_group" id="new_group" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="new_group-26f5dac6" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+            <div class="box tabular">
+                <p>
+                    <label for="group_name">名称<span class="required"> *</span></label><input size="60" type="text" value="" name="group[name]" id="group_name"/>
+                </p>
+                <p>
+                    <label for="group_twofa_required">二要素認証必須</label><input name="group[twofa_required]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="group[twofa_required]" id="group_twofa_required"/>
+                </p>
+            </div>
+
+            <p>
+                <input type="submit" name="commit" value="作成" data-disable-with="作成"/>
+                <input type="submit" name="continue" value="連続作成" data-disable-with="連続作成"/>
+            </p>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

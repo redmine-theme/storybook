@@ -1,0 +1,105 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul>
+                <li><a class="icon icon-projects projects" href="#">プロジェクト</a></li>
+                <li><a class="icon icon-user users" href="#">ユーザー</a></li>
+                <li><a class="icon icon-group groups" href="#">グループ</a></li>
+                <li><a class="icon icon-roles roles selected" href="#">ロールと権限</a></li>
+                <li><a class="icon icon-issue trackers" href="#">トラッカー</a></li>
+                <li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li>
+                <li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li>
+                <li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li>
+                <li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li>
+                <li><a class="icon icon-settings settings" href="#">設定</a></li>
+                <li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li>
+                <li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li>
+                <li><a class="icon icon-help info" href="#">情報</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-add" href="#">新しいロール</a>
+            <a class="icon icon-summary" href="#">権限レポート</a>
+        </div>
+
+        <h2>ロール</h2>
+
+        <table class="list roles">
+            <thead>
+            <tr>
+                <th>ロール</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="givable">
+                <td class="name"><span><a href="#">管理者</a></span></td>
+                <td>
+                </td>
+                <td class="buttons">
+                    <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/roles/3" data-reorder-param="role" title="ソート"></span>
+                    <a class="icon icon-copy" href="#">コピー</a>
+                    <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                </td>
+            </tr>
+            <tr class="givable">
+                <td class="name"><span><a href="#">開発者</a></span></td>
+                <td>
+                </td>
+                <td class="buttons">
+                    <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/roles/4" data-reorder-param="role" title="ソート"></span>
+                    <a class="icon icon-copy" href="#">コピー</a>
+                    <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                </td>
+            </tr>
+            <tr class="givable">
+                <td class="name"><span><a href="#">報告者</a></span></td>
+                <td>
+                </td>
+                <td class="buttons">
+                    <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/roles/5" data-reorder-param="role" title="ソート"></span>
+                    <a class="icon icon-copy" href="#">コピー</a>
+                    <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                </td>
+            </tr>
+            <tr class="builtin">
+                <td class="name"><em><a href="#">非メンバー</a></em></td>
+                <td>
+                </td>
+                <td class="buttons">
+
+                    <a class="icon icon-copy" href="#">コピー</a>
+
+                </td>
+            </tr>
+            <tr class="builtin">
+                <td class="name"><em><a href="#">匿名ユーザー</a></em></td>
+                <td>
+                </td>
+                <td class="buttons">
+
+                    <a class="icon icon-copy" href="#">コピー</a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <script>
+          //<![CDATA[
+
+          $(function () {
+            $("table.roles tbody").positionedItems({items: ".givable"});
+          });
+
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

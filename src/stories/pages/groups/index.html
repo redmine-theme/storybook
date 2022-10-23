@@ -1,0 +1,103 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul>
+                <li><a class="icon icon-projects projects" href="#">プロジェクト</a></li>
+                <li><a class="icon icon-user users" href="#">ユーザー</a></li>
+                <li><a class="icon icon-group groups selected" href="#">グループ</a></li>
+                <li><a class="icon icon-roles roles" href="#">ロールと権限</a></li>
+                <li><a class="icon icon-issue trackers" href="#">トラッカー</a></li>
+                <li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li>
+                <li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li>
+                <li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li>
+                <li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li>
+                <li><a class="icon icon-settings settings" href="#">設定</a></li>
+                <li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li>
+                <li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li>
+                <li><a class="icon icon-help info" href="#">情報</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-add" href="#">新しいグループ</a>
+        </div>
+
+        <h2>グループ</h2>
+
+        <form action="/groups" accept-charset="UTF-8" name="form-dd663f25" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <fieldset>
+                <legend>フィルタ</legend>
+                <label for='name'>グループ:</label>
+                <input type="text" name="name" id="name" size="30"/>
+                <input type="submit" value="適用" class="small" data-disable-with="適用"/>
+                <a class="icon icon-reload" href="#">クリア</a>
+            </fieldset>
+        </form>&nbsp;
+
+        <div class="autoscroll">
+            <table class="list groups">
+                <thead>
+                <tr>
+                    <th>グループ</th>
+                    <th>ユーザー</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="group-10" class="">
+                    <td class="name"><a href="#">group1</a></td>
+                    <td class="user_count">0</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr id="group-11" class="">
+                    <td class="name"><a href="#">group2</a></td>
+                    <td class="user_count">0</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr id="group-12" class="">
+                    <td class="name"><a href="#">group3</a></td>
+                    <td class="user_count">0</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr id="group-13" class="">
+                    <td class="name"><a href="#">group4</a></td>
+                    <td class="user_count">0</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr id="group-14" class="">
+                    <td class="name"><a href="#">group5</a></td>
+                    <td class="user_count">0</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr id="group-2" class="builtin">
+                    <td class="name"><a href="#">匿名ユーザー</a></td>
+                    <td class="user_count"></td>
+                    <td class="buttons"></td>
+                </tr>
+                <tr id="group-3" class="builtin">
+                    <td class="name"><a href="#">非メンバー</a></td>
+                    <td class="user_count"></td>
+                    <td class="buttons"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <span class="pagination"><ul class="pages"></ul><span><span class="items">(1-7/7)</span> </span></span>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

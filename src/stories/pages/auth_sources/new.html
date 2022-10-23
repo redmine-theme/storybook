@@ -1,0 +1,49 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication selected" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2><a href="#">認証方式</a> &#187; 新しい認証方式 (LDAP)</h2>
+
+        <form class="new_auth_source" id="auth_source_form" action="#" accept-charset="UTF-8" name="auth_source_form-024d7322" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <input type="hidden" name="type" id="type" value="AuthSourceLdap" autocomplete="off" />
+
+
+            <div class="box tabular">
+                <p><label for="auth_source_name">名称<span class="required"> *</span></label><input type="text" value="" name="auth_source[name]" id="auth_source_name" /></p>
+                <p><label for="auth_source_host">ホスト<span class="required"> *</span></label><input type="text" name="auth_source[host]" id="auth_source_host" /></p>
+                <p>
+                    <label for="auth_source_port">ポート<span class="required"> *</span></label><input size="6" type="text" name="auth_source[port]" id="auth_source_port" />
+                    <select name="auth_source[ldap_mode]" id="auth_source_ldap_mode"><option selected="selected" value="ldap">LDAP</option>
+                        <option value="ldaps_verify_none">LDAPS (証明書の検証なし)</option>
+                        <option value="ldaps_verify_peer">LDAPS</option></select>
+                    <em class="info ldaps_warning">認証処理中の盗聴や改ざんなどの攻撃を防ぐために、暗号化されたLDAPSによる通信 (証明書の検証あり) の使用をお勧めします。</em>
+                </p>
+                <p><label for="auth_source_account">アカウント</label><input type="text" name="auth_source[account]" id="auth_source_account" /></p>
+                <p><label for="auth_source_account_password">パスワード</label><input value="" name="dummy_password" onfocus="this.value=&#39;&#39;; this.name=&#39;auth_source[account_password]&#39;;" onchange="this.name=&#39;auth_source[account_password]&#39;;" type="password" id="auth_source_account_password" /></p>
+                <p><label for="auth_source_base_dn">ベースDN<span class="required"> *</span></label><input size="60" type="text" name="auth_source[base_dn]" id="auth_source_base_dn" /></p>
+                <p><label for="auth_source_filter">LDAPフィルタ</label><textarea name="auth_source[filter]" id="auth_source_filter">
+</textarea></p>
+                <p><label for="auth_source_timeout">タイムアウト(秒単位)</label><input size="4" type="text" name="auth_source[timeout]" id="auth_source_timeout" /></p>
+                <p><label for="auth_source_onthefly_register">ユーザーが存在しなければ作成</label><input name="auth_source[onthefly_register]" type="hidden" value="0" autocomplete="off" /><input type="checkbox" value="1" name="auth_source[onthefly_register]" id="auth_source_onthefly_register" /></p>
+            </div>
+
+            <fieldset class="box tabular"><legend>属性</legend>
+                <p><label for="auth_source_attr_login">ログインIDの属性<span class="required"> *</span></label><input size="20" type="text" name="auth_source[attr_login]" id="auth_source_attr_login" /></p>
+                <p><label for="auth_source_attr_firstname">名の属性</label><input size="20" type="text" name="auth_source[attr_firstname]" id="auth_source_attr_firstname" /></p>
+                <p><label for="auth_source_attr_lastname">姓の属性</label><input size="20" type="text" name="auth_source[attr_lastname]" id="auth_source_attr_lastname" /></p>
+                <p><label for="auth_source_attr_mail">メールアドレスの属性</label><input size="20" type="text" name="auth_source[attr_mail]" id="auth_source_attr_mail" /></p>
+            </fieldset>
+
+            <input type="submit" name="commit" value="作成" data-disable-with="作成" />
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

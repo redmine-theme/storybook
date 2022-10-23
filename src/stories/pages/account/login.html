@@ -1,0 +1,34 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <div id="login-form">
+            <form onsubmit="return keepAnchorOnSignIn(this);" action="#" accept-charset="UTF-8" name="form-19a243a8" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/><input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+                <input type="hidden" name="back_url" value="/" autocomplete="off"/>
+
+                <label for="username">ログインID</label>
+                <input type="text" name="username" id="username" tabindex="1"/>
+
+                <label for="password">
+                    パスワード
+                    <a class="lost_password" href="#">パスワードの再設定</a>
+                </label>
+                <input type="password" name="password" id="password" tabindex="2"/>
+
+                <label for="autologin"><input type="checkbox" name="autologin" id="autologin" value="1" tabindex="4"/> ログインを維持</label>
+
+                <input type="submit" name="login" value="ログイン" tabindex="5" id="login-submit"/>
+            </form>
+        </div>
+
+        <script>
+          //<![CDATA[
+          $('#username').focus();
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul>
+                <li><a class="icon icon-projects projects selected" href="#">プロジェクト</a></li>
+                <li><a class="icon icon-user users" href="#">ユーザー</a></li>
+                <li><a class="icon icon-group groups" href="#">グループ</a></li>
+                <li><a class="icon icon-roles roles" href="#">ロールと権限</a></li>
+                <li><a class="icon icon-issue trackers" href="#">トラッカー</a></li>
+                <li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li>
+                <li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li>
+                <li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li>
+                <li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li>
+                <li><a class="icon icon-settings settings" href="#">設定</a></li>
+                <li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a>
+                </li>
+                <li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li>
+                <li><a class="icon icon-help info" href="#">情報</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <a class="icon icon-add" href="#">新しいプロジェクト</a>
+        </div>
+
+        <h2>プロジェクト</h2>
+
+        <form action="/admin/projects" accept-charset="UTF-8" name="form-d90ad125" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <fieldset>
+                <legend>フィルタ</legend>
+                <label for='status'>ステータス:</label>
+                <select name="status" id="status" class="small" onchange="this.form.submit(); return false;">
+                    <option value="">すべて</option>
+                    <option selected="selected" value="1">有効</option>
+                    <option value="5">終了</option>
+                    <option value="9">アーカイブ</option>
+                </select>
+                <label for='name'>プロジェクト:</label>
+                <input type="text" name="name" id="name" size="30"/>
+                <input type="submit" value="適用" class="small" data-disable-with="適用"/>
+                <a class="icon icon-reload" href="#">クリア</a>
+            </fieldset>
+        </form>&nbsp;
+
+        <div class="autoscroll">
+            <table class="list">
+                <thead>
+                <tr>
+                    <th>プロジェクト</th>
+                    <th>公開</th>
+                    <th>作成日</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="project root parent public ">
+                    <td class="name"><span><a title="# h1 title
+
+ジョバンニ、カムパネルラがそれを知っている、それはいままで、いくつのものの命をとったような鷺が、まるで一本の木というふうにして校庭の隅の所へ行ってしまったよ。室中のひとたちは半分うしろの方へ向けて、ではカムパネルラさんといっしょなら心配はないからああきっといっしょだよ。カムパネルラは、なにかなつかしそうにわらいながら、ジョバンニもぼんやり答えていました。もうまるでひどい峡谷になって、なにかのあかりのように見えるように、砂や砂利の粒にもあたるのです。だからやっぱりおまえはさっき考えたように思ったとき、ジョバンニ、お仕事がひどかったろう。..." href="#">test1</a></span>
+                    </td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/18</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project child parent public idnt idnt-1">
+                    <td class="name"><span><a title="## 町かどを曲がるとき、ふりかえって見ていました。
+
+すると耳に手をあげたカムパネルラが女の子に言いました。それはもうじきちかくに町か何かだったと考えてふり返って見ましたら、何か歌うように読んだり数えたりしながら、われを忘れてながめていました。双子のお星さまが何をした人がすぐ出て来て、何かあったんだ。だからやっぱりおまえはさっき考えたように立ちあがりました。鷺はおいしいんですか鶴や雁です。" href="#">test1-1</a></span>
+                    </td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/18</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project child leaf public idnt idnt-2">
+                    <td class="name"><span><a title="" href="#">test1-1-1</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/18</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project child leaf public idnt idnt-1">
+                    <td class="name"><span><a title="" href="#">test1-2</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/18</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project root leaf public ">
+                    <td class="name"><span><a title="" href="#">test10</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/20</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project root parent public ">
+                    <td class="name"><span><a title="" href="#">test2</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/18</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project child leaf public idnt idnt-1">
+                    <td class="name"><span><a title="" href="#">test2-1</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/20</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project root parent public ">
+                    <td class="name"><span><a title="* test1
+* test2
+* test3" href="#">test3</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/18</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project child leaf public idnt idnt-1">
+                    <td class="name"><span><a title="" href="#">test3-1</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/20</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="project root leaf public ">
+                    <td class="name"><span><a title="" href="#">test4</a></span></td>
+                    <td><span class="icon-only icon-checked"></span></td>
+                    <td>2022/10/18</td>
+                    <td class="buttons">
+                        <a data-confirm="よろしいですか？" class="icon icon-lock" rel="nofollow" data-method="post" href="#">アーカイブ</a>
+
+                        <a class="icon icon-copy" href="#">コピー</a>
+                        <a class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <span class="pagination"><ul class="pages"><li class="previous"><span>« 前</span></li><li class="current"><span>1</span></li><li class="page"><a href="#">2</a></li><li class="next page"><a accesskey="n" href="#">次 »</a></li></ul><span><span class="items">(1-10/15)</span> <span class="per-page">1ページに: <span class="selected">10</span>, <a href="#">25</a></span></span></span>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

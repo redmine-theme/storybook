@@ -1,0 +1,190 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers selected" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <h2><a href="#">トラッカー</a> &#187; サマリー</h2>
+
+        <form action="#" accept-charset="UTF-8" name="form-26a5ccbd" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+            <div class="autoscroll">
+                <table class="list tracker-summary">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.tracker-1&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            バグ
+                        </th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.tracker-2&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            機能
+                        </th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.tracker-3&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            サポート
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="group open">
+                        <td colspan="4">
+                            <span class="expander icon icon-expanded" onclick="toggleRowGroup(this);">&nbsp;</span>
+                            標準フィールド
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-assigned_to_id&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            担当者
+                        </td>
+                        <td title="バグ: 担当者">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="assigned_to_id" class="tracker-1 core-field-assigned_to_id" checked="checked" />
+                        </td>
+                        <td title="機能: 担当者">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="assigned_to_id" class="tracker-2 core-field-assigned_to_id" checked="checked" />
+                        </td>
+                        <td title="サポート: 担当者">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="assigned_to_id" class="tracker-3 core-field-assigned_to_id" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-category_id&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            カテゴリ
+                        </td>
+                        <td title="バグ: カテゴリ">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="category_id" class="tracker-1 core-field-category_id" checked="checked" />
+                        </td>
+                        <td title="機能: カテゴリ">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="category_id" class="tracker-2 core-field-category_id" checked="checked" />
+                        </td>
+                        <td title="サポート: カテゴリ">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="category_id" class="tracker-3 core-field-category_id" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-fixed_version_id&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            対象バージョン
+                        </td>
+                        <td title="バグ: 対象バージョン">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="fixed_version_id" class="tracker-1 core-field-fixed_version_id" checked="checked" />
+                        </td>
+                        <td title="機能: 対象バージョン">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="fixed_version_id" class="tracker-2 core-field-fixed_version_id" checked="checked" />
+                        </td>
+                        <td title="サポート: 対象バージョン">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="fixed_version_id" class="tracker-3 core-field-fixed_version_id" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-parent_issue_id&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            親チケット
+                        </td>
+                        <td title="バグ: 親チケット">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="parent_issue_id" class="tracker-1 core-field-parent_issue_id" checked="checked" />
+                        </td>
+                        <td title="機能: 親チケット">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="parent_issue_id" class="tracker-2 core-field-parent_issue_id" checked="checked" />
+                        </td>
+                        <td title="サポート: 親チケット">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="parent_issue_id" class="tracker-3 core-field-parent_issue_id" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-start_date&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            開始日
+                        </td>
+                        <td title="バグ: 開始日">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="start_date" class="tracker-1 core-field-start_date" checked="checked" />
+                        </td>
+                        <td title="機能: 開始日">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="start_date" class="tracker-2 core-field-start_date" checked="checked" />
+                        </td>
+                        <td title="サポート: 開始日">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="start_date" class="tracker-3 core-field-start_date" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-due_date&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            期日
+                        </td>
+                        <td title="バグ: 期日">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="due_date" class="tracker-1 core-field-due_date" checked="checked" />
+                        </td>
+                        <td title="機能: 期日">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="due_date" class="tracker-2 core-field-due_date" checked="checked" />
+                        </td>
+                        <td title="サポート: 期日">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="due_date" class="tracker-3 core-field-due_date" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-estimated_hours&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            予定工数
+                        </td>
+                        <td title="バグ: 予定工数">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="estimated_hours" class="tracker-1 core-field-estimated_hours" checked="checked" />
+                        </td>
+                        <td title="機能: 予定工数">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="estimated_hours" class="tracker-2 core-field-estimated_hours" checked="checked" />
+                        </td>
+                        <td title="サポート: 予定工数">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="estimated_hours" class="tracker-3 core-field-estimated_hours" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-done_ratio&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            進捗率
+                        </td>
+                        <td title="バグ: 進捗率">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="done_ratio" class="tracker-1 core-field-done_ratio" checked="checked" />
+                        </td>
+                        <td title="機能: 進捗率">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="done_ratio" class="tracker-2 core-field-done_ratio" checked="checked" />
+                        </td>
+                        <td title="サポート: 進捗率">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="done_ratio" class="tracker-3 core-field-done_ratio" checked="checked" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="name">
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.core-field-description&#39;); return false;" title="すべてにチェックをつける/すべてのチェックを外す" class="icon-only icon-checked"></a>
+                            説明
+                        </td>
+                        <td title="バグ: 説明">
+                            <input type="checkbox" name="trackers[1][core_fields][]" value="description" class="tracker-1 core-field-description" checked="checked" />
+                        </td>
+                        <td title="機能: 説明">
+                            <input type="checkbox" name="trackers[2][core_fields][]" value="description" class="tracker-2 core-field-description" checked="checked" />
+                        </td>
+                        <td title="サポート: 説明">
+                            <input type="checkbox" name="trackers[3][core_fields][]" value="description" class="tracker-3 core-field-description" checked="checked" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><input type="submit" name="commit" value="保存" data-disable-with="保存" /></p>
+            <input type="hidden" name="trackers[1][core_fields][]" id="trackers_1_core_fields_" value="" autocomplete="off" />
+            <input type="hidden" name="trackers[1][custom_field_ids][]" id="trackers_1_custom_field_ids_" value="" autocomplete="off" />
+            <input type="hidden" name="trackers[2][core_fields][]" id="trackers_2_core_fields_" value="" autocomplete="off" />
+            <input type="hidden" name="trackers[2][custom_field_ids][]" id="trackers_2_custom_field_ids_" value="" autocomplete="off" />
+            <input type="hidden" name="trackers[3][core_fields][]" id="trackers_3_core_fields_" value="" autocomplete="off" />
+            <input type="hidden" name="trackers[3][custom_field_ids][]" id="trackers_3_custom_field_ids_" value="" autocomplete="off" />
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

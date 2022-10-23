@@ -1,0 +1,278 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>管理</h3>
+        <div id="admin-menu">
+            <ul><li><a class="icon icon-projects projects" href="#">プロジェクト</a></li><li><a class="icon icon-user users" href="#">ユーザー</a></li><li><a class="icon icon-group groups" href="#">グループ</a></li><li><a class="icon icon-roles roles selected" href="#">ロールと権限</a></li><li><a class="icon icon-issue trackers" href="#">トラッカー</a></li><li><a class="icon icon-issue-edit issue-statuses" href="#">チケットのステータス</a></li><li><a class="icon icon-workflows workflows" href="#">ワークフロー</a></li><li><a class="icon icon-custom-fields custom-fields" href="#">カスタムフィールド</a></li><li><a class="icon icon-list enumerations" href="#">選択肢の値</a></li><li><a class="icon icon-settings settings" href="#">設定</a></li><li><a class="icon icon-server-authentication ldap-authentication" href="#">LDAP認証</a></li><li><a class="icon icon-plugins plugins" href="#">プラグイン</a></li><li><a class="icon icon-help info" href="#">情報</a></li></ul>
+        </div>
+    </div>
+
+    <div id="content">
+
+        <h2><a href="#">ロール</a> &#187; 匿名ユーザー</h2>
+
+        <form class="edit_role" id="edit_role_2" action="#" accept-charset="UTF-8" name="edit_role_2-97e3e42a" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" />
+            <input type="hidden" name="_method" value="patch" autocomplete="off" />
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+
+            <div class="box tabular">
+                <p><label for="role_users_visibility">表示できるユーザー</label><select name="role[users_visibility]" id="role_users_visibility"><option selected="selected" value="all">すべてのアクティブなユーザー</option>
+                    <option value="members_of_visible_projects">見ることができるプロジェクトのメンバー</option></select></p>
+            </div>
+
+            <h3>権限</h3>
+            <div class="box tabular" id="permissions">
+                <fieldset id="module_boards"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_boards input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>フォーラム</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_messages" value="view_messages" data-shows=".view_messages_shown" checked="checked" />
+                        メッセージの閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_add_messages" value="add_messages" data-shows=".add_messages_shown" />
+                        メッセージの追加
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_message_watchers" value="view_message_watchers" data-shows=".view_message_watchers_shown" />
+                        メッセージのウォッチャー一覧の閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_add_message_watchers" value="add_message_watchers" data-shows=".add_message_watchers_shown" />
+                        メッセージのウォッチャーの追加
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_delete_message_watchers" value="delete_message_watchers" data-shows=".delete_message_watchers_shown" />
+                        メッセージのウォッチャーの削除
+                    </label>
+                </fieldset>
+                <fieldset id="module_calendar"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_calendar input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>カレンダー</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_calendar" value="view_calendar" data-shows=".view_calendar_shown" checked="checked" />
+                        カレンダーの閲覧
+                    </label>
+                </fieldset>
+                <fieldset id="module_documents"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_documents input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>文書</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_documents" value="view_documents" data-shows=".view_documents_shown" checked="checked" />
+                        文書の閲覧
+                    </label>
+                </fieldset>
+                <fieldset id="module_files"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_files input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>ファイル</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_files" value="view_files" data-shows=".view_files_shown" checked="checked" />
+                        ファイルの閲覧
+                    </label>
+                </fieldset>
+                <fieldset id="module_gantt"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_gantt input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>ガントチャート</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_gantt" value="view_gantt" data-shows=".view_gantt_shown" checked="checked" />
+                        ガントチャートの閲覧
+                    </label>
+                </fieldset>
+                <fieldset id="module_issue_tracking"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_issue_tracking input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>チケットトラッキング</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_issues" value="view_issues" data-shows=".view_issues_shown" checked="checked" />
+                        チケットの閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_add_issues" value="add_issues" data-shows=".add_issues_shown" />
+                        チケットの追加
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_edit_issues" value="edit_issues" data-shows=".edit_issues_shown" />
+                        チケットの編集
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_edit_own_issues" value="edit_own_issues" data-shows=".edit_own_issues_shown" />
+                        自分が追加したチケットの編集
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_copy_issues" value="copy_issues" data-shows=".copy_issues_shown" />
+                        チケットのコピー
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_manage_issue_relations" value="manage_issue_relations" data-shows=".manage_issue_relations_shown" />
+                        関連するチケットの管理
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_manage_subtasks" value="manage_subtasks" data-shows=".manage_subtasks_shown" />
+                        子チケットの管理
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_set_issues_private" value="set_issues_private" data-shows=".set_issues_private_shown" />
+                        チケットのプライベート設定
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_add_issue_notes" value="add_issue_notes" data-shows=".add_issue_notes_shown" />
+                        コメントの追加
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_mention_users" value="mention_users" data-shows=".mention_users_shown" />
+                        Mention users
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_issue_watchers" value="view_issue_watchers" data-shows=".view_issue_watchers_shown" />
+                        ウォッチャー一覧の閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_add_issue_watchers" value="add_issue_watchers" data-shows=".add_issue_watchers_shown" />
+                        ウォッチャーの追加
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_delete_issue_watchers" value="delete_issue_watchers" data-shows=".delete_issue_watchers_shown" />
+                        ウォッチャーの削除
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_import_issues" value="import_issues" data-shows=".import_issues_shown" />
+                        チケットのインポート
+                    </label>
+                </fieldset>
+                <fieldset id="module_news"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_news input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>ニュース</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_news" value="view_news" data-shows=".view_news_shown" checked="checked" />
+                        ニュースの閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_comment_news" value="comment_news" data-shows=".comment_news_shown" />
+                        ニュースへのコメント
+                    </label>
+                </fieldset>
+                <fieldset id="module_repository"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_repository input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>リポジトリ</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_changesets" value="view_changesets" data-shows=".view_changesets_shown" checked="checked" />
+                        更新履歴の閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_browse_repository" value="browse_repository" data-shows=".browse_repository_shown" checked="checked" />
+                        リポジトリの閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_commit_access" value="commit_access" data-shows=".commit_access_shown" />
+                        コミット権限
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_manage_related_issues" value="manage_related_issues" data-shows=".manage_related_issues_shown" />
+                        リビジョンとチケットの関連の管理
+                    </label>
+                </fieldset>
+                <fieldset id="module_time_tracking"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_time_tracking input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>時間管理</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_time_entries" value="view_time_entries" data-shows=".view_time_entries_shown" checked="checked" />
+                        作業時間の閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_log_time_for_other_users" value="log_time_for_other_users" data-shows=".log_time_for_other_users_shown" />
+                        他のユーザーの作業時間の入力
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_import_time_entries" value="import_time_entries" data-shows=".import_time_entries_shown" />
+                        作業時間のインポート
+                    </label>
+                </fieldset>
+                <fieldset id="module_wiki"><legend><a href="#" onclick="toggleCheckboxesBySelector(&#39;#module_wiki input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>Wiki</legend>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_wiki_pages" value="view_wiki_pages" data-shows=".view_wiki_pages_shown" checked="checked" />
+                        Wikiの閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_wiki_edits" value="view_wiki_edits" data-shows=".view_wiki_edits_shown" checked="checked" />
+                        Wiki履歴の閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_export_wiki_pages" value="export_wiki_pages" data-shows=".export_wiki_pages_shown" />
+                        Wikiページのエクスポート
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_edit_wiki_pages" value="edit_wiki_pages" data-shows=".edit_wiki_pages_shown" />
+                        Wikiページの編集
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_delete_wiki_pages_attachments" value="delete_wiki_pages_attachments" data-shows=".delete_wiki_pages_attachments_shown" />
+                        添付ファイルの削除
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_view_wiki_page_watchers" value="view_wiki_page_watchers" data-shows=".view_wiki_page_watchers_shown" />
+                        Wikiページのウォッチャー一覧の閲覧
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_add_wiki_page_watchers" value="add_wiki_page_watchers" data-shows=".add_wiki_page_watchers_shown" />
+                        Wikiページのウォッチャーの追加
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="role[permissions][]" id="role_permissions_delete_wiki_page_watchers" value="delete_wiki_page_watchers" data-shows=".delete_wiki_page_watchers_shown" />
+                        Wikiページのウォッチャーの削除
+                    </label>
+                </fieldset>
+                <br /><a href="#" onclick="checkAll(&#39;permissions&#39;, true); return false;">すべてにチェックをつける</a> | <a href="#" onclick="checkAll(&#39;permissions&#39;, false); return false;">すべてのチェックを外す</a>
+                <input type="hidden" name="role[permissions][]" id="role_permissions_" value="" autocomplete="off" />
+            </div>
+
+            <div id="role-permissions-trackers" class="view_issues_shown">
+                <h3>チケットトラッキング</h3>
+
+                <div class="autoscroll">
+                    <table class="list">
+                        <thead>
+                        <tr>
+                            <th>トラッカー</th>
+                            <th class="view_issues_shown">チケットの閲覧</th>
+                            <th class="add_issues_shown">チケットの追加</th>
+                            <th class="edit_issues_shown">チケットの編集</th>
+                            <th class="add_issue_notes_shown">コメントの追加</th>
+                        </thead>
+                        <tbody>
+                        <tr class='permissions-all-trackers'>
+                            <td class="name"><a href="#" onclick="toggleCheckboxesBySelector(&#39;tr.permissions-all-trackers input[type=&quot;checkbox&quot;]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a><b>すべてのトラッカー</b></td>
+                            <td class="view_issues_shown">
+                                <input type="hidden" name="role[permissions_all_trackers][view_issues]" value="0" autocomplete="off" />
+                                <input type="checkbox" name="role[permissions_all_trackers][view_issues]" id="role_permissions_all_trackers_view_issues" value="1" class="view_issues_shown" data-disables=".view_issues_tracker" checked="checked" />
+                            </td>
+                            <td class="add_issues_shown">
+                                <input type="hidden" name="role[permissions_all_trackers][add_issues]" value="0" autocomplete="off" />
+                                <input type="checkbox" name="role[permissions_all_trackers][add_issues]" id="role_permissions_all_trackers_add_issues" value="1" class="add_issues_shown" data-disables=".add_issues_tracker" checked="checked" />
+                            </td>
+                            <td class="edit_issues_shown">
+                                <input type="hidden" name="role[permissions_all_trackers][edit_issues]" value="0" autocomplete="off" />
+                                <input type="checkbox" name="role[permissions_all_trackers][edit_issues]" id="role_permissions_all_trackers_edit_issues" value="1" class="edit_issues_shown" data-disables=".edit_issues_tracker" checked="checked" />
+                            </td>
+                            <td class="add_issue_notes_shown">
+                                <input type="hidden" name="role[permissions_all_trackers][add_issue_notes]" value="0" autocomplete="off" />
+                                <input type="checkbox" name="role[permissions_all_trackers][add_issue_notes]" id="role_permissions_all_trackers_add_issue_notes" value="1" class="add_issue_notes_shown" data-disables=".add_issue_notes_tracker" checked="checked" />
+                            </td>
+                        </tr>
+                        <tr class="permissions-tracker-1">
+                            <td class="name"><a href="#" onclick="toggleCheckboxesBySelector(&#39;tr.permissions-tracker-1 input:enabled&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>バグ</td>
+                            <td class="view_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][view_issues][]" id="role_permissions_tracker_ids_add_issues_1" value="1" class="view_issues_tracker" /></td>
+                            <td class="add_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][add_issues][]" id="role_permissions_tracker_ids_add_issues_1" value="1" class="add_issues_tracker" /></td>
+                            <td class="edit_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][edit_issues][]" id="role_permissions_tracker_ids_add_issues_1" value="1" class="edit_issues_tracker" /></td>
+                            <td class="add_issue_notes_shown"><input type="checkbox" name="role[permissions_tracker_ids][add_issue_notes][]" id="role_permissions_tracker_ids_add_issues_1" value="1" class="add_issue_notes_tracker" /></td>
+                        </tr>
+                        <tr class="permissions-tracker-2">
+                            <td class="name"><a href="#" onclick="toggleCheckboxesBySelector(&#39;tr.permissions-tracker-2 input:enabled&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>機能</td>
+                            <td class="view_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][view_issues][]" id="role_permissions_tracker_ids_add_issues_2" value="2" class="view_issues_tracker" /></td>
+                            <td class="add_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][add_issues][]" id="role_permissions_tracker_ids_add_issues_2" value="2" class="add_issues_tracker" /></td>
+                            <td class="edit_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][edit_issues][]" id="role_permissions_tracker_ids_add_issues_2" value="2" class="edit_issues_tracker" /></td>
+                            <td class="add_issue_notes_shown"><input type="checkbox" name="role[permissions_tracker_ids][add_issue_notes][]" id="role_permissions_tracker_ids_add_issues_2" value="2" class="add_issue_notes_tracker" /></td>
+                        </tr>
+                        <tr class="permissions-tracker-3">
+                            <td class="name"><a href="#" onclick="toggleCheckboxesBySelector(&#39;tr.permissions-tracker-3 input:enabled&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>サポート</td>
+                            <td class="view_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][view_issues][]" id="role_permissions_tracker_ids_add_issues_3" value="3" class="view_issues_tracker" /></td>
+                            <td class="add_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][add_issues][]" id="role_permissions_tracker_ids_add_issues_3" value="3" class="add_issues_tracker" /></td>
+                            <td class="edit_issues_shown"><input type="checkbox" name="role[permissions_tracker_ids][edit_issues][]" id="role_permissions_tracker_ids_add_issues_3" value="3" class="edit_issues_tracker" /></td>
+                            <td class="add_issue_notes_shown"><input type="checkbox" name="role[permissions_tracker_ids][add_issue_notes][]" id="role_permissions_tracker_ids_add_issues_3" value="3" class="add_issue_notes_tracker" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <input type="hidden" name="role[permissions_tracker_ids][view_issues][]" id="role_permissions_tracker_ids_view_issues_" value="" autocomplete="off" />
+                <input type="hidden" name="role[permissions_tracker_ids][add_issues][]" id="role_permissions_tracker_ids_add_issues_" value="" autocomplete="off" />
+                <input type="hidden" name="role[permissions_tracker_ids][edit_issues][]" id="role_permissions_tracker_ids_edit_issues_" value="" autocomplete="off" />
+                <input type="hidden" name="role[permissions_tracker_ids][add_issue_notes][]" id="role_permissions_tracker_ids_add_issue_notes_" value="" autocomplete="off" />
+            </div>
+
+            <input type="submit" name="commit" value="保存" data-disable-with="保存" />
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>
