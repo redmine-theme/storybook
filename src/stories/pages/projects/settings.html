@@ -1,0 +1,721 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>設定</h2>
+
+        <div class="tabs">
+            <ul>
+                <li>
+                    <a id="tab-info" class="selected" onclick="showTab(&#39;info&#39;, this.href); return false;" href="#">プロジェクト</a>
+                </li>
+                <li>
+                    <a id="tab-members" onclick="showTab(&#39;members&#39;, this.href); return false;" href="#">メンバー</a>
+                </li>
+                <li>
+                    <a id="tab-issues" onclick="showTab(&#39;issues&#39;, this.href); return false;" href="#">チケットトラッキング</a>
+                </li>
+                <li>
+                    <a id="tab-versions" onclick="showTab(&#39;versions&#39;, this.href); return false;" href="#">バージョン</a>
+                </li>
+                <li>
+                    <a id="tab-categories" onclick="showTab(&#39;categories&#39;, this.href); return false;" href="#">チケットのカテゴリ</a>
+                </li>
+                <li>
+                    <a id="tab-repositories" onclick="showTab(&#39;repositories&#39;, this.href); return false;" href="#">リポジトリ</a>
+                </li>
+                <li>
+                    <a id="tab-boards" onclick="showTab(&#39;boards&#39;, this.href); return false;" href="#">フォーラム</a>
+                </li>
+                <li>
+                    <a id="tab-activities" onclick="showTab(&#39;activities&#39;, this.href); return false;" href="#">時間管理</a>
+                </li>
+            </ul>
+            <div class="tabs-buttons" style="display:none;">
+                <button class="tab-left" type="button" onclick="moveTabLeft(this);"></button>
+                <button class="tab-right" type="button" onclick="moveTabRight(this);"></button>
+            </div>
+        </div>
+
+        <div id="tab-content-info" class="tab-content">
+            <form class="edit_project" id="edit_project_1" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="edit_project_1-cb0bb8b7" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <input type="hidden" name="_method" value="patch" autocomplete="off"/>
+                <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+                <div class="box tabular">
+                    <!--[form:project]-->
+                    <p>
+                        <label for="project_name">名称<span class="required"> *</span></label><input size="60" type="text" value="test1" name="project[name]" id="project_name"/>
+                    </p>
+
+                    <p>
+                        <label for="project_description">説明</label><textarea rows="8" class="wiki-edit" name="project[description]" id="project_description">
+# h1 title
+
+ジョバンニ、カムパネルラがそれを知っている、それはいままで、いくつのものの命をとったような鷺が、まるで一本の木というふうにして校庭の隅の所へ行ってしまったよ。室中のひとたちは半分うしろの方へ向けて、ではカムパネルラさんといっしょなら心配はないからああきっといっしょだよ。カムパネルラは、なにかなつかしそうにわらいながら、ジョバンニもぼんやり答えていました。もうまるでひどい峡谷になって、なにかのあかりのように見えるように、砂や砂利の粒にもあたるのです。だからやっぱりおまえはさっき考えたように思ったとき、ジョバンニ、お仕事がひどかったろう。</textarea>
+                    </p>
+                    <p>
+                        <label for="project_identifier">識別子<span class="required"> *</span></label><input size="60" disabled="disabled" maxlength="100" type="text" value="test1" name="project[identifier]" id="project_identifier"/>
+                    </p>
+                    <p>
+                        <label for="project_homepage">ホームページ</label><input size="60" type="text" value="http://example.com/" name="project[homepage]" id="project_homepage"/>
+                    </p>
+                    <p>
+                        <label for="project_is_public">公開</label><input name="project[is_public]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" checked="checked" name="project[is_public]" id="project_is_public"/>
+                        <em class="info">公開プロジェクトとその中の情報にはネットワーク上の全ユーザーがアクセスできます。</em>
+                    </p>
+
+                    <p>
+                        <label for="project_parent_id">親プロジェクト名</label><select name="project[parent_id]" id="project_parent_id">
+                        <option value=''>&nbsp;</option>
+                        <option value="13">test10</option>
+                        <option value="2">test2</option>
+                        <option value="14">&nbsp;&nbsp;&#187; test2-1</option>
+                        <option value="3">test3</option>
+                        <option value="15">&nbsp;&nbsp;&#187; test3-1</option>
+                        <option value="4">test4</option>
+                        <option value="5">test5</option>
+                        <option value="9">test6</option>
+                        <option value="10">test7</option>
+                        <option value="11">test8</option>
+                        <option value="12">test9</option>
+                    </select></p>
+
+                    <p>
+                        <label for="project_inherit_members">メンバーを継承</label><input name="project[inherit_members]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="project[inherit_members]" id="project_inherit_members"/>
+                    </p>
+
+                    <script>
+                      //<![CDATA[
+                      var wikiToolbar = new jsToolBar(document.getElementById('project_description'));
+                      wikiToolbar.setHelpLink('/help/en/wiki_syntax_common_mark.html');
+                      wikiToolbar.setPreviewUrl('/preview/text');
+                      wikiToolbar.draw();
+                      //]]>
+                    </script>
+
+
+                </div>
+
+                <fieldset class="box tabular" id="project_modules">
+                    <legend>
+                        <a href="#" onclick="toggleCheckboxesBySelector(&#39;#project_modules input[type=&quot;checkbox&quot;]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>モジュール
+                    </legend>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_issue_tracking" value="issue_tracking" checked="checked"/>
+                        チケットトラッキング
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_time_tracking" value="time_tracking" checked="checked"/>
+                        時間管理
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_news" value="news" checked="checked"/>
+                        ニュース
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_documents" value="documents" checked="checked"/>
+                        文書
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_files" value="files" checked="checked"/>
+                        ファイル
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_wiki" value="wiki" checked="checked"/>
+                        Wiki
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_repository" value="repository" checked="checked"/>
+                        リポジトリ
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_boards" value="boards" checked="checked"/>
+                        フォーラム
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_calendar" value="calendar" checked="checked"/>
+                        カレンダー
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[enabled_module_names][]" id="project_enabled_module_names_gantt" value="gantt" checked="checked"/>
+                        ガントチャート
+                    </label>
+                    <input type="hidden" name="project[enabled_module_names][]" id="project_enabled_module_names_" value="" autocomplete="off"/>
+                </fieldset>
+                <!--[eoform:project]-->
+
+
+                <input type="submit" name="commit" value="保存" data-disable-with="保存"/>
+            </form>
+        </div>
+        <div id="tab-content-members" style="display:none" class="tab-content">
+            <div class="contextual"><a class="icon icon-settings" href="#">管理</a></div>
+            <p><a class="icon icon-add" data-remote="true" href="#">新しいメンバー</a></p>
+
+            <table class="list members">
+                <thead>
+                <tr>
+                    <th>ユーザー / グループ</th>
+                    <th>ロール</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="member-1" class="member">
+                    <td class="name icon icon-user"><a class="user active" href="#">Redmine Admin</a></td>
+                    <td class="roles">
+                        <span id="member-1-roles">管理者</span>
+                        <div id="member-1-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-3" class="member">
+                    <td class="name icon icon-user"><a class="user active" href="#">user1 user1</a></td>
+                    <td class="roles">
+                        <span id="member-3-roles">開発者</span>
+                        <div id="member-3-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-4" class="member">
+                    <td class="name icon icon-user"><a class="user active" href="#">user2 user2</a></td>
+                    <td class="roles">
+                        <span id="member-4-roles">開発者</span>
+                        <div id="member-4-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-5" class="member">
+                    <td class="name icon icon-user"><a class="user active" href="#">user3 user3</a></td>
+                    <td class="roles">
+                        <span id="member-5-roles">開発者</span>
+                        <div id="member-5-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-6" class="member">
+                    <td class="name icon icon-user"><a class="user active" href="#">user4 user4</a></td>
+                    <td class="roles">
+                        <span id="member-6-roles">開発者</span>
+                        <div id="member-6-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-7" class="member">
+                    <td class="name icon icon-user"><a class="user active" href="#">user5 user5</a></td>
+                    <td class="roles">
+                        <span id="member-7-roles">開発者</span>
+                        <div id="member-7-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-8" class="member">
+                    <td class="name icon icon-group">group1</td>
+                    <td class="roles">
+                        <span id="member-8-roles">開発者</span>
+                        <div id="member-8-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-9" class="member">
+                    <td class="name icon icon-group">group2</td>
+                    <td class="roles">
+                        <span id="member-9-roles">開発者</span>
+                        <div id="member-9-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-10" class="member">
+                    <td class="name icon icon-group">group3</td>
+                    <td class="roles">
+                        <span id="member-10-roles">報告者</span>
+                        <div id="member-10-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                <tr id="member-11" class="member">
+                    <td class="name icon icon-group">group4</td>
+                    <td class="roles">
+                        <span id="member-11-roles">報告者</span>
+                        <div id="member-11-form"></div>
+                    </td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" data-remote="true" href="#">編集</a>
+                        <a class="icon icon-del" data-remote="true" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tab-content-issues" style="display:none" class="tab-content">
+            <form class="edit_project" id="project_issue_tracking" action="/projects/test1" accept-charset="UTF-8" name="project_issue_tracking-ee84800e" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/><input type="hidden" name="_method" value="patch" autocomplete="off"/><input type="hidden" name="authenticity_token" value="ZsGLbY9wzQwU7d4sezX0y2N49FdrI1X5a7xhDP7Uz1v3cPtcNznsPIrvtUnMG5GA40o3dMMAPCfWABxD4F6vkA==" autocomplete="off"/>
+                <input type="hidden" name="tab" id="tab" value="issues" autocomplete="off"/>
+
+                <fieldset class="box tabular" id="project_trackers">
+                    <legend>
+                        <a href="#" onclick="toggleCheckboxesBySelector(&#39;#project_trackers input[type=checkbox]&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>トラッカー
+                    </legend>
+                    <div class="contextual"><a class="icon icon-settings" href="#">管理</a></div>
+                    <label class="floating">
+                        <input type="checkbox" name="project[tracker_ids][]" value="1" checked="checked"/>
+                        <span>バグ</span>
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[tracker_ids][]" value="2" checked="checked"/>
+                        <span>機能</span>
+                    </label>
+                    <label class="floating">
+                        <input type="checkbox" name="project[tracker_ids][]" value="3" checked="checked"/>
+                        <span>サポート</span>
+                    </label>
+                    <input type="hidden" name="project[tracker_ids][]" id="project_tracker_ids_" value="" autocomplete="off"/>
+                </fieldset>
+
+
+                <div class="box tabular">
+                    <p>
+                        <label for="project_default_version_id">デフォルトのバージョン</label><select name="project[default_version_id]" id="project_default_version_id">
+                        <option value="">なし</option>
+                        <option value="1">version1</option>
+                        <option value="2">version2</option>
+                        <option value="3">version3</option>
+                        <option value="4">version4</option>
+                        <option selected="selected" value="7">version7</option>
+                    </select></p>
+
+                    <p>
+                        <label for="project_default_assigned_to_id">デフォルトの担当者</label><select name="project[default_assigned_to_id]" id="project_default_assigned_to_id">
+                        <option value="">なし</option>
+                        <option value="1">&lt;&lt; 自分 &gt;&gt;</option>
+                        <option value="1">Redmine Admin</option>
+                        <option value="5">user1 user1</option>
+                        <option value="6">user2 user2</option>
+                        <option value="7">user3 user3</option>
+                        <option value="8">user4 user4</option>
+                        <option value="9">user5 user5</option>
+                    </select></p>
+
+                    <p>
+                        <label for="project_default_issue_query_id">デフォルトのクエリ</label><select name="project[default_issue_query_id]" id="project_default_issue_query_id">
+                        <option value="">なし</option>
+                        <optgroup label="全プロジェクト向け">
+                            <option value="1">担当しているチケット</option>
+                            <option value="2">報告したチケット</option>
+                            <option value="3">更新したチケット</option>
+                            <option value="4">ウォッチしているチケット</option>
+                        </optgroup>
+                        <optgroup label="現在のプロジェクト"></optgroup>
+                    </select><em class="info">公開クエリ (すべてのユーザーが表示できるクエリ) のみ選択できます</em></p>
+                </div>
+
+                <p><input type="submit" name="commit" value="保存" data-disable-with="保存"/></p>
+            </form>
+        </div>
+        <div id="tab-content-versions" style="display:none" class="tab-content">
+            <div class="contextual">
+                <a class="icon icon-locked" rel="nofollow" data-method="put" href="#">完了したバージョンを終了にする</a>
+            </div>
+            <p>
+                <a class="icon icon-add" href="#">新しいバージョン</a>
+            </p>
+
+            <form action="/projects/test1/settings/versions" accept-charset="UTF-8" name="form-b21f4f36" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+                <fieldset>
+                    <legend>フィルタ</legend>
+                    <label for='status'>ステータス:</label>
+                    <select name="version_status" id="version_status" onchange="this.form.submit(); return false;">
+                        <option value="">すべて</option>
+                        <option selected="selected" value="open">進行中</option>
+                        <option value="locked">ロック中</option>
+                        <option value="closed">終了</option>
+                    </select>
+                    <label for='name'>バージョン:</label>
+                    <input type="text" name="version_name" id="version_name" size="30"/>
+                    <input type="submit" value="適用" data-disable-with="適用"/>
+                    <a class="icon icon-reload" href="#">クリア</a>
+                </fieldset>
+            </form>&nbsp;
+
+            <table class="list versions">
+                <thead>
+                <tr>
+                    <th>バージョン</th>
+                    <th>デフォルトのバージョン</th>
+                    <th>期日</th>
+                    <th>説明</th>
+                    <th>ステータス</th>
+                    <th>共有</th>
+                    <th>Wikiページ</th>
+                    <th style="width:15%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="version open ">
+                    <td class="name "><a title="2022/10/16" href="#">version1</a></td>
+                    <td class="tick"></td>
+                    <td class="date">2022/10/16</td>
+                    <td class="description"></td>
+                    <td class="status">進行中</td>
+                    <td class="sharing">共有しない</td>
+                    <td></td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="version open ">
+                    <td class="name "><a title="2022/10/31" href="#">version2</a></td>
+                    <td class="tick"></td>
+                    <td class="date">2022/10/31</td>
+                    <td class="description"></td>
+                    <td class="status">進行中</td>
+                    <td class="sharing">共有しない</td>
+                    <td></td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="version open ">
+                    <td class="name "><a href="#">version3</a></td>
+                    <td class="tick"></td>
+                    <td class="date"></td>
+                    <td class="description"></td>
+                    <td class="status">進行中</td>
+                    <td class="sharing">共有しない</td>
+                    <td></td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="version open ">
+                    <td class="name "><a href="#">version4</a></td>
+                    <td class="tick"></td>
+                    <td class="date"></td>
+                    <td class="description"></td>
+                    <td class="status">進行中</td>
+                    <td class="sharing">共有しない</td>
+                    <td></td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr class="version open ">
+                    <td class="name "><a href="#">version7</a></td>
+                    <td class="tick"><span class="icon-only icon-checked"></span></td>
+                    <td class="date"></td>
+                    <td class="description"></td>
+                    <td class="status">進行中</td>
+                    <td class="sharing">共有しない</td>
+                    <td></td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tab-content-categories" style="display:none" class="tab-content"><p>
+            <a class="icon icon-add" href="#">新しいカテゴリ</a></p>
+
+            <table class="list">
+                <thead>
+                <tr>
+                    <th>チケットのカテゴリ</th>
+                    <th>担当者</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="name">category1</td>
+                    <td></td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">category2</td>
+                    <td></td>
+                    <td class="buttons">
+                        <a class="icon icon-edit" href="#">編集</a>
+                        <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tab-content-repositories" style="display:none" class="tab-content"><p>
+            <a class="icon icon-add" href="#">新しいリポジトリ</a></p>
+
+            <p class="nodata">表示するデータがありません</p>
+        </div>
+        <div id="tab-content-boards" style="display:none" class="tab-content"><p>
+            <a class="icon icon-add" href="#">新しいフォーラム</a></p>
+
+            <div class="table-list boards">
+                <div class="table-list-header">
+                    <div class="table-list-cell">フォーラム</div>
+                </div>
+                <div class="sort-level">
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">forum1</a>
+                            </div>
+                            <div class="table-list-cell description">forum1</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/1" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">forum2</a>
+                            </div>
+                            <div class="table-list-cell description">description</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/2" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f3</a>
+                            </div>
+                            <div class="table-list-cell description">f3</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/3" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f4</a>
+                            </div>
+                            <div class="table-list-cell description">f4</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/4" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f5</a>
+                            </div>
+                            <div class="table-list-cell description">f5</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/5" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f6</a>
+                            </div>
+                            <div class="table-list-cell description">f6</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/6" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f7</a>
+                            </div>
+                            <div class="table-list-cell description">f7</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/7" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f8</a>
+                            </div>
+                            <div class="table-list-cell description">f8</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/8" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f9</a>
+                            </div>
+                            <div class="table-list-cell description">f9</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/9" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f10</a>
+                            </div>
+                            <div class="table-list-cell description">f10</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/10" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="table-list-row">
+                            <div class="table-list-cell name" style="padding-left: 2px">
+                                <a href="#">f11</a>
+                            </div>
+                            <div class="table-list-cell description">f11</div>
+                            <div class="table-list-cell buttons">
+                                <span class="icon-only icon-sort-handle sort-handle" data-reorder-url="/projects/test1/boards/11" data-reorder-param="board" title="ソート"></span>
+                                <a class="icon icon-edit" href="#">編集</a>
+                                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+              //<![CDATA[
+
+              $(function () {
+                $("div.sort-level").positionedItems();
+              });
+
+              //]]>
+            </script>
+        </div>
+        <div id="tab-content-activities" style="display:none" class="tab-content">
+            <div class="contextual">
+                <a data-confirm="よろしいですか？" class="icon icon-del" rel="nofollow" data-method="delete" href="#">リセット</a>
+                <a class="icon icon-settings" href="#">管理</a>
+            </div>
+
+            <form class="tabular" action="/projects/test1/enumerations" accept-charset="UTF-8" name="form-cf031ab2" method="post">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/><input type="hidden" name="_method" value="put" autocomplete="off"/><input type="hidden" name="authenticity_token" value="K/loxlpbWPR42WlVVutegwIGZ7Mf80mHtSBspAMceBK6SBj34hJ5xObbAjDhxTvIgjSkkLfQIFkInBHrHZYY2Q==" autocomplete="off"/>
+
+                <table class="list">
+                    <thead>
+                    <tr>
+                        <th>名称</th>
+                        <th>システム作業分類</th>
+                        <th>
+                            <a href="#" onclick="toggleCheckboxesBySelector(&#39;input.enumerations_active&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a> 有効
+                        </th>
+                    </tr>
+                    </thead>
+
+
+                    <tr>
+                        <td class="name">
+                            <input value="8" autocomplete="off" type="hidden" name="enumerations[8][parent_id]" id="enumerations_8_parent_id"/>
+                            設計作業
+                        </td>
+                        <td class="tick"><span class="icon-only icon-checked"></span></td>
+                        <td>
+                            <input name="enumerations[8][active]" type="hidden" value="0" autocomplete="off"/><input class="enumerations_active" type="checkbox" value="1" checked="checked" name="enumerations[8][active]" id="enumerations_8_active"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="name">
+                            <input value="9" autocomplete="off" type="hidden" name="enumerations[9][parent_id]" id="enumerations_9_parent_id"/>
+                            開発作業
+                        </td>
+                        <td class="tick"><span class="icon-only icon-checked"></span></td>
+                        <td>
+                            <input name="enumerations[9][active]" type="hidden" value="0" autocomplete="off"/>
+                            <input class="enumerations_active" type="checkbox" value="1" checked="checked" name="enumerations[9][active]" id="enumerations_9_active"/>
+                        </td>
+                    </tr>
+                </table>
+
+                <input type="submit" name="commit" value="保存" data-disable-with="保存"/>
+            </form>
+        </div>
+
+        <script>
+          //<![CDATA[
+          showTab('info', this.href)
+          //]]>
+        </script>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

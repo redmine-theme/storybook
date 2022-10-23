@@ -1,0 +1,44 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>新しいメンバー</h2>
+
+        <form class="new_membership" id="new_membership" action="#" accept-charset="UTF-8" name="new_membership-ee6e7fe0" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+            <fieldset class="box">
+                <legend><label for="principal_search">ユーザーまたはグループの検索:</label></legend>
+                <p><input type="text" name="principal_search" id="principal_search"/></p>
+                <script>
+                  //<![CDATA[
+                  observeSearchfield('principal_search', null, '/projects/test1/memberships/autocomplete.js')
+                  //]]>
+                </script>
+                <div id="principals_for_new_member">
+                    <div class="objects-selection">
+                        <div id="principals">
+                            <label><input type="checkbox" name="membership[user_ids][]" value="3"/><img alt="" title="非メンバー" class="gravatar" default="default" src="/images/group.png?1655788845" width="16" height="16"/>非メンバー</label><label><input type="checkbox" name="membership[user_ids][]" value="2"/><img alt="" title="匿名ユーザー" class="gravatar" default="default" src="/images/group.png?1655788845" width="16" height="16"/>匿名ユーザー</label><label><input type="checkbox" name="membership[user_ids][]" value="14"/><img alt="" title="group5" class="gravatar" default="default" src="/images/group.png?1655788845" width="16" height="16"/>group5</label>
+                        </div>
+                    </div>
+                    <span class="pagination"><ul class="pages"></ul><span><span class="items">(1-3/3)</span> </span></span>
+                </div>
+            </fieldset>
+            <fieldset class="box">
+                <legend>
+                    <a href="#" onclick="toggleCheckboxesBySelector(&#39;.roles-selection input&#39;); return false;" title="すべてにチェックをつける / すべてのチェックを外す" class="icon icon-checked"></a>ロール
+                </legend>
+                <div class="roles-selection">
+                    <label><input type="checkbox" name="membership[role_ids][]" value="3"/> 管理者</label>
+                    <label><input type="checkbox" name="membership[role_ids][]" value="4"/> 開発者</label>
+                    <label><input type="checkbox" name="membership[role_ids][]" value="5"/> 報告者</label>
+                </div>
+            </fieldset>
+
+            <p><input type="submit" value="追加" data-disable-with="追加"/></p>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

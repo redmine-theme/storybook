@@ -1,0 +1,40 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>フォーラム</h2>
+
+        <form class="edit_board" id="edit_board_1" action="#" accept-charset="UTF-8" name="edit_board_1-e819cbf5" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="_method" value="patch" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+            <div class="box tabular">
+                <p>
+                    <label for="board_name">名称<span class="required"> *</span></label><input type="text" value="forum1" name="board[name]" id="board_name"/>
+                </p>
+                <p>
+                    <label for="board_description">説明<span class="required"> *</span></label><input size="80" type="text" value="forum1" name="board[description]" id="board_description"/>
+                </p>
+                <p><label for="board_parent_id">親フォーラム</label><select name="board[parent_id]" id="board_parent_id">
+                    <option value="">&nbsp;</option>
+                    <option value="2">forum2</option>
+                    <option value="3">f3</option>
+                    <option value="4">f4</option>
+                    <option value="5">f5</option>
+                    <option value="6">f6</option>
+                    <option value="7">f7</option>
+                    <option value="8">f8</option>
+                    <option value="9">f9</option>
+                    <option value="10">f10</option>
+                    <option value="11">f11</option>
+                </select></p>
+            </div>
+
+            <input type="submit" name="commit" value="保存" data-disable-with="保存"/>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

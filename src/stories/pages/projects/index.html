@@ -1,0 +1,327 @@
+<div id="main" class="">
+    <div id="sidebar">
+        <h3>カスタムクエリ</h3>
+        <ul class="queries">
+            <li><a class="query" href="#">My bookmarks</a></li>
+            <li><a class="query" href="#">マイプロジェクト</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div class="contextual">
+            <form action="#" accept-charset="UTF-8" name="form-a7b38a5f" method="get">
+                <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            </form>
+            <a class="icon icon-add" href="#">新しいプロジェクト</a><a class="icon icon-settings" href="#">管理</a>
+        </div>
+
+        <h2>プロジェクト</h2>
+
+        <form id="query_form" action="#" accept-charset="UTF-8" name="query_form-cdab4acd" method="get">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="set_filter" id="set_filter" value="1" autocomplete="off"/>
+            <input type="hidden" name="type" id="query_type" value="ProjectQuery" disabled="disabled" autocomplete="off"/>
+            <input type="hidden" name="sort" value="" autocomplete="off"/>
+
+            <div id="query_form_with_buttons" class="hide-when-print">
+                <div id="query_form_content">
+                    <fieldset id="filters" class="collapsible ">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-expanded">フィルタ</legend>
+                        <div style="">
+                            <script>
+                              //<![CDATA[
+
+                              var operatorLabels = {
+                                "=": "等しい",
+                                "!": "等しくない",
+                                "o": "未完了",
+                                "c": "完了",
+                                "!*": "なし",
+                                "*": "すべて",
+                                "\u003e=": "以上",
+                                "\u003c=": "以下",
+                                "\u003e\u003c": "次の範囲内",
+                                "\u003ct+": "N日後以前",
+                                "\u003et+": "N日後以降",
+                                "\u003e\u003ct+": "今後N日",
+                                "t+": "N日後",
+                                "nd": "明日",
+                                "t": "今日",
+                                "ld": "昨日",
+                                "nw": "来週",
+                                "w": "今週",
+                                "lw": "先週",
+                                "l2w": "直近2週間",
+                                "nm": "来月",
+                                "m": "今月",
+                                "lm": "先月",
+                                "y": "今年",
+                                "\u003et-": "N日前以降",
+                                "\u003ct-": "N日前以前",
+                                "\u003e\u003ct-": "過去N日",
+                                "t-": "N日前",
+                                "~": "含む",
+                                "!~": "含まない",
+                                "^": "前方一致",
+                                "$": "後方一致",
+                                "=p": "次のプロジェクト内のチケット",
+                                "=!p": "次のプロジェクト外のチケット",
+                                "!p": "次のプロジェクト内のチケットを除く",
+                                "*o": "未完了のチケット",
+                                "!o": "なし または完了したチケット"
+                              };
+                              var operatorByType = {
+                                "list": ["=", "!"],
+                                "list_status": ["o", "=", "!", "c", "*"],
+                                "list_optional": ["=", "!", "!*", "*"],
+                                "list_subprojects": ["*", "!*", "=", "!"],
+                                "date": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003ct+", "\u003et+", "\u003e\u003ct+", "t+", "nd", "t", "ld", "nw", "w", "lw", "l2w", "nm", "m", "lm", "y", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "!*", "*"],
+                                "date_past": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "\u003et-", "\u003ct-", "\u003e\u003ct-", "t-", "t", "ld", "w", "lw", "l2w", "m", "lm", "y", "!*", "*"],
+                                "string": ["~", "=", "!~", "!", "^", "$", "!*", "*"],
+                                "text": ["~", "!~", "^", "$", "!*", "*"],
+                                "integer": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "float": ["=", "\u003e=", "\u003c=", "\u003e\u003c", "!*", "*"],
+                                "relation": ["=", "!", "=p", "=!p", "!p", "*o", "!o", "!*", "*"],
+                                "tree": ["=", "~", "!*", "*"]
+                              };
+                              var availableFilters = {
+                                "status": {
+                                  "type": "list",
+                                  "name": "ステータス",
+                                  "remote": true,
+                                  "values": [["有効", "1"], ["終了", "5"]]
+                                },
+                                "id": {"type": "list", "name": "プロジェクト", "remote": true},
+                                "name": {"type": "text", "name": "名称", "values": null},
+                                "description": {"type": "text", "name": "説明", "values": null},
+                                "parent_id": {"type": "list_subprojects", "name": "親プロジェクト名", "remote": true},
+                                "is_public": {"type": "list", "name": "公開", "values": [["はい", "1"], ["いいえ", "0"]]},
+                                "created_on": {"type": "date_past", "name": "作成日", "values": null}
+                              };
+                              var labelDayPlural = "日";
+
+                              var filtersUrl = "\/queries\/filter?type=ProjectQuery";
+
+                              $(document).ready(function () {
+                                initFilters();
+                                addFilter("status", "=", ["1"]);
+                              });
+
+                              //]]>
+                            </script>
+                            <table id="filters-table">
+                            </table>
+
+                            <div class="add-filter">
+                                <label for="add_filter_select">フィルタ追加</label>
+                                <select id="add_filter_select">
+                                    <option value="">&nbsp;</option>
+                                    <option value="status">ステータス</option>
+                                    <option value="id">プロジェクト</option>
+                                    <option value="name">名称</option>
+                                    <option value="description">説明</option>
+                                    <option value="parent_id">親プロジェクト名</option>
+                                    <option value="is_public">公開</option>
+                                    <option value="created_on">作成日</option>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="f[]" id="f_" value="" autocomplete="off"/>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="options" class="collapsible collapsed">
+                        <legend onclick="toggleFieldset(this);" class="icon icon-collapsed">オプション</legend>
+                        <div class="hidden">
+                            <div>
+                                <span class="field"><label for='display_type'>表示形式</label></span>
+                                <input type="radio" name="display_type" id="display_type_board" value="board" checked="checked"/><label for="display_type_board" class="inline">ボード</label><input type="radio" name="display_type" id="display_type_list" value="list"/><label for="display_type_list" class="inline">リスト</label>
+                            </div>
+                            <table id="list-definition" class="hidden">
+                                <tr>
+                                    <td class="field">項目</td>
+                                    <td>
+<span class="query-columns">
+  <span>
+      <label for="available_c">利用できる項目</label>
+      <select name="available_columns[]" id="available_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.available_c, this.form.selected_c);"><option value="status">ステータス</option>
+<option value="homepage">ホームページ</option>
+<option value="parent_id">親プロジェクト名</option>
+<option value="is_public">公開</option>
+<option value="created_on">作成日</option></select>
+  </span>
+  <span class="buttons">
+      <input type="button" value="&#8594;" class="move-right"
+             onclick="moveOptions(this.form.available_c, this.form.selected_c);"/>
+      <input type="button" value="&#8592;" class="move-left"
+             onclick="moveOptions(this.form.selected_c, this.form.available_c);"/>
+  </span>
+  <span>
+      <label for="selected_c">選択された項目</label>
+      <select name="c[]" id="selected_c" multiple="multiple" size="10" ondblclick="moveOptions(this.form.selected_c, this.form.available_c);"><option value="name">名称</option>
+<option value="identifier">識別子</option>
+<option value="short_description">説明</option></select>
+  </span>
+  <span class="buttons">
+      <input type="button" value="&#8648;" onclick="moveOptionTop(this.form.selected_c);"/>
+      <input type="button" value="&#8593;" onclick="moveOptionUp(this.form.selected_c);"/>
+      <input type="button" value="&#8595;" onclick="moveOptionDown(this.form.selected_c);"/>
+      <input type="button" value="&#8650;" onclick="moveOptionBottom(this.form.selected_c);"/>
+  </span>
+</span>
+
+                                        <script>
+                                          //<![CDATA[
+
+                                          $(document).ready(function () {
+                                            $('.query-columns').closest('form').submit(function () {
+                                              $('#selected_c option:not(:disabled)').prop('selected', true);
+                                            });
+                                          });
+
+                                          //]]>
+                                        </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="field"><label for='group_by'>グループ条件</label></td>
+                                    <td><select name="group_by" id="group_by">
+                                        <option value="">&nbsp;</option>
+                                        <option value="is_public">公開</option>
+                                    </select></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <p class="buttons">
+                    <a href="#" onclick="$(&quot;#query_form&quot;).submit(); return false;" class="icon icon-checked">適用</a>
+                    <a class="icon icon-reload" href="#">クリア</a>
+                    <a href="#" onclick="$(&#39;#query_type&#39;).prop(&#39;disabled&#39;,false);$(&#39;#query_form&#39;).attr(&#39;action&#39;, &#39;/queries/new&#39;).submit(); return false;" class="icon icon-save">カスタムクエリを保存</a>
+                </p>
+            </div>
+
+
+            <script>
+              //<![CDATA[
+
+              $(function ($) {
+                $('input[name=display_type]').change(function (e) {
+                  if ($("#display_type_list").is(':checked')) {
+                    $('table#list-definition').show();
+                  } else {
+                    $('table#list-definition').hide();
+                  }
+
+                })
+              });
+
+
+              //]]>
+            </script>
+        </form>
+        <div id="projects-index">
+            <ul class='projects root'>
+                <li class='root'>
+                    <div class='root'>
+                        <a class="project root parent public icon icon-user my-project icon-bookmarked-project" href="#">test1</a>
+                        <div class="wiki description"><a name="h1-title"></a>
+                            <h1>h1 title<a href="#h1-title" class="wiki-anchor">&para;</a></h1>
+                            <p>ジョバンニ、カムパネルラがそれを知っている、それはいままで、いくつのものの命をとったような鷺が、まるで一本の木というふうにして校庭の隅の所へ行ってしまったよ。室中のひとたちは半分うしろの方へ向けて、ではカムパネルラさんといっしょなら心配はないからああきっといっしょだよ。カムパネルラは、なにかなつかしそうにわらいながら、ジョバンニもぼんやり答えていました。もうまるでひどい峡谷になって、なにかのあかりのように見えるように、砂や砂利の粒にもあたるのです。だからやっぱりおまえはさっき考えたように思ったとき、ジョバンニ、お仕事がひどかったろう。...</p>
+                        </div>
+                    </div>
+                    <ul class='projects '>
+                        <li class='child'>
+                            <div class='child'>
+                                <a class="project child parent public" href="#">test1-1</a>
+                                <div class="wiki description"><a name="町かどを曲がるときふりかえって見ていました"></a>
+                                    <h2>町かどを曲がるとき、ふりかえって見ていました。<a href="#町かどを曲がるときふりかえって見ていました" class="wiki-anchor">&para;</a>
+                                    </h2>
+                                    <p>すると耳に手をあげたカムパネルラが女の子に言いました。それはもうじきちかくに町か何かだったと考えてふり返って見ましたら、何か歌うように読んだり数えたりしながら、われを忘れてながめていました。双子のお星さまが何をした人がすぐ出て来て、何かあったんだ。だからやっぱりおまえはさっき考えたように立ちあがりました。鷺はおいしいんですか鶴や雁です。</p>
+                                </div>
+                            </div>
+                            <ul class='projects '>
+                                <li class='child'>
+                                    <div class='child'>
+                                        <a class="project child leaf public" href="#">test1-1-1</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class='child'>
+                            <div class='child'><a class="project child leaf public" href="#">test1-2</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class='root'>
+                    <div class='root'><a class="project root leaf public" href="#">test10</a></div>
+                </li>
+                <li class='root'>
+                    <div class='root'><a class="project root parent public" href="#">test2</a></div>
+                    <ul class='projects '>
+                        <li class='child'>
+                            <div class='child'><a class="project child leaf public" href="#">test2-1</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class='root'>
+                    <div class='root'>
+                        <a class="project root parent public icon icon-user my-project" href="#">test3</a>
+                        <div class="wiki description">
+                            <ul>
+                                <li>test1</li>
+                                <li>test2</li>
+                                <li>test3</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class='projects '>
+                        <li class='child'>
+                            <div class='child'><a class="project child leaf public" href="#">test3-1</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class='root'>
+                    <div class='root'><a class="project root leaf public" href="#">test4</a></div>
+                </li>
+                <li class='root'>
+                    <div class='root'>
+                        <a class="project root leaf public icon icon-bookmarked-project" href="#">test5</a>
+                        <div class="wiki description"><a name="どらカムパネルラもそらを見ていました"></a>
+                            <h2>どらカムパネルラもそらを見ていました。<a href="#どらカムパネルラもそらを見ていました" class="wiki-anchor">&para;</a></h2>
+                            <p>ですからもしもこの天の川がほんとうに勉強しなけぁよかったなあ。新世界交響楽だわ向こうの席の姉がひとりごとのように高くはねあがり、どおとはげしい音がしました。わっしは、鳥をつかまえるとこだねえ。何かいろいろのものが一ぺんにジョバンニの方を見ながら言いました。ジョバンニはなんだか、泣きだしたいのをこらえておこったようについていました。</p>
+                        </div>
+                    </div>
+                </li>
+                <li class='root'>
+                    <div class='root'><a class="project root leaf public" href="#">test6</a></div>
+                </li>
+                <li class='root'>
+                    <div class='root'><a class="project root leaf public" href="#">test7</a></div>
+                </li>
+                <li class='root'>
+                    <div class='root'><a class="project root leaf public" href="#">test8</a></div>
+                </li>
+                <li class='root'>
+                    <div class='root'><a class="project root leaf public" href="#">test9</a></div>
+                </li>
+            </ul>
+        </div>
+
+        <p style="text-align:right;">
+            <span class="icon icon-user my-project">マイプロジェクト</span>
+            <span class="icon icon-bookmarked-project">My bookmarks</span>
+        </p>
+
+        <p class="other-formats">他の形式にエクスポート:
+            <span><a class="atom" rel="nofollow" href="#">Atom</a></span>
+        </p>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

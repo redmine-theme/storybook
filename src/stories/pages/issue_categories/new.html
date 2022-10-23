@@ -1,0 +1,34 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>新しいカテゴリ</h2>
+
+        <form class="new_issue_category" id="new_issue_category" action="#" accept-charset="UTF-8" name="new_issue_category-560bad4f" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+            <div class="box tabular">
+                <p>
+                    <label for="issue_category_name">名称<span class="required"> *</span></label><input size="60" type="text" value="" name="issue_category[name]" id="issue_category_name"/>
+                </p>
+                <p>
+                    <label for="issue_category_assigned_to_id">担当者</label><select name="issue_category[assigned_to_id]" id="issue_category_assigned_to_id">
+                    <option value="">&nbsp;</option>
+                    <option value="1">&lt;&lt; 自分 &gt;&gt;</option>
+                    <option value="1">Redmine Admin</option>
+                    <option value="5">user1 user1</option>
+                    <option value="6">user2 user2</option>
+                    <option value="7">user3 user3</option>
+                    <option value="8">user4 user4</option>
+                    <option value="9">user5 user5</option>
+                </select></p>
+            </div>
+
+            <input type="submit" name="commit" value="作成" data-disable-with="作成"/>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

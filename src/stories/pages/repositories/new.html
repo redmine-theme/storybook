@@ -1,0 +1,53 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>新しいリポジトリ</h2>
+
+        <form class="new_repository" id="repository-form" action="#" accept-charset="UTF-8" name="repository-form-15909dbd" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+            <div class="box tabular">
+                <p>
+                    <label for="repository_scm">バージョン管理システム</label><select name="repository_scm" id="repository_scm" data-remote="true" data-method="get" data-url="#">
+                    <option value="">--- 選んでください ---</option>
+                    <option selected="selected" value="Subversion">Subversion</option>
+                    <option value="Mercurial">Mercurial</option>
+                    <option value="Cvs">CVS</option>
+                    <option value="Bazaar">Bazaar</option>
+                    <option value="Git">Git</option>
+                </select>
+                </p>
+
+                <p>
+                    <label for="repository_is_default">メインリポジトリ</label><input name="repository[is_default]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" checked="checked" name="repository[is_default]" id="repository_is_default"/>
+                </p>
+                <p>
+                    <label for="repository_identifier">識別子</label><input type="text" name="repository[identifier]" id="repository_identifier"/>
+                    <em class="info">
+                        長さは1から255文字までです。 アルファベット小文字(a-z)・数字・ハイフン・アンダースコアが使えます。<br/>識別子は後で変更することはできません。
+                    </em>
+                </p>
+
+                <p>
+                    <label for="repository_url">URL<span class="required"> *</span></label><input size="60" type="text" value="" name="repository[url]" id="repository_url"/><em class="info">例: file:///, http://, https://, svn://, svn+[tunnelscheme]://</em>
+                </p>
+                <p>
+                    <label for="repository_login">ログインID</label><input size="30" type="text" value="" name="repository[login]" id="repository_login"/>
+                </p>
+                <p>
+                    <label for="repository_password">パスワード</label><input value="" size="30" name="ignore" onfocus="this.value=&#39;&#39;; this.name=&#39;repository[password]&#39;;" onchange="this.name=&#39;repository[password]&#39;;" type="password" id="repository_password"/>
+                </p>
+            </div>
+
+            <p>
+                <input type="submit" name="commit" value="作成" data-disable-with="作成"/>
+                <a href="#">キャンセル</a>
+            </p>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

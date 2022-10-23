@@ -1,0 +1,50 @@
+<div id="main" class="nosidebar">
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <h2>新しいバージョン</h2>
+
+        <form class="new_version" id="new_version" enctype="multipart/form-data" action="#" accept-charset="UTF-8" name="new_version-8e10a28a" method="post">
+            <input name="utf8" type="hidden" value="&#x2713;" autocomplete="off"/>
+            <input type="hidden" name="authenticity_token" value="" autocomplete="off"/>
+
+
+            <div class="box tabular">
+                <p>
+                    <label for="version_name">名称<span class="required"> *</span></label><input maxlength="60" size="60" type="text" value="" name="version[name]" id="version_name"/>
+                </p>
+                <p>
+                    <label for="version_description">説明</label><input size="60" type="text" value="" name="version[description]" id="version_description"/>
+                </p>
+                <p>
+                    <label for="version_wiki_page_title">Wikiページ</label><input size="60" type="text" name="version[wiki_page_title]" id="version_wiki_page_title"/>
+                </p>
+                <p>
+                    <label for="version_effective_date">期日</label><input size="10" type="date" name="version[effective_date]" id="version_effective_date"/>
+                    <script>
+                      //<![CDATA[
+                      $(function () {
+                        $('#version_effective_date').addClass('date').datepickerFallback(datepickerOptions);
+                      });
+                      //]]>
+                    </script>
+                </p>
+                <p><label for="version_sharing">共有</label><select name="version[sharing]" id="version_sharing">
+                    <option selected="selected" value="none">共有しない</option>
+                    <option value="descendants">サブプロジェクト単位</option>
+                    <option value="hierarchy">プロジェクト階層単位</option>
+                    <option value="tree">プロジェクトツリー単位</option>
+                    <option value="system">すべてのプロジェクト</option>
+                </select></p>
+                <p>
+                    <label for="version_default_project_version">デフォルトのバージョン</label><input name="version[default_project_version]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="version[default_project_version]" id="version_default_project_version"/>
+                </p>
+            </div>
+
+            <input type="submit" name="commit" value="作成" data-disable-with="作成"/>
+        </form>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>
