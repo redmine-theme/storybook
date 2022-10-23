@@ -1,4 +1,4 @@
-import html from "./projects.html";
+import html from "./plugins.html";
 
 export default {
   title: "Pages/Admin/Plugins",
