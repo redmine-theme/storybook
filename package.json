@@ -2,7 +2,6 @@
   "name": "@redmine-theme/storybook",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -17,7 +16,7 @@
     "@storybook/addon-links": "^6.5.12",
     "@storybook/addon-viewport": "^6.5.12",
     "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/html": "^6.5.12",
+    "@storybook/html": "^6.5.13",
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5"
