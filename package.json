@@ -1,6 +1,7 @@
 {
   "name": "@redmine-theme/storybook",
   "description": "",
+  "version": "1.0.0",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
