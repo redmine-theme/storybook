@@ -1,7 +1,7 @@
 {
   "name": "@redmine-theme/storybook",
   "description": "",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "repository": "github:redmine-theme/storybook",
   "scripts": {
     "storybook": "start-storybook -p 6006",
@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "Tsuyoshi Tsurushima",
   "license": "GPL-2.0-or-later",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.19.6",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
@@ -22,5 +22,12 @@
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5"
-  }
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "src",
+    "public"
+  ]
 }
