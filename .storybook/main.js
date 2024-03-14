@@ -1,19 +1,38 @@
-module.exports = {
+import path from 'path';
+
+export default {
   "stories": [
-    "../src/stories/**/*.stories.mdx",
-    "../src/stories/**/*.stories.@(js|jsx|ts|tsx)"
+    "../src/stories"
   ],
+
   "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@storybook/addon-viewport",
+    "@storybook/addon-essentials"
   ],
-  staticDirs: [
-    '../public'
+
+  "staticDirs": [
+    '../public',
+    '../src/assets'
   ],
-  "framework": "@storybook/html",
-  "core": {
-    "builder": "@storybook/builder-webpack5"
+
+  "framework": {
+    name: "@storybook/html-webpack5"
   },
+
+  "webpackFinal": (config) => {
+
+    config.amd = false;
+
+    return {
+      ...config,
+      resolve: {
+        alias: {
+          '@': path.join(__dirname, '../src/assets/')
+        },
+        roots: [
+          path.join(__dirname, '../src/assets/'),
+          path.join(__dirname, '../public')
+        ]
+      }
+    }
+  }
 }

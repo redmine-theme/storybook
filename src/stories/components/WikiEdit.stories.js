@@ -1,13 +1,13 @@
 import html from './wiki-edit.html';
 
-// import '../../../public/javascripts/jstoolbar/jstoolbar';
-// import '../../../public/javascripts/jstoolbar/common_mark';
-// import '../../../public/jstoolbar/lang/jstoolbar-ja';
-//
-// window.wikiImageMimeTypes = ["image/gif","image/jpeg","image/png","image/tiff","image/x-ms-bmp"];
-// window.userHlLanguages = ["c","cpp","csharp","css","diff","go","groovy","html","java","javascript","objc","perl","php","python","r","ruby","sass","scala","shell","sql","swift","xml","yaml"];
+import '@/javascripts/jstoolbar/jstoolbar';
+import '@/javascripts/jstoolbar/common_mark';
+import '@/javascripts/jstoolbar/lang/jstoolbar-ja';
 
-import '../../../public/stylesheets/jstoolbar.css';
+window.wikiImageMimeTypes = ["image/gif","image/jpeg","image/png","image/tiff","image/x-ms-bmp"];
+window.userHlLanguages = ["c","cpp","csharp","css","diff","go","groovy","html","java","javascript","objc","perl","php","python","r","ruby","sass","scala","shell","sql","swift","xml","yaml"];
+
+import '@/stylesheets/jstoolbar.css';
 
 export default {
   title: "Components/WikiEdit",

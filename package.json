@@ -4,24 +4,16 @@
   "version": "1.0.3",
   "repository": "github:redmine-theme/storybook",
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [],
   "author": "Tsuyoshi Tsurushima",
   "license": "GPL-2.0-or-later",
-  "dependencies": {
-    "@babel/core": "^7.19.6",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/addon-viewport": "^6.5.12",
-    "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/html": "^6.5.13",
-    "@storybook/manager-webpack5": "^6.5.12",
-    "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^8.2.5"
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.0.1",
+    "@storybook/html-webpack5": "^8.0.1",
+    "storybook": "^8.0.1"
   },
   "files": [
     "package.json",
