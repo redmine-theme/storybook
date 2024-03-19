@@ -13,6 +13,7 @@
   "devDependencies": {
     "@storybook/addon-essentials": "^8.0.1",
     "@storybook/html-webpack5": "^8.0.1",
+    "@storybook/html-vite": "^8.0.1",
     "storybook": "^8.0.1"
   },
   "files": [
