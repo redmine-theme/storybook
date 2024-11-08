@@ -23,24 +23,24 @@ function vitePluginHtml() {
 }
 
 export default {
-  "stories": [
+  stories: [
     "../src/stories"
   ],
 
-  "addons": [
+  addons: [
     "@storybook/addon-essentials"
   ],
 
-  "staticDirs": [
+  staticDirs: [
     '../public',
     '../src/assets'
   ],
 
-  "framework": {
+  framework: {
     name: framework
   },
 
-  "webpackFinal": (config) => {
+  webpackFinal: (config) => {
 
     config.amd = false;
 
@@ -58,7 +58,7 @@ export default {
     }
   },
 
-  "viteFinal": async (config) => {
+  viteFinal: async (config) => {
 
     config.plugins.push(
       vitePluginHtml()
