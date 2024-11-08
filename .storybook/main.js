@@ -44,6 +44,17 @@ export default {
 
     config.amd = false;
 
+    // Skip html-loader sources processing
+    const htmlLoader = config.module.rules.find(
+      (rule) => rule.test?.toString() === "/\\.html$/"
+    )
+    htmlLoader.use = {
+      loader: 'html-loader',
+      options: {
+        sources: false,
+      }
+    }
+
     return {
       ...config,
       resolve: {
