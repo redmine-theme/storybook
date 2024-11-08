@@ -4,7 +4,7 @@ import '@/javascripts/tribute-5.1.3.min.js'
 import '@/javascripts/tablesort-5.2.1.min.js'
 import '@/javascripts/tablesort-5.2.1.number.min.js'
 
-import '/javascripts/chart.min.js'
+import '@/javascripts/chart.min.js'
 
 export default {
   title: "Pages/Reports/IssueReportDetails",
