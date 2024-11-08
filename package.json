@@ -12,9 +12,10 @@
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@storybook/addon-essentials": "^8.0.1",
-    "@storybook/html-webpack5": "^8.0.1",
     "@storybook/html-vite": "^8.0.1",
-    "storybook": "^8.0.1"
+    "@storybook/html-webpack5": "^8.0.1",
+    "storybook": "^8.0.1",
+    "vite": "^5.4.10"
   },
   "files": [
     "package.json",
