@@ -47,7 +47,10 @@ function vitePluginHtmlForBuild() {
       if (!id.endsWith(postfix)) {
         return;
       }
-      const buf = fs.readFileSync(id.replace(postfixRegExp, ''), 'utf-8');
+      let buf = fs.readFileSync(id.replace(postfixRegExp, ''), 'utf-8');
+      if (process.env.BASE_URL) {
+        buf = buf.replace(/"\/(attachments|images|javascripts)\//g, `"${process.env.BASE_URL}$1/`);
+      }
       return `export default ${JSON.stringify(buf)}`;
     }
   }
@@ -85,7 +88,20 @@ export default {
         sources: false,
       }
     }
-
+    // Replace absolute paths for GitHub Pages
+    if (process.env.BASE_URL) {
+      config.module.rules.push({
+        test: /.html$/,
+        loader: 'string-replace-loader',
+        options: {
+          search: '"\/(attachments|images|javascripts)\/',
+          replace(match, p1, offset, string) {
+            return `"${process.env.BASE_URL}${p1}/`;
+          },
+          flags: 'g'
+        },
+      });
+    }
     return {
       ...config,
       resolve: {
@@ -116,7 +132,8 @@ export default {
       },
       define: {
         "process.env": {}
-      }
+      },
+      base: process.env.BASE_URL || '/'
     }
   }
 }
