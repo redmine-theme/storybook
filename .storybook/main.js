@@ -8,6 +8,7 @@ const framework = process.env.BUILDER == 'vite' ? '@storybook/html-vite'
 function vitePluginHtml() {
   return {
     name: 'vite-plugin-html',
+    apply: 'serve',
     async transform (_, id) {
       const files = [/\.html$/];
       if (files.find((v) => v.test(id))) {
@@ -18,6 +19,36 @@ function vitePluginHtml() {
       } else {
         return {};
       }
+    }
+  }
+}
+
+// Add escaping process with reference at build time (https://github.com/vitejs/vite/discussions/12788#discussioncomment-5557866)
+function vitePluginHtmlForBuild() {
+  const postfix = '?html-import';
+  const postfixRegExp = /\?html-import$/;
+  return {
+    name: 'vite-plugin-html-for-build',
+    enforce: 'pre',
+    apply: 'build',
+    async resolveId (id, importer, options) {
+      if (/\.html$/.test(id) && !options.isEntry) {
+        const res = await this.resolve(id, importer, {
+          skipSelf: true,
+          ...options
+        });
+        if (!res || res.external) {
+          return res;
+        }
+        return res.id + postfix;
+      }
+    },
+    async load(id) {
+      if (!id.endsWith(postfix)) {
+        return;
+      }
+      const buf = fs.readFileSync(id.replace(postfixRegExp, ''), 'utf-8');
+      return `export default ${JSON.stringify(buf)}`;
     }
   }
 }
@@ -72,7 +103,8 @@ export default {
   viteFinal: async (config) => {
 
     config.plugins.push(
-      vitePluginHtml()
+      vitePluginHtml(),
+      vitePluginHtmlForBuild()
     )
 
     return {
