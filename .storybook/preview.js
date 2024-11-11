@@ -1,6 +1,7 @@
 import '@/stylesheets/jquery/jquery-ui-1.13.2.css';
 import '@/stylesheets/application.css';
 import '@/stylesheets/responsive.css';
+import '@/stylesheets/jstoolbar.css';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
