@@ -1,6 +1,6 @@
 import html from './context-menu.html';
-import '../../../public/javascripts/context_menu';
-import '../../../public/stylesheets/context_menu.css';
+import '@/javascripts/context_menu';
+import '@/stylesheets/context_menu.css';
 
 export default {
   title: "Components/ContextMenu",

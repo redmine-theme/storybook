@@ -1,5 +1,5 @@
 import html from './annotate.html';
-import '../../../../public/stylesheets/scm.css';
+import '@/stylesheets/scm.css';
 
 export default {
   title: "Pages/Wiki/Annotate",
