@@ -25,8 +25,10 @@ jobs:
 
       - name: Build Storybook
         env:
-          BASE_URL: "/${{ github.event.repository.name }}/"
-        run: npm run build-storybook
+          BASE_PATH: "/${{ github.event.repository.name }}/"
+        run: |
+          npm run build-storybook
+          node scripts/update-assets-paths.js storybook-static ${BASE_PATH}
 
       - uses: actions/upload-pages-artifact@v3
         with:
